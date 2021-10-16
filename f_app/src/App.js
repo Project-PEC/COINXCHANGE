@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Services from './components/page/Services';
 import Products from './components/page/Products';
 import SignUp from './components/page/SignUp';
+import { ImageAnalyzer } from './components/ImageAnalyzer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
+          <Route path='/predict' component={ImageAnalyzer}/>
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={SignUp} />
         </Switch>
