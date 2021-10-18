@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { csv } from 'd3';
+import './ImageAnalyzer.css';
+import { ButtonP } from './Button';
 
 export const ImageAnalyzer = () => {
     const [prediction, setPrediction] = useState(null);
@@ -95,10 +97,29 @@ export const ImageAnalyzer = () => {
         setFile(e.target.files[0]);
     }
     return (<div>
-        <input type="file" onChange={fileSelectedHandler} />
-        <button onClick={fileUploadHandler}>Upload</button>
-        <button onClick={predict}>Predict</button>
-        <img id="uploadedImage" height="224px" width="224px" src={(preview)} />
+        <div className="im-container">
+            <div className="im-img-wrapper">
+                <div className="im-img">
+                    <img id="uploadedImage" height="224px" width="224px" src={(preview)} />
+                </div>
+            </div>
+        </div>
+        <div className="">
+            <input type="file" onChange={fileSelectedHandler} />
+        </div>
+        <div className="im-btn-container">
+            <div className="im-btn-wrapper">
+                <div className="im-btns">
+                    <ButtonP onClick={fileUploadHandler}>
+                        UPLOAD
+                    </ButtonP>
+                    <ButtonP onClick={predict}>
+                        PREDICT
+                    </ButtonP>
+                </div>
+            </div>
+        </div>
+        
         {renderedPredictions}
     </div>
     )

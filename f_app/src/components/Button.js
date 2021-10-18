@@ -17,3 +17,27 @@ export const Button = ({children, type, onClick, buttonStyle, buttonSize}) => {
         </Link>
     );
 };
+
+export const ButtonS = ({children, type, onClick, buttonStyle, buttonSize}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
+    const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+    return(
+        <Link to='/predict' className='btn-mobile'>
+            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
+                {children}
+            </button>
+        </Link>
+    );
+};
+
+export const ButtonP = ({children, type, onClick, buttonStyle, buttonSize}) => {
+    const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0];
+    const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+    return(
+        <div className="btn--mobile">
+            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
+                {children}
+            </button>
+        </div>
+    );
+};

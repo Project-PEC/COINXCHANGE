@@ -8,6 +8,7 @@ import Products from './components/page/Products';
 import SignUp from './components/page/SignUp';
 import { ImageAnalyzer } from './components/ImageAnalyzer';
 
+
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
           <Route path='/predict' component={ImageAnalyzer}/>
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={SignUp} />
+          <Route path='/predict' component={ImageAnalyzer} />
         </Switch>
       </Router>
     </>
