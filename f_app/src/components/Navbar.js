@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { getUserInfo, logOutUser } from '../api/Auth';
 
-function Navbar() {
+
+const Navbar = () => {
+
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [username, setUsername] = useState("");
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -19,19 +23,38 @@ function Navbar() {
   };
 
   useEffect(() => {
+    getUserInfo(setUsername);
+
     showButton();
-  }, []);
+  });
 
+  let authLink = <Link
+    to='/sign-up'
+    className='nav-links-mobile'
+    onClick={closeMobileMenu}
+  >
+    Sign Up
+  </Link>
+
+  if (username) {
+    authLink = <Link
+      to='/'
+      className='nav-links-mobile'
+      onClick={logOutUser}
+    >
+      LogOut
+    </Link>
+  }
   window.addEventListener('resize', showButton);
-
+  console.log("Here: ", username)
   return (
     <>
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
             COINXCHANGE
-            
-            <i class="fas fa-dollar-sign"/>
+
+            <i class="fas fa-dollar-sign" />
           </Link>
           <div className='menu-icon' onClick={handleClick}>
             <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
@@ -62,16 +85,10 @@ function Navbar() {
             </li>
 
             <li>
-              <Link
-                to='/sign-up'
-                className='nav-links-mobile'
-                onClick={closeMobileMenu}
-              >
-                Sign Up
-              </Link>
+              {authLink}
             </li>
           </ul>
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+          {button && <Button onClick={logOutUser} link={username?'/':'/sign-up'} buttonStyle='btn--outline'>{username?"LogOut":"SIGN UP"}</Button>}
         </div>
       </nav>
     </>

@@ -31,7 +31,7 @@ export const loginUser = (loginUsername,loginPassword,) => {
             console.log(err);
         })
 };
-export const getUserInfo = () => {
+export const getUserInfo = (setUsername) => {
     axios.get("http://localhost:8080/user", {
 
         headers: {
@@ -41,7 +41,7 @@ export const getUserInfo = () => {
     .then((res) => {
         if (!res.data.auth) localStorage.setItem("user",res.data.username);
         else localStorage.removeItem("user");
-        console.log(res.data.username,res.data.auth,res.data.message);
+        setUsername(res.data.username);
     })
     .catch(err => {
         console.log(err);

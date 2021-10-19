@@ -1,7 +1,10 @@
 import React from "react";
 import '../App.css';
-import { Button } from './Button';
+import { Button,ButtonS } from './Button';
 import './HeroSection.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ImageAnalyzer } from './ImageAnalyzer';
+
 
 function HeroSection() {
     return (
@@ -10,9 +13,9 @@ function HeroSection() {
             <h1>COIN WORLD</h1>
             <p>Looking some for your collection?</p>
             <div className="hero-btns">
-                <Button className="btns" buttonStyle='btn--outline' buttonSize="btn-large">
+                <ButtonS className="btns" buttonStyle='btn--outline' buttonSize="btn-large">
                     SEARCH COINS <i class="fas fa-camera"/>
-                </Button>
+                </ButtonS>
                 <Button className="btns" buttonStyle='btn--primary' buttonSize="btn-large">
                     WATCH TRAILER <i className='far fa-play-circle'/>
                 </Button>
