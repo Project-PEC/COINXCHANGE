@@ -1,12 +1,15 @@
 // Import npm packages
-const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-const path = require('path');
+import express from 'express';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import cors from "cors";
+import userRoutes from "./routes/user.js";
+import jwt from 'jsonwebtoken';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-
 
 const MONGODB_URI = 'mongodb+srv://Shubham_Arya:hello123@ytrn.lul4b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
@@ -20,13 +23,41 @@ mongoose.connection.on('connected', () => {
 });
 
 
+
 //hello123
 // HTTP request logger
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(morgan('tiny'));
+app.use(cookieParser("secretCode"));
+
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentinals: true
+}))
+app.use(session({
+  secret: "secretCode",
+  resave: true,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60 * 60 * 24 * 1000
+  },
+  cookieName:"session"
+
+}))
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-AUTHENTICATION, X-IP, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 
 //Schema
 const Schema = mongoose.Schema;
-const BlogPostSchema = new Schema ({
+const BlogPostSchema = new Schema({
   title: String,
   body: String,
   date: {
@@ -47,40 +78,8 @@ const data = {
 
 const NewBlogPost = new BlogPost(data); // instance of the model
 
-
-//NewBlogPost.save((error) => {
-//  if(error){
-//    console.log('Oops, something went wrong');
-//  }
-//  else{
-//    console.log('Data Saved!');
-//  }
-//});
-//.save()
-
-
-
 // Routes
-app.get('/api',(req,res) => {
-  const data={
-    username:'HEYA',
-    age:5
-  };
-  BlogPost.find({ })
-    .then((data) => {
-      console.log('Data: ',data);
-      res.json(data);
-    })
-    .catch((error) => {
-      console.log('error: ',error);
-    });
-});
-app.get('/api/name',(req,res) => {
-  const data={
-    username:'Shubham',
-    age:5
-  };
-  res.json(data);
-});
+app.use("/", userRoutes);
+
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
