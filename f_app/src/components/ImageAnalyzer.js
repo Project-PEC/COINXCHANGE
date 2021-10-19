@@ -5,6 +5,7 @@ import { csv } from 'd3';
 import './ImageAnalyzer.css';
 import { ButtonP } from './Button';
 
+
 export const ImageAnalyzer = () => {
     const [prediction, setPrediction] = useState(null);
     const [file, setFile] = useState(null);
@@ -96,7 +97,8 @@ export const ImageAnalyzer = () => {
         setPreview(URL.createObjectURL(e.target.files[0]));
         setFile(e.target.files[0]);
     }
-    return (<div>
+    return (
+    <div>
         <div className="im-container">
             <div className="im-img-wrapper">
                 <div className="im-img">
@@ -104,8 +106,11 @@ export const ImageAnalyzer = () => {
                 </div>
             </div>
         </div>
-        <div className="">
-            <input type="file" onChange={fileSelectedHandler} />
+        <div className="im-ind-container">
+            <div className="im-ind-wrapper">
+                    <input type="file" onChange={fileSelectedHandler} />
+                
+            </div>
         </div>
         <div className="im-btn-container">
             <div className="im-btn-wrapper">
@@ -119,8 +124,11 @@ export const ImageAnalyzer = () => {
                 </div>
             </div>
         </div>
-        
-        {renderedPredictions}
+        <div className="res-conatiner">
+            <div className="res-wrapper">
+                {renderedPredictions}
+            </div>
+        </div>
     </div>
     )
 }

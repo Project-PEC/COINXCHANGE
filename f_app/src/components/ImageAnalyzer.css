@@ -1,4 +1,5 @@
 body {
+    background-image: url();
     background-color: #5c5c5c;
     color: #242424;
 }
@@ -21,7 +22,7 @@ body {
     display: flex;
     flex-flow: column;
     max-width: 1120px;
-    width: 65%;
+    width: 40%;
     margin: 0 auto;
 }
 .im-btn-wrapper {
@@ -29,7 +30,7 @@ body {
     margin: 5px 0 4px;
 }
 .im-btns {
-    margin: 100px 30px 150px 30px;
+    margin: 20px 30px 10px 30px;
     text-align: center;
 }
 .im-btns .btn {
@@ -38,8 +39,24 @@ body {
 .btn {
     width: 100%;
 }
-.im-input {
-    position: absolute;
+.im-ind-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 50%;
+    margin: 0 auto;
+}
+.im-ind-wrapper {
+    position: relative;
+    margin: 0px 0px 20px 50px;
     text-align: center;
-    margin: 10px 400px 20px 400px;
+}
+.res-conatiner{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 50%;
+    margin: 0 auto;
 }
