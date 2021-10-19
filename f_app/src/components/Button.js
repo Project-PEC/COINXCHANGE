@@ -1,7 +1,6 @@
 import React from "react";
 import './Button.css';
 import { Link } from 'react-router-dom';
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const STYLES=['btn--primary', 'btn--outline'];
 
@@ -12,7 +11,7 @@ export const Button = ({link,children, type, onClick, buttonStyle, buttonSize}) 
     const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
     return(
         <Link to={link} className='btn-mobile'>
-            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={onClick} type={type}>
+            <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={()=>{onClick()}} type={type}>
                 {children}
             </button>
         </Link>

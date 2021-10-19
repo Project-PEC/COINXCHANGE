@@ -2,17 +2,19 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import { getUserInfo, logOutUser } from '../api/Auth';
+import { withRouter } from 'react-router';
+import { logOutUser } from '../api/Auth';
 
-
-const Navbar = () => {
+const Navbar = ({ username, setUsername }) => {
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const [username, setUsername] = useState("");
+
 
   const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const closeMobileMenu = () => {
+    setClick(false);
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -23,8 +25,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    getUserInfo(setUsername);
-
     showButton();
   });
 
@@ -40,13 +40,13 @@ const Navbar = () => {
     authLink = <Link
       to='/'
       className='nav-links-mobile'
-      onClick={logOutUser}
+      onClick={() => logOutUser(setUsername)}
     >
       LogOut
     </Link>
   }
   window.addEventListener('resize', showButton);
-  console.log("Here: ", username)
+  const logOut = () => logOutUser(setUsername);
   return (
     <>
       <nav className='navbar'>
@@ -88,11 +88,11 @@ const Navbar = () => {
               {authLink}
             </li>
           </ul>
-          {button && <Button onClick={logOutUser} link={username?'/':'/sign-up'} buttonStyle='btn--outline'>{username?"LogOut":"SIGN UP"}</Button>}
+          {button && <Button onClick={logOut} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
         </div>
       </nav>
     </>
   );
 }
 
-export default Navbar;
+export default withRouter(Navbar);

@@ -38,7 +38,8 @@ export const registerUser = (req, res) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const newUser = new User({
                 username: req.body.username,
-                password: hashedPassword
+                password: hashedPassword,
+                email:req.body.email
             });
             await newUser.save((err, doc) => {
                 req.session.user = doc;

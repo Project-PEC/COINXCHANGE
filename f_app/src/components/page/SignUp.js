@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { propTypes } from 'react-bootstrap/esm/Image';
+import { withRouter } from 'react-router';
 import { loginUser, registerUser } from '../../api/Auth';
 import '../../App.css';
 import './SignUp.css';
+
 
 // const mode = 'login';
 
@@ -21,6 +24,7 @@ const LoginComponent = (props) => {
                 <LoginForm
                     onChangeUsername={props.onChangeUsername}
                     onChangePassword={props.onChangePassword}
+                    onChangeEmail={props.onChangeEmail}
                     mode={props.mode} onSubmit={props.onSubmit} />
             </section>
         </div>
@@ -37,9 +41,9 @@ const LoginForm = (props) => {
                     <Input OnChange={props.onChangePassword} type="password" id="password" label="password" disabled={props.mode === 'signup'} />
                 </div>
                 <div className="form-group form-group--signup">
-                    <Input type="text" id="fullname" label="full name" disabled={props.mode === 'login'} />
-                    <Input type="email" id="email" label="email" disabled={props.mode === 'login'} />
-                    <Input type="password" id="createpassword" label="password" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangeUsername} type="text" id="fullname" label="full name" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangeEmail} type="email" id="email" label="email" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangePassword} type="password" id="createpassword" label="password" disabled={props.mode === 'login'} />
                 </div>
             </div>
             <button className="button button--primary full-width" type="submit">{props.mode === 'login' ? 'Log In' : 'Sign Up'}</button>
@@ -56,9 +60,9 @@ const SignUP = (props) => {
     const [mode, setMode] = useState('login');
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-
-    const register = () => registerUser(username, password,);
-    const login = () => loginUser(username, password,);
+    const [email,setEmail]=useState("");
+    const register = () => registerUser(username, password,email, props.setUsername,props);
+    const login = () => loginUser(username, password, props.setUsername,props);
 
     const reqFunc = mode === 'login' ? login : register;
     const toggleMode = () => {
@@ -70,19 +74,19 @@ const SignUP = (props) => {
             <LoginComponent
                 onChangeUsername={setUserName}
                 onChangePassword={setPassword}
+                onChangeEmail={setEmail}
                 toggleMode={toggleMode}
                 mode={mode}
                 onSubmit={
                     (e) => {
                         e.preventDefault();
                         reqFunc();
-                        props.history.push('/');
                     }
                 }
             />
         </div>)
 };
 
-export default SignUP;
+export default withRouter(SignUP);
 
 
