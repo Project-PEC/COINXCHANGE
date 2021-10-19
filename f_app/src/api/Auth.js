@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const registerUser = (registerUsername, registerPassword,registerEmail, setUsername) => {
+export const registerUser = (registerUsername, registerPassword,registerEmail, setUsername,props) => {
     const data = {
         username: registerUsername,
         password: registerPassword,
@@ -12,8 +12,9 @@ export const registerUser = (registerUsername, registerPassword,registerEmail, s
             localStorage.removeItem("user"); setUsername(registerUsername);
             localStorage.setItem("token", res.data.token);
             console.log(res.data.message);
+            setUsername(registerUsername)
         }
-        window.location.href = '/';
+        props.history.push('/');
     })
         .catch(err => {
             console.log(err);
@@ -32,7 +33,8 @@ export const loginUser = (loginUsername, loginPassword, setUsername, props) => {
             console.log(res.data.message);
             setUsername(loginUsername);
         }
-        window.location.href = '/';
+        props.history.push('/');
+        // window.location.href = '/';
 
     })
         .catch(err => {

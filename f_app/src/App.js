@@ -10,19 +10,22 @@ import { getUserInfo } from './api/Auth';
 
 function App() {
   const [username, setUsername] = useState("");
+  const setUser=()=>{
+    setUsername("Updating State");
+  }
   useEffect(() => {
     getUserInfo(setUsername);
   },[username])
-
+  console.log(username+" is logged in!")
   return (
     <>
       <Router>
-        <Navbar username={username} setUsername={setUsername} />
+        <Navbar username={username} setUsername={setUser} />
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
           <Route path='/products' component={Products} />
-          <Route path='/sign-up' component={() => <SignUp setUsername={()=>setUsername()} />} />
+          <Route path='/sign-up' component={() => <SignUp setUsername={()=>setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
         </Switch>
       </Router>
