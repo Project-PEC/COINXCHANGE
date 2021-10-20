@@ -37,13 +37,13 @@ const LoginForm = (props) => {
         <form onSubmit={props.onSubmit}>
             <div className="form-block__input-wrapper">
                 <div className="form-group form-group--login">
-                    <Input OnChange={props.onChangeUsername} type="text" id="username" label="user name" disabled={props.mode === 'signup'} />
-                    <Input OnChange={props.onChangePassword} type="password" id="password" label="password" disabled={props.mode === 'signup'} />
+                    <Input OnChange={props.onChangeUsername} type="text" id="username" label="Username" disabled={props.mode === 'signup'} />
+                    <Input OnChange={props.onChangePassword} type="password" id="password" label="Password" disabled={props.mode === 'signup'} />
                 </div>
                 <div className="form-group form-group--signup">
-                    <Input OnChange={props.onChangeUsername} type="text" id="fullname" label="full name" disabled={props.mode === 'login'} />
-                    <Input OnChange={props.onChangeEmail} type="email" id="email" label="email" disabled={props.mode === 'login'} />
-                    <Input OnChange={props.onChangePassword} type="password" id="createpassword" label="password" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangeUsername} type="text" id="fullname" label="Username" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangeEmail} type="email" id="email" label="Email" disabled={props.mode === 'login'} />
+                    <Input OnChange={props.onChangePassword} type="password" id="createpassword" label="Password" disabled={props.mode === 'login'} />
                 </div>
             </div>
             <button className="button button--primary full-width" type="submit">{props.mode === 'login' ? 'Log In' : 'Sign Up'}</button>

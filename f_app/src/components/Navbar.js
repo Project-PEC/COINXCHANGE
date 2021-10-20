@@ -47,6 +47,7 @@ const Navbar = ({ username, setUsername }) => {
   }
   window.addEventListener('resize', showButton);
   const logOut = () => logOutUser(setUsername);
+  const faltu=()=>localStorage.removeItem('token');
   return (
     <>
       <nav className='navbar'>
@@ -88,7 +89,7 @@ const Navbar = ({ username, setUsername }) => {
               {authLink}
             </li>
           </ul>
-          {button && <Button onClick={logOut} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
+          {button && <Button onClick={username?logOut:faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
         </div>
       </nav>
     </>

@@ -1,19 +1,19 @@
 import axios from 'axios';
 
-export const registerUser = (registerUsername, registerPassword,registerEmail, setUsername,props) => {
+export const registerUser = (registerUsername, registerPassword, registerEmail, setUsername, props) => {
     const data = {
         username: registerUsername,
         password: registerPassword,
-        email:registerEmail
+        email: registerEmail
     }
     axios.post("http://localhost:8080/register", data).then((res) => {
         if (!res.data.auth) localStorage.setItem("user", registerUsername);
         else {
             localStorage.removeItem("user"); setUsername(registerUsername);
             localStorage.setItem("token", res.data.token);
-            console.log(res.data.message);
             setUsername(registerUsername)
         }
+        console.log(res.data.message);
         props.history.push('/');
     })
         .catch(err => {
@@ -30,9 +30,10 @@ export const loginUser = (loginUsername, loginPassword, setUsername, props) => {
         else {
             localStorage.removeItem("user");
             localStorage.setItem("token", res.data.token);
-            console.log(res.data.message);
             setUsername(loginUsername);
         }
+        console.log(res.data.message);
+
         props.history.push('/');
         // window.location.href = '/';
 
@@ -60,4 +61,5 @@ export const getUserInfo = (setUsername) => {
 export const logOutUser = (setUsername) => {
     setUsername("");
     localStorage.removeItem('token');
+    console.log("Logged out successfully");
 }

@@ -16,7 +16,7 @@ export const loginUser = (req, res) => {
                     })
 
                     res.status(200).json({
-                        auth: true, token: token, message: "Authentication Successful"
+                        auth: true, token: token, message: userData.username + " logged in successfully"
                     });
                 }
                 else {
@@ -31,15 +31,15 @@ export const loginUser = (req, res) => {
 
 }
 export const registerUser = (req, res) => {
-    User.findOne({ username: req.body.username }, async (err, doc) => {
+    User.find({ $or: [{ username: req.body.username, email: req.body.email }] }, async (err, doc) => {
         if (err) throw err;
-        if (doc) res.send({ auth: false, message: "user already exists" });
+        if (doc) res.send({ auth: false, message: "email/username already in use" });
         if (!doc) {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
             const newUser = new User({
                 username: req.body.username,
                 password: hashedPassword,
-                email:req.body.email
+                email: req.body.email
             });
             await newUser.save((err, doc) => {
                 req.session.user = doc;
@@ -49,7 +49,7 @@ export const registerUser = (req, res) => {
                 })
 
                 res.status(200).json({
-                    auth: true, token: token, message: "Authentication Successful"
+                    auth: true, token: token, message: req.body.username + " successfully registered"
                 });
             });
 

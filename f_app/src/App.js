@@ -16,7 +16,6 @@ function App() {
   useEffect(() => {
     getUserInfo(setUsername);
   },[username])
-  console.log(username+" is logged in!")
   return (
     <>
       <Router>
