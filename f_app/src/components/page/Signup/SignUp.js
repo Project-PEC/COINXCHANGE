@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import { withRouter } from 'react-router';
-import { loginUser, registerUser } from '../../api/Auth';
-import '../../App.css';
+import { loginUser, registerUser } from '../../../api/Auth';
+import '../../../App.css';
 import './SignUp.css';
 
 

@@ -74,7 +74,7 @@
 	 transition: all 0.25s cubic-bezier(0.36, 1, 0.62, 0.98) 0.3s;
 }
  .form-block--is-signup .form-block__input-wrapper {
-	 height: 252px;
+	 height: 192px;
 	 -moz-transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
 	 -webkit-transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
 	 transition: all 0.5s cubic-bezier(0.36, 1, 0.62, 0.98) 0.2s;
