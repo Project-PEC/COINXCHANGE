@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { csv } from 'd3';
 import './ImageAnalyzer.css';
-import { ButtonP } from './Button';
+import { ButtonP } from '../Button/Button';
 
 
 export const ImageAnalyzer = () => {

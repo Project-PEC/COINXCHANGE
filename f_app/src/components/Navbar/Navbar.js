@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './Button';
+import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { withRouter } from 'react-router';
-import { logOutUser } from '../api/Auth';
+import { logOutUser } from '../../api/Auth';
 
 const Navbar = ({ username, setUsername }) => {
 
