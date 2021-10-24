@@ -1,12 +1,6 @@
 import axios from "axios"
 
-export const getProfile=(username)=>{
+export const getProfile=async(username)=>{
     const url="http://localhost:8080/"+username;
-    axios.get(url)
-    .then((res)=>{
-        console.log(res.data);
-    })
-    .catch(err=>{
-        console.log(err);
-    })
+    return await axios.get(url).then(res=>res.data.doc);
 }

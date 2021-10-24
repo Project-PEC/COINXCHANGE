@@ -42,8 +42,8 @@ export const loginUser = (loginUsername, loginPassword, setUsername, props) => {
             console.log(err);
         })
 };
-export const getUserInfo = (setUsername) => {
-    axios.get("http://localhost:8080/user", {
+export const getUserInfo = async(setUsername) => {
+    return await axios.get("http://localhost:8080/user", {
 
         headers: {
             "x-access-token": localStorage.getItem("token") ? localStorage.getItem("token") : ""
@@ -52,7 +52,9 @@ export const getUserInfo = (setUsername) => {
         .then((res) => {
             if (!res.data.auth) localStorage.setItem("user", res.data.username);
             else localStorage.removeItem("user");
+            if(setUsername)
             setUsername(res.data.username);
+            return res.data.username;
         })
         .catch(err => {
             console.log(err);

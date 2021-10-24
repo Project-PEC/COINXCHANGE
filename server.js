@@ -54,30 +54,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-//Schema
-const Schema = mongoose.Schema;
-const BlogPostSchema = new Schema({
-  title: String,
-  body: String,
-  date: {
-    type: String,
-    Default: Date.now()
-  }
-});
-
-// Model
-const BlogPost = mongoose.model('BlogPost', BlogPostSchema);
-
-
-//Saving Data to our MongoDB
-const data = {
-  title: 'Welcome!😈😈',
-  body: 'Noob here!😂😂'
-};
-
-const NewBlogPost = new BlogPost(data); // instance of the model
-
 // Routes
 app.use("/", userRoutes);
 
