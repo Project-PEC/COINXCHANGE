@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getUserInfo } from '../../api/Auth';
 import { editProfile, getProfile } from '../../api/Profile';
 import axios from 'axios';
+import './Profile.css';
 
 const Profile = () => {
     const [username, setUsername] = useState("");
@@ -38,11 +39,28 @@ const Profile = () => {
     const image=doc.image;
     return (
         <>
-            <img style={{height:"200px",width:"200px",borderRadius:"200px"}} id="profileImage" src={image} />
-            <p>Name: {name}</p>
-            <p>email: {email}</p>
-            <label for="profile image">Select image</label>
-            <input id="profile image" type="file" onChange={fileSelectedHandler} />
+            <div className="pf-container">
+                <div className='pf-wrapper'>
+                    <div className="pic--wrap">
+                        <img id="profileImage" src={image}/>
+                        <p class="img__description">
+                            <label for="profile image">Select image </label>
+                            <input id="profile image" type="file" onChange={fileSelectedHandler} />
+                        </p>
+                    </div>
+                    <div className="items">
+                        <strong>Name: {name}</strong>
+                        <strong>Email: {email}</strong>
+                    </div>
+                    <div className="items">
+                        <p>Can add bio about coins</p>
+                        <p>Private/public profile</p>
+                        <strong>Collection:</strong>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

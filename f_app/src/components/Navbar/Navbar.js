@@ -5,6 +5,7 @@ import './Navbar.css';
 import { withRouter } from 'react-router';
 import { logOutUser } from '../../api/Auth';
 
+
 const Navbar = ({ username, setUsername }) => {
 
   const [click, setClick] = useState(false);
