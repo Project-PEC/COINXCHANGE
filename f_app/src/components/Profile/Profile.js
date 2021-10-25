@@ -15,19 +15,25 @@ const Profile = () => {
         setUsername(t);
         setDoc(temp);
     }, [])
-    const fileUploadHandler = async(file) => {
+    const fileUploadHandler = async (file) => {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("upload_preset", "mhabs7f9");
 
-        axios.post("https://api.cloudinary.com/v1_1/dx0rf8u0t/image/upload", formData).then(async(res) => {
-            
-            const t= await editProfile(username,{...doc,
-                image:res.data.secure_url
-            });
+        axios.post("https://api.cloudinary.com/v1_1/dx0rf8u0t/image/upload", formData).then(async (res) => {
+
+            const t = await editProfile(username,
+                {
+                    data: {
+                        ...doc,
+                        image: res.data.secure_url
+                    },
+                    image:doc.image
+                });
             console.log(t);
-            setDoc({...doc,
-                image:res.data.secure_url
+            setDoc({
+                ...doc,
+                image: res.data.secure_url
             })
         })
     }
@@ -39,13 +45,13 @@ const Profile = () => {
     const email = doc.email;
     const name = doc.username;
     const coins = doc.Coins;
-    const image=doc.image;
+    const image = doc.image;
     return (
         <>
             <div className="pf-container">
                 <div className='pf-wrapper'>
                     <div className="pic--wrap">
-                        <img id="profileImage" src={image}/>
+                        <img id="profileImage" src={image} />
                         <p class="img__description">
                             <label for="profile image">Select image </label>
                             <input id="profile image" type="file" onChange={fileSelectedHandler} />
