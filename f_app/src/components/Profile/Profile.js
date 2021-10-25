@@ -20,11 +20,14 @@ const Profile = () => {
         formData.append("upload_preset", "mhabs7f9");
 
         axios.post("https://api.cloudinary.com/v1_1/dx0rf8u0t/image/upload", formData).then(async(res) => {
+            
+            const t= await editProfile(username,{...doc,
+                image:res.data.secure_url
+            });
+            console.log(t);
             setDoc({...doc,
                 image:res.data.secure_url
             })
-            const t= await editProfile(username,doc);
-            console.log(t);
         })
     }
     const fileSelectedHandler = (e) => {

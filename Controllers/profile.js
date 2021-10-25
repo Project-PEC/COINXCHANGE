@@ -14,8 +14,8 @@ export const getProfile = (req, res) => {
 }
 export const editProfile = (req, res) => {
     const username = req.params.id;
-
+    
     Profile.findOneAndUpdate({username:username}, req.body)
-        .then((doc) => {console.log(doc);res.status(200).json({ doc: "Editing done" })})
+        .then(() => res.status(200).json({ doc: "Editing done" }))
         .catch(err => res.status(404).json({ doc: err }))
 }
