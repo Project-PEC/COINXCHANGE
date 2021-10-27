@@ -1,0 +1,13 @@
+.new{
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.hello {
+    display: flex;
+    flex-direction: column;
+}
+.cards--wrapper {
+    width: 225px;
+}

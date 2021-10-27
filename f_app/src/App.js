@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/page/Home';
 import {Redirect, BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Services from './components/page/Services';
+import Services from './components/page/Services/Services';
 import Products from './components/page/Products';
 import SignUp from './components/page/Signup/SignUp';
 import { ImageAnalyzer } from './components/ImageAnalyzer/ImageAnalyzer';

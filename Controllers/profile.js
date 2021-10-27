@@ -6,6 +6,7 @@ cloudinary.config({
     api_key: '139615721185489',
     api_secret: '1sF_yZtY4apzyxFCjOGxmv2wdok'
 });
+
 export const getProfile = (req, res) => {
     const username = req.params.id;
     Profile.findOne({ username: username }, async (err, doc) => {
