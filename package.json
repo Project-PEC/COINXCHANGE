@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "client": "cd f_app && npm start",
-    "dev": "concurrently -n 'server,client' -c 'red,blue' \"nodemon server.js\" \"npm run client\""
+    "socket": "cd socket && npm start",
+    "dev": "concurrently -n 'server,client,socket' -c 'red,blue,blue' \"nodemon server.js\" \"npm run client\" \"npm run socket\""
   },
   "keywords": [],
   "author": "",

@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@600&display=swap');
 
 body {
+<<<<<<< HEAD
     background-color: rgba(166, 221, 235, 0.664);
     
+=======
+    background-color: rgb(166, 221, 235);    
+>>>>>>> 76c312469f330cbd72e9f4ed464b6a587920b0e4
 }
 img {
     height: 200px;
@@ -25,11 +29,7 @@ img {
     align-items: center;
     margin: 50px 70px;
 }
-.items {
-    display: flex;
-    flex-flow: column;
-    margin: 20px 25px;
-}
+
 .pic--wrap {
     display: flex;
     flex-flow: column;
@@ -39,6 +39,7 @@ img {
 }
 .img__description {
     border-bottom: 100px;
+    margin: auto;
     background: rgba(15, 15, 15, 0);
     color: rgb(0, 0, 0);
     visibility: hidden;

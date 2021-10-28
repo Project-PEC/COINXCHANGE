@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../../api/Auth';
 import { editProfile, getProfile } from '../../api/Profile';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup'
 import axios from 'axios';
 import './Profile.css';
 
@@ -9,7 +11,7 @@ const Profile = () => {
     const [doc, setDoc] = useState({});
     useEffect(async () => {
         const t = await getUserInfo();
-        const temp = await getProfile(t);
+        const temp = await getProfile(t.username);
         setUsername(t);
         setDoc(temp);
     }, [])
@@ -26,7 +28,7 @@ const Profile = () => {
                         ...doc,
                         image: res.data.secure_url
                     },
-                    image:doc.image
+                    image: doc.image
                 });
             console.log(t);
             setDoc({
@@ -48,6 +50,7 @@ const Profile = () => {
         <>
             <div className="pf-container">
                 <div className='pf-wrapper'>
+<<<<<<< HEAD
                     <div className="pic--wrap">
                         <img id="profileImage" src={image} alt="Profile Picture"/>
                         <p class="img__description">
@@ -66,8 +69,36 @@ const Profile = () => {
                     </div>
                     <div>
                     </div>
+=======
+                    <Card style={{ width: '20rem' }}>
+                        <div className="pic--wrap">
+                            <Card.Img variant="top" id="profileImage" src={image} />
+                            <Card.ImgOverlay>
+                                <Card.Text>
+                                    <p className="img__description">
+                                        <label for="profile image">Update image:  </label>
+                                        <input id="profile image" type="file" onChange={fileSelectedHandler} />
+                                    </p>
+                                </Card.Text>
+                            </Card.ImgOverlay>
+                        </div>
+                        <Card.Body>
+                            <Card.Title>Name: {name}</Card.Title>
+                            <Card.Title>Email: {email}</Card.Title>
+                        </Card.Body>
+                        <ListGroup className="list-group-flush">
+                            <ListGroup.Item>Can add bio about coins</ListGroup.Item>
+                            <ListGroup.Item>Private/public profile</ListGroup.Item>
+                        </ListGroup>
+                        <Card.Body>
+                            {/* <Card.Link href="#">Card Link</Card.Link> */}
+                            <Card.Title>Collection: </Card.Title>
+                        </Card.Body>
+                    </Card>
+>>>>>>> 76c312469f330cbd72e9f4ed464b6a587920b0e4
                 </div>
             </div>
+
         </>
     )
 }
