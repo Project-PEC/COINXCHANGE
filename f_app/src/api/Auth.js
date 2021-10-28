@@ -54,12 +54,14 @@ export const getUserInfo = async(setUsername) => {
             else localStorage.removeItem("user");
             if(setUsername)
             setUsername(res.data.username);
-            return res.data.username;
+            return res.data;
         })
         .catch(err => {
             console.log(err);
         })
 }
+
+
 export const logOutUser = (setUsername) => {
     setUsername("");
     localStorage.removeItem('token');

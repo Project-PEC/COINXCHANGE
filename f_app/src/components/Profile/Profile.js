@@ -11,7 +11,7 @@ const Profile = () => {
     const [doc, setDoc] = useState({});
     useEffect(async () => {
         const t = await getUserInfo();
-        const temp = await getProfile(t);
+        const temp = await getProfile(t.username);
         setUsername(t);
         setDoc(temp);
     }, [])

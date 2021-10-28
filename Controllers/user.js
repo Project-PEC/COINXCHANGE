@@ -70,7 +70,7 @@ export const getUser = (req, res) => {
         if (err) throw err;
         if (!doc) res.send({ auth: false, message: "User deleted from database" });
         else {
-            res.send({ auth: true, message: "Verification successful", username: doc.username })
+            res.send({ auth: true, message: "Verification successful", username: doc.username ,id:doc._id})
         }
     })
 }

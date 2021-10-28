@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/page/Home';
-import {Redirect, BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Services from './components/page/Services';
 import Products from './components/page/Products';
 import SignUp from './components/page/Signup/SignUp';
 import { ImageAnalyzer } from './components/ImageAnalyzer/ImageAnalyzer';
 import { getUserInfo } from './api/Auth';
 import Profile from './components/Profile/Profile';
+import Messenger from './components/page/Messenger/Messenger';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -21,18 +22,24 @@ function App() {
     <>
       <Router>
         <Navbar username={username} setUsername={setUser} />
+        <Link to='/messenger'>
+          <button>Messenger</button>
+        </Link>
         {username ? <Link to={'/profile/' + username}>
           <button>
             Profile
           </button>
-        </Link> : <button/>}
+        </Link> : <button />}
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
+          <Route path='/messenger' component={Messenger}>
+            {!username ? <Redirect to="/" /> : <Messenger />}
+          </Route>
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
-          <Route path={'/profile/'+username} exact component={Profile} />
+          <Route path={'/profile/' + username} exact component={Profile} />
           <Redirect to='/' />;
         </Switch>
       </Router>
