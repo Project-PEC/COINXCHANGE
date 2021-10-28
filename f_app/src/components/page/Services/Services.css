@@ -26,8 +26,13 @@
     position: relative;
     padding: 0px 10px;
   }
-
+.coin--img {
+    border-radius: 100px;
+}
   @media only screen and (max-width: 1000px) {
+    .coin--item {
+        margin-bottom: 50px;
+    }
     .coin--container {
         display: flex;
         align-items: center;
@@ -42,16 +47,36 @@
       }
       
   }
+  @media only screen and (max-width: 767px) {
+    .coin--item {
+        max-width: 70%;
+        max-width: 40%;
+        margin: auto;
+        margin-bottom: 50px;
+    }
+    .coin--container {
+        display: flex;
+        align-items: center;
+      }
+    .coin--wrapper {
+        justify-content: center;
+        max-width: 100%;
+        position: relative;
+        padding: 0px;
+        margin: 0px 30px;
+      }
+      
+  }
   @media only screen and (max-width: 650px) {
     .coin--item {
         max-width: 70%;
         max-width: 60%;
         margin: auto;
+        margin-bottom: 50px;
     }
     .coin--container {
         display: flex;
         align-items: center;
-        width: 40%;
       }
     .coin--wrapper {
         justify-content: center;
