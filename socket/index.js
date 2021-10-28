@@ -4,9 +4,9 @@ const io = require('socket.io')(8900, {
     }
 });
 let users = []
-const addUser = (userId, socketId) => {
+const addUser = (userId, socketId,userImage) => {
     !users.some(user => user.userId === userId) &&
-        users.push({ userId, socketId });
+        users.push({ userId, socketId,userImage });
 }
 const removeUser = (socketId) => {
     users = users.filter(user => user.socketId !== socketId);
@@ -17,8 +17,8 @@ const getUser=(userId)=>{
 io.on("connection", (socket) => {
     console.log("a user connected.");
     // io.emit("Welcome","Hello this is socket server");
-    socket.on("addUser", userId => {
-        addUser(userId, socket.id);
+    socket.on("addUser", (userId,userImage) => {
+        addUser(userId, socket.id,userImage);
         io.emit("getUsers", users);
     })
 

@@ -4,6 +4,9 @@ const Conversation = new mongoose.Schema(
         members: {
             type: Array,
         },
+        images:{
+            type:Object
+        }
     },
     {timestamps:true}
 )

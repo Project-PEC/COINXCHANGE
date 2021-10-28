@@ -34,9 +34,10 @@ const Messenger = () => {
     },[arrivalMessage,currentChat])
     useEffect(() => {
         if (userAndConversations.userData) {
-            socket.current.emit("addUser", userAndConversations.userData.username);
+            socket.current.emit("addUser", userAndConversations.userData.username,userAndConversations.userData.image);
             socket.current.on("getUsers", users => {
-                setOnlineUsers(users);
+                const result=users.filter(user=>user.userId!=userAndConversations.userData.username);
+                setOnlineUsers(result);
             })
         }
     }, [userAndConversations.userData])
@@ -46,7 +47,6 @@ const Messenger = () => {
         activeUser = await getProfile(activeUser.username);
         console.log("Active User: ", activeUser);
         const totalConversations = await getConversations(activeUser.username);
-
         setUserAndConversations({ userData: activeUser, conversations: totalConversations });
 
     }, [])
@@ -59,7 +59,6 @@ const Messenger = () => {
     useEffect(() => {
         scrollRef.current?.scrollIntoView({ behavior: "smooth" })
     }, [messages])
-    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const message = {
@@ -78,7 +77,6 @@ const Messenger = () => {
         setMessages([...messages, newMsg]);
         setNewMessage("");
     }
-
     return (
         <div className={classes.messenger}>
             <div className={classes.chatMenu}>
@@ -95,9 +93,10 @@ const Messenger = () => {
                 <div className={classes.chatBoxWrapper}>
                     {currentChat ? <>
                         <div className={classes.chatBoxTop}>
+                            <span>{currentChat.members.find(member=>member!=userAndConversations.userData.username)}</span>
                             {messages ? messages.map((m) => (
                                 <div ref={scrollRef}>
-                                    <Message message={m} text={m.text} image={[userAndConversations.userData.image]} own={m.sender === userAndConversations.userData.username} />
+                                    <Message currentChat={currentChat} message={m} text={m.text} own={m.sender === userAndConversations.userData.username} />
                                 </div>
                             )) : <div />}
                         </div>
@@ -114,7 +113,7 @@ const Messenger = () => {
             </div>
             <div className={classes.chatOnline}>
                 <div className={classes.chatOnlineWrapper}>
-                    <ChatOnline onlineUsers={onlineUsers} currentId={userAndConversations.userData.username} setCurrentChat={setCurrentChat}/>
+                    <ChatOnline userAndConversations={userAndConversations} setUserAndConversations={setUserAndConversations} setCurrentChat={setCurrentChat} onlineUsers={onlineUsers} currentId={userAndConversations.userData} setCurrentChat={setCurrentChat}/>
                 </div>
             </div>
         </div>

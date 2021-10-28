@@ -31,3 +31,13 @@ export const sendMessage=async(message)=>{
         console.log(err);
     }
 }
+export const newConvo=async(data)=>{
+    try{
+        const res=await axios.post("http://localhost:8080/conversation/",data);
+        return res.data;
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+}
