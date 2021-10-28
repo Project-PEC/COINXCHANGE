@@ -5,7 +5,9 @@
     cursor: pointer;
     margin-top: 10px;
   }
-  
+  .chatOnline:hover{
+    background-color: rgba(192, 230, 241, 0.911);
+}
   .chatOnlineImgContainer {
     position: relative;
     margin-right: 10px;

@@ -21,7 +21,6 @@ import './Services.css';
 const Services = () => {
     const [doc, setDoc] = useState({});
     useEffect(async () => {
-        console.log(doc);
         const temp = await getCoin();
         setDoc(temp);
     }, [])
