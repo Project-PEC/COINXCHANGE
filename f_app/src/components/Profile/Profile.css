@@ -24,11 +24,7 @@ img {
     align-items: center;
     margin: 50px 70px;
 }
-.items {
-    display: flex;
-    flex-flow: column;
-    margin: 20px 25px;
-}
+
 .pic--wrap {
     display: flex;
     flex-flow: column;
@@ -38,6 +34,7 @@ img {
 }
 .img__description {
     border-bottom: 100px;
+    margin: auto;
     background: rgba(15, 15, 15, 0);
     color: rgb(0, 0, 0);
     visibility: hidden;
