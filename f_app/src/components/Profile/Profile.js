@@ -50,26 +50,6 @@ const Profile = () => {
         <>
             <div className="pf-container">
                 <div className='pf-wrapper'>
-<<<<<<< HEAD
-                    <div className="pic--wrap">
-                        <img id="profileImage" src={image} alt="Profile Picture"/>
-                        <p class="img__description">
-                            <label for="profile image">Select image </label>
-                            <input id="profile image" type="file" onChange={fileSelectedHandler} />
-                        </p>
-                    </div>
-                    <div className="items">
-                        <strong>Name: {name}</strong>
-                        <strong>Email: {email}</strong>
-                    </div>
-                    <div className="items">
-                        <p>Can add bio about coins</p>
-                        <p>Private/public profile</p>
-                        <strong>Collection:{coins}</strong>
-                    </div>
-                    <div>
-                    </div>
-=======
                     <Card style={{ width: '20rem' }}>
                         <div className="pic--wrap">
                             <Card.Img variant="top" id="profileImage" src={image} />
@@ -95,7 +75,6 @@ const Profile = () => {
                             <Card.Title>Collection: </Card.Title>
                         </Card.Body>
                     </Card>
->>>>>>> 76c312469f330cbd72e9f4ed464b6a587920b0e4
                 </div>
             </div>
 
