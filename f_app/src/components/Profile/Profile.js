@@ -1,6 +1,4 @@
-import { get } from 'mongoose';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getUserInfo } from '../../api/Auth';
 import { editProfile, getProfile } from '../../api/Profile';
 import axios from 'axios';
@@ -51,7 +49,7 @@ const Profile = () => {
             <div className="pf-container">
                 <div className='pf-wrapper'>
                     <div className="pic--wrap">
-                        <img id="profileImage" src={image} />
+                        <img id="profileImage" src={image} alt="Profile Picture"/>
                         <p class="img__description">
                             <label for="profile image">Select image </label>
                             <input id="profile image" type="file" onChange={fileSelectedHandler} />
@@ -64,7 +62,7 @@ const Profile = () => {
                     <div className="items">
                         <p>Can add bio about coins</p>
                         <p>Private/public profile</p>
-                        <strong>Collection:</strong>
+                        <strong>Collection:{coins}</strong>
                     </div>
                     <div>
                     </div>
