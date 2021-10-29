@@ -6,9 +6,8 @@ import ChatOnline from '../../ChatOnline/ChatOnline';
 import { getUserInfo } from '../../../api/Auth';
 import { getConversations, getMessages, sendMessage, updateConvo } from '../../../api/Messenger';
 import { getProfile } from '../../../api/Profile';
-import { io } from 'socket.io-client';
 
-const Messenger = () => {
+const Messenger = ({ socket,setUnread }) => {
     const [userAndConversations, setUserAndConversations] = useState({ userData: "", conversations: "" });
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -17,16 +16,13 @@ const Messenger = () => {
     const [onlineUsers, setOnlineUsers] = useState([]);
     const [filter, setFilter] = useState("");
     const scrollRef = useRef();
-    const socket = useRef();
 
-   
+
     useEffect(async () => {
         let activeUser = await getUserInfo();
         activeUser = await getProfile(activeUser.username);
         const totalConversations = await getConversations(activeUser.username);
         setUserAndConversations({ userData: activeUser, conversations: totalConversations });
-        socket.current = io("ws://localhost:8900")
-        console.log("executes");
         socket.current.on("getMessage", async (data) => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -56,7 +52,7 @@ const Messenger = () => {
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
         }
         else if (arrivalMessage && currentChat && !currentChat.members.find(user => user === arrivalMessage.sender)) {
-            console.log(currentChat.members.find(user => user != arrivalMessage.sender));
+            // console.log(currentChat.members.find(user => user != arrivalMessage.sender));
             const sender = arrivalMessage.sender;
             const receiver = userAndConversations.userData.username;
             const x = await updateConvo({ user: sender, toChange: receiver, changed: false });
@@ -64,6 +60,13 @@ const Messenger = () => {
             activeUser = await getProfile(activeUser.username);
             const totalConversations = await getConversations(activeUser.username);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+        }
+        else if(arrivalMessage && currentChat)
+        {
+            const sender = arrivalMessage.sender;
+            const receiver = userAndConversations.userData.username;
+            const x = await updateConvo({ user: sender, toChange: receiver, changed: true });
+            setUnread(false);
         }
     }, [arrivalMessage])
     useEffect(async () => {
@@ -101,6 +104,7 @@ const Messenger = () => {
         }
         const sender = userAndConversations.userData.username;
         const receiver = currentChat.members.find(member => member !== sender)
+        const x = await updateConvo({ user: sender, toChange: receiver, changed: false });
         socket.current.emit("sendMessage", {
             senderId: sender,
             receiverId: receiver,
@@ -117,6 +121,7 @@ const Messenger = () => {
         const user = userAndConversations.userData.username;
         const friend = c.members.find(x => x != user);
         const x = await updateConvo({ user: friend, toChange: user, changed: true })
+        setUnread(false);
         const totalConversations = await getConversations(userAndConversations.userData.username);
         setUserAndConversations({ ...userAndConversations, conversations: totalConversations });
         setCurrentChat(c);

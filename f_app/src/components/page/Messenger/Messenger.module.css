@@ -44,6 +44,9 @@
     padding: 10px;
     border:1px solid gray;
   }
+  input::placeholder{
+    color:gray;
+  }
   
   .chatSubmitButton {
     width: 70px;
