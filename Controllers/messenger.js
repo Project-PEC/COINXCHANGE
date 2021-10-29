@@ -1,14 +1,14 @@
+import { getProfile } from "./profile.js";
 import Conversation from "../models/Conversation.js";
 import Message from "../models/Message.js";
 
 export const newConv = async (req, res) => {
-    const x = req.body.senderId, y = req.body.receiverId;
-    const imageObj={}
-    imageObj[x]=req.body.senderImage;
-    imageObj[y]=req.body.receiverImage;
+    const readObj = {}
+    readObj[req.body.senderId] = true;
+    readObj[req.body.receiverId] = true;
     const newConversation = new Conversation({
         members: [req.body.senderId, req.body.receiverId],
-        images: imageObj
+        read: readObj
     });
     try {
         const savedConversation = await newConversation.save();
@@ -21,9 +21,10 @@ export const newConv = async (req, res) => {
 
 export const getConvo = async (req, res) => {
     try {
-        const conversation = await Conversation.find({
+        let conversation = await Conversation.find({
             members: { $in: [req.params.userId] },
         });
+
         res.status(200).json(conversation);
     }
     catch (err) {
@@ -47,6 +48,19 @@ export const getMsgs = async (req, res) => {
             conversationId: req.params.conversationId,
         });
         res.status(200).json(messages);
+    }
+    catch (err) {
+        res.status(500).json(err);
+    }
+}
+export const updateConvo = async (req, res) => {
+    try {
+        const resu=await Conversation.findOne({ $or: [{ members: [req.body.user, req.body.toChange] }, { members: [req.body.toChange, req.body.user] }] });
+        let readObj=resu.read;
+        readObj[req.body.toChange]=req.body.changed;
+        const result = await Conversation.findOneAndUpdate({ $or: [{ members: [req.body.user, req.body.toChange] }, { members: [req.body.toChange, req.body.user] }] },
+            { $set: { read: readObj } })
+        res.status(200).json(result);
     }
     catch (err) {
         res.status(500).json(err);
