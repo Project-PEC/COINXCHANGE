@@ -102,7 +102,7 @@ export const ImageAnalyzer = () => {
         <div className="im-container">
             <div className="im-img-wrapper">
                 <div className="im-img">
-                    <img id="uploadedImage" height="224px" width="224px" src={(preview)} />
+                    <img id="uploadedImage" alt="Insert Image" height="224px" width="224px" src={(preview)} />
                 </div>
             </div>
         </div>
