@@ -29,7 +29,7 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
   });
 
   let hasRead = <span></span>
-  if (unread) hasRead = <span>(Unread)</span>
+  if (unread) hasRead = <span className="newMessage">*</span>
   let authLink = <Link
     to='/sign-up'
     className='nav-links-mobile'
@@ -52,7 +52,7 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
   const faltu = () => localStorage.removeItem('token');
   let messanger = <span></span>
   if (username) {
-    messanger = <Link className="nav-links" to='/messenger' onClick={closeMobileMenu}><button onClick={() => { console.log('pressed'); setUnread(false) }}>Messanger{hasRead}</button></Link>
+    messanger = <Link className="nav-links" to='/messenger' onClick={()=>{closeMobileMenu();setUnread(false)}}>Messanger{hasRead}</Link>
   }
   return (
     <>

@@ -37,6 +37,7 @@ function App() {
       if(x[i].read[t.username]===false)
       {
         setUnread(true);
+        break;
       }
     }
   }, [username])
