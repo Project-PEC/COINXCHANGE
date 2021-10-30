@@ -4,11 +4,13 @@ import "./ChatOnline.css";
 
 const ChatOnline = ({ onlineUsers, setCurrentChat, currentId }) => {
     const clickHandler = async (username, userImage) => {
+        
         const currentUser = currentId.username;
         const currentImage = currentId.image;
         const toUseImages = {}
         toUseImages[username] = userImage;
         toUseImages[currentUser] = currentImage;
+        console.log(userImage,currentImage,currentId);
         const data = {
             "senderId": username,
             "receiverId": currentUser,

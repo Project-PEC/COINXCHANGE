@@ -17,9 +17,9 @@ const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
     const [filter, setFilter] = useState("");
     const scrollRef = useRef();
 
-
     useEffect(async () => {
         let activeUser = await getUserInfo();
+        activeUser=await getProfile(activeUser.username);
         const totalConversations = await getConversations(activeUser.username);
         setUserAndConversations({ userData: activeUser, conversations: totalConversations });
         socket.current.on("getMessage", async (data) => {
