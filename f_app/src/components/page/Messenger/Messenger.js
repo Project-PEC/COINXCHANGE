@@ -7,20 +7,19 @@ import { getUserInfo } from '../../../api/Auth';
 import { getConversations, getMessages, sendMessage, updateConvo } from '../../../api/Messenger';
 import { getProfile } from '../../../api/Profile';
 
-const Messenger = ({ socket,setUnread }) => {
+const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
     const [userAndConversations, setUserAndConversations] = useState({ userData: "", conversations: "" });
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState([]);
-    const [arrivalMessage, setArrivalMessage] = useState(null);
-    const [onlineUsers, setOnlineUsers] = useState([]);
+    const [arrivalMessage, setArrivalMessage] = useState("");
+    // const [onlineUsers, setOnlineUsers] = useState([]);
     const [filter, setFilter] = useState("");
     const scrollRef = useRef();
 
 
     useEffect(async () => {
         let activeUser = await getUserInfo();
-        activeUser = await getProfile(activeUser.username);
         const totalConversations = await getConversations(activeUser.username);
         setUserAndConversations({ userData: activeUser, conversations: totalConversations });
         socket.current.on("getMessage", async (data) => {
@@ -61,8 +60,7 @@ const Messenger = ({ socket,setUnread }) => {
             const totalConversations = await getConversations(activeUser.username);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
         }
-        else if(arrivalMessage && currentChat)
-        {
+        else if (arrivalMessage && currentChat) {
             const sender = arrivalMessage.sender;
             const receiver = userAndConversations.userData.username;
             const x = await updateConvo({ user: sender, toChange: receiver, changed: true });
@@ -97,22 +95,24 @@ const Messenger = ({ socket,setUnread }) => {
     }, [messages])
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const message = {
-            sender: userAndConversations.userData.username,
-            text: newMessage,
-            conversationId: currentChat._id
+        if (newMessage.length > 0) {
+            const message = {
+                sender: userAndConversations.userData.username,
+                text: newMessage,
+                conversationId: currentChat._id
+            }
+            const sender = userAndConversations.userData.username;
+            const receiver = currentChat.members.find(member => member !== sender)
+            const x = await updateConvo({ user: sender, toChange: receiver, changed: false });
+            socket.current.emit("sendMessage", {
+                senderId: sender,
+                receiverId: receiver,
+                text: newMessage
+            })
+            const newMsg = await sendMessage(message);
+            setMessages([...messages, newMsg]);
+            setNewMessage("");
         }
-        const sender = userAndConversations.userData.username;
-        const receiver = currentChat.members.find(member => member !== sender)
-        const x = await updateConvo({ user: sender, toChange: receiver, changed: false });
-        socket.current.emit("sendMessage", {
-            senderId: sender,
-            receiverId: receiver,
-            text: newMessage
-        })
-        const newMsg = await sendMessage(message);
-        setMessages([...messages, newMsg]);
-        setNewMessage("");
     }
     const onInputChangeHandler = (e) => {
         setFilter(e.target.value);

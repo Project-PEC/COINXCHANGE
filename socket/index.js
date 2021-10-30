@@ -31,13 +31,16 @@ io.on("connection", (socket) => {
             receiverId
         })
     })
-    socket.on('forceDisconnect', function () {
-        socket.disconnect();
-    });
     //when disconnect
     socket.on('disconnect', () => {
         console.log("A user disconnected!");
         removeUser(socket.id);
         io.emit("getUsers", users);
     })
+    socket.on('forceDisconnect', () => {
+        console.log("A user disconnected!");
+        removeUser(socket.id);
+        io.emit("getUsers", users);
+    })
+    
 })

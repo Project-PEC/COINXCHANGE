@@ -17,6 +17,7 @@ import { getProfile } from './api/Profile';
 function App() {
   const [username, setUsername] = useState("");
   const [unread, setUnread] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState([])
   const socket = useRef();
 
 
@@ -29,15 +30,24 @@ function App() {
       setUnread(true);
     })
   }, [])
-  useEffect(async() => {
-    const t=await getUserInfo(setUsername);
-    const x=await getConversations(t.username);
-    for(const i in x)
-    {
-      if(x[i].read[t.username]===false)
-      {
-        setUnread(true);
-        break;
+  useEffect(async () => {
+    const t = await getUserInfo(setUsername);
+    if (t.auth) {
+      const x = await getConversations(t.username);
+
+      const profile = await getProfile(t.username);
+      socket.current.emit("addUser", profile.username, profile.image);
+      socket.current.on("getUsers", users => {
+        const result = users.filter(user => user.userId != profile.username);
+        setOnlineUsers(result);
+      })
+
+
+      for (const i in x) {
+        if (x[i].read[t.username] === false) {
+          setUnread(true);
+          break;
+        }
       }
     }
   }, [username])
@@ -54,7 +64,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
           <Route path='/messenger' component={Messenger}>
-            {!username ? <Redirect to="/" /> : <Messenger setUnread={setUnread} socket={socket} />}
+            {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
           </Route>
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />

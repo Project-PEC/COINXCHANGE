@@ -42,17 +42,17 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
     authLink = <Link
       to='/'
       className='nav-links-mobile'
-      onClick={() => logOutUser(setUsername)}
+      onClick={() => { socket.current.emit('forceDisconnect'); logOutUser(setUsername) }}
     >
       LogOut
     </Link>
   }
   window.addEventListener('resize', showButton);
-  const logOut = () => logOutUser(setUsername);
-  const faltu = () => localStorage.removeItem('token');
+  const logOut = () => { socket.current.emit('forceDisconnect'); logOutUser(setUsername); }
+  const faltu = () => { socket.current.emit('forceDisconnect'); localStorage.removeItem('token'); }
   let messanger = <span></span>
   if (username) {
-    messanger = <Link className="nav-links" to='/messenger' onClick={()=>{closeMobileMenu();setUnread(false)}}>Messanger{hasRead}</Link>
+    messanger = <Link className="nav-links" to='/messenger' onClick={() => { closeMobileMenu(); setUnread(false) }}>Messanger{hasRead}</Link>
   }
   return (
     <>

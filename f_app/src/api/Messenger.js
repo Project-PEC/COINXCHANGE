@@ -8,6 +8,7 @@ export const getConversations = async (id) => {
         for (const i in conversations) {
             const image1 = await getProfile(conversations[i].members[0]);
             const image2 = await getProfile(conversations[i].members[1]);
+            console.log(conversations[i]);
             const imageObj = {};
             imageObj[conversations[i].members[0]] = image1.image;
             imageObj[conversations[i].members[1]] = image2.image;
