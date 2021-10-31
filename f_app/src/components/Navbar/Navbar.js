@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { withRouter } from 'react-router';
 import { logOutUser } from '../../api/Auth';
-
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
 
@@ -39,13 +39,21 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
   </Link>
 
   if (username) {
-    authLink = <Link
-      to='/'
-      className='nav-links-mobile'
-      onClick={() => { socket.current.emit('forceDisconnect'); logOutUser(setUsername) }}
-    >
-      LogOut
-    </Link>
+    authLink = <>
+      <Link
+        to={'/profile/' + username}
+        className='nav-links-mobile'
+      >
+        Profile
+      </Link>
+      <Link
+        to='/'
+        className='nav-links-mobile'
+        onClick={() => { socket.current.emit('forceDisconnect'); logOutUser(setUsername) }}
+      >
+        LogOut
+      </Link>
+    </>
   }
   window.addEventListener('resize', showButton);
   const logOut = () => { socket.current.emit('forceDisconnect'); logOutUser(setUsername); }
@@ -97,7 +105,19 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
               {authLink}
             </li>
           </ul>
-          {button && <Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
+          {(button &&
+            username) ? <Dropdown>
+            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+            <img src="https://img.icons8.com/doodle/48/000000/user.png" style={{height:"40px",width:"50px"}} alt="User-icon"/>Welcome
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu variant="dark" className="dropdownMenu">
+              <Dropdown.Item><Link to={"/profile/" + username}>Profile</Link></Dropdown.Item>
+              <Dropdown.Item><Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+            :
+            button&&<Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
         </div>
       </nav>
     </>

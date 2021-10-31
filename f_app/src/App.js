@@ -17,8 +17,9 @@ import { getProfile } from './api/Profile';
 function App() {
   const [username, setUsername] = useState("");
   const [unread, setUnread] = useState(false);
-  const [onlineUsers, setOnlineUsers] = useState([])
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
+
 
 
   const setUser = () => {
@@ -55,11 +56,6 @@ function App() {
     <>
       <Router>
         <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
-        {username ? <Link to={'/profile/' + username}>
-          <button>
-            Profile
-          </button>
-        </Link> : <button />}
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
