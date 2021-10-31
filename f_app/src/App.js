@@ -29,7 +29,12 @@ function App() {
           <button>
             Profile
           </button>
-        </Link> : <button />}
+        </Link> : <p />}
+        {username ? <Link to={'/addcoin/' + username}>
+          <button>
+            Sell Coin
+          </button>
+        </Link> : <p />}
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />

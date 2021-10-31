@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-const coin=new mongoose.Schema({
+const Coin=new mongoose.Schema({
     image:[String],
     title:String,
-    descriptin:String,
+    description:String,
     publisher:String
 })
-const coinModel=mongoose.model('coinModel',coin);
+const coinModel=mongoose.model('coinModel',Coin);
 export default coinModel;
