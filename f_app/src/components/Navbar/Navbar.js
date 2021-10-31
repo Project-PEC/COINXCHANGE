@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import { withRouter } from 'react-router';
 import { logOutUser } from '../../api/Auth';
+import Dropdown from 'react-bootstrap/Dropdown';
 
-
-const Navbar = ({ username, setUsername }) => {
+const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => {
@@ -29,6 +28,8 @@ const Navbar = ({ username, setUsername }) => {
     showButton();
   });
 
+  let hasRead = <span></span>
+  if (unread) hasRead = <span className="newMessage">*</span>
   let authLink = <Link
     to='/sign-up'
     className='nav-links-mobile'
@@ -38,17 +39,29 @@ const Navbar = ({ username, setUsername }) => {
   </Link>
 
   if (username) {
-    authLink = <Link
-      to='/'
-      className='nav-links-mobile'
-      onClick={() => logOutUser(setUsername)}
-    >
-      LogOut
-    </Link>
+    authLink = <>
+      <Link
+        to={'/profile/' + username}
+        className='nav-links-mobile'
+      >
+        Profile
+      </Link>
+      <Link
+        to='/'
+        className='nav-links-mobile'
+        onClick={() => { socket.current.emit('forceDisconnect'); logOutUser(setUsername) }}
+      >
+        LogOut
+      </Link>
+    </>
   }
   window.addEventListener('resize', showButton);
-  const logOut = () => logOutUser(setUsername);
-  const faltu=()=>localStorage.removeItem('token');
+  const logOut = () => { socket.current.emit('forceDisconnect'); logOutUser(setUsername); }
+  const faltu = () => { socket.current.emit('forceDisconnect'); localStorage.removeItem('token'); }
+  let messanger = <span></span>
+  if (username) {
+    messanger = <Link className="nav-links" to='/messenger' onClick={() => { closeMobileMenu(); setUnread(false) }}>Messanger{hasRead}</Link>
+  }
   return (
     <>
       <nav className='navbar'>
@@ -85,12 +98,26 @@ const Navbar = ({ username, setUsername }) => {
                 Products
               </Link>
             </li>
-
+            <li>
+              {messanger}
+            </li>
             <li>
               {authLink}
             </li>
           </ul>
-          {button && <Button onClick={username?logOut:faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
+          {(button &&
+            username) ? <Dropdown>
+            <Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+            <img src="https://img.icons8.com/doodle/48/000000/user.png" style={{height:"40px",width:"50px"}} alt="User-icon"/>Welcome
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu variant="dark" className="dropdownMenu">
+              <Dropdown.Item><Link to={"/profile/" + username}>Profile</Link></Dropdown.Item>
+              <Dropdown.Item><Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button></Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+            :
+            button&&<Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button>}
         </div>
       </nav>
     </>

@@ -2,30 +2,37 @@ import { useEffect } from "react";
 import { getConversations, newConvo } from "../../api/Messenger";
 import "./ChatOnline.css";
 
-const ChatOnline = ({userAndConversations,setUserAndConversations, onlineUsers, setCurrentChat, currentId }) => {
+const ChatOnline = ({ onlineUsers, setCurrentChat, currentId }) => {
     const clickHandler = async (username, userImage) => {
+        
         const currentUser = currentId.username;
         const currentImage = currentId.image;
         const toUseImages = {}
         toUseImages[username] = userImage;
         toUseImages[currentUser] = currentImage;
+        console.log(userImage,currentImage,currentId);
         const data = {
             "senderId": username,
             "receiverId": currentUser,
             "senderImage": userImage,
             "receiverImage": currentImage
         }
+        const imageObj={};
+        imageObj[username]=userImage;
+        imageObj[currentUser]=currentImage;
         const conversations = await getConversations(currentUser);
         const res = conversations.find(convo => convo.members[0] == username || convo.members[1] == username);
         if (!res) {
             const result = await newConvo(data);
-            setCurrentChat(result);
+            setCurrentChat({
+                ...result,
+                images:imageObj
+            });
         }
         else {
             setCurrentChat(res);
         }
     }
-    console.log(userAndConversations);
     const toRender =
         onlineUsers.map(o =>
         (

@@ -44,6 +44,9 @@
     padding: 10px;
     border:1px solid gray;
   }
+  input::placeholder{
+    color:gray;
+  }
   
   .chatSubmitButton {
     width: 70px;
@@ -64,16 +67,21 @@
   .chatOnlineWrapper {
     padding: 10px;
     height: 100%;
+    display:flex;
+    flex-direction:column
   }
   
   .noConversationText {
     position: absolute;
     top: 10%;
     font-size: 3rem;
-    color: rgb(224, 220, 220);
+    color: white;
     cursor: default;
   }
-  
+  .Friend{
+    position:fixed;
+    font-size: 1em;
+  }
   @media screen and (max-width: 768px) {
     .chatMenu {
       flex: 12;

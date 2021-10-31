@@ -12,7 +12,7 @@ const Profile = () => {
     useEffect(async () => {
         const t = await getUserInfo();
         const temp = await getProfile(t.username);
-        setUsername(t);
+        setUsername(t.username);
         setDoc(temp);
     }, [])
     const fileUploadHandler = async (file) => {

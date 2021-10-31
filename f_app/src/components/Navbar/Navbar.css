@@ -102,10 +102,11 @@
 
   .nav-links {
     text-align: center;
-    padding: 2rem;
+    padding: 1em;
     width: 100%;
     display: table;
   }
+  
 
   .nav-links:hover {
     background-color: #fff;
@@ -155,4 +156,23 @@
     color: #242424;
     transition: 250ms;
   }
+}
+.newMessage{
+  background-color: #fa3e3e;
+  border-radius: 2px;
+  color: #fa3e3e;
+ 
+  padding: 1px 3px;
+  font-size: 8px;
+  height:10px;
+  width:10px;
+  position: relative; /* Position the badge within the relatively positioned button */
+  top: -5px;
+  right: -5px;
+  border-radius: 50%;
+}
+
+.dropdownMenu{
+  background-color: black;
+  color:white;
 }

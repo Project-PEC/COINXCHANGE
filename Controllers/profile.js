@@ -25,13 +25,13 @@ function reverseString(str) {
 const getPublicId = (str) => {
     str = reverseString(str);
     let count = 0;
-    let start=0;
+    let start = 0;
     for (let i = 0; i < str.length; i++) {
-        if(str[i]=='.') start=i+1;
+        if (str[i] == '.') start = i + 1;
         if (str[i] === '/') break;
         count++;
     }
-    let req = str.substr(start, count-start);
+    let req = str.substr(start, count - start);
     req = reverseString(req);
     return req;
 }
@@ -42,7 +42,7 @@ export const editProfile = (req, res) => {
     cloudinary.v2.uploader.destroy(image, function (error, result) {
         console.log(result, error)
     });
-    Profile.findOneAndUpdate({username:username}, req.body.data)
+    Profile.findOneAndUpdate({ username: username }, req.body.data)
         .then(() => res.status(200).json({ doc: "Editing done" }))
         .catch(err => res.status(404).json({ doc: err }))
 }

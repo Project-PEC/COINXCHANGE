@@ -9,7 +9,7 @@
     "start": "node server.js",
     "client": "cd f_app && npm start",
     "socket": "cd socket && npm start",
-    "dev": "concurrently -n 'server,client,socket' -c 'red,blue,blue' \"nodemon server.js\" \"npm run client\" \"npm run socket\""
+    "dev": "concurrently -n 'server,client' -c 'red,blue' \"nodemon server.js\" \"npm run client\""
   },
   "keywords": [],
   "author": "",

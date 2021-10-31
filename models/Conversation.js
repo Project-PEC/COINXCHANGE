@@ -4,11 +4,11 @@ const Conversation = new mongoose.Schema(
         members: {
             type: Array,
         },
-        images:{
-            type:Object
+        read: {
+            type: Object
         }
     },
-    {timestamps:true}
+    { timestamps: true }
 )
 const ConversationModel = mongoose.model('ConversationModel', Conversation);
 export default ConversationModel;
