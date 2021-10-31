@@ -49,7 +49,7 @@ const Profile = () => {
     return (
         <>
             <div className="pf-container">
-                <div className='pf-wrapper'>
+                <div className='pf-wrapper shadow'>
                     <Card style={{ width: '20rem' }}>
                         <div className="pic--wrap">
                             <Card.Img variant="top" id="profileImage" src={image} />

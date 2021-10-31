@@ -1,12 +1,21 @@
-import Coin from '../models/coin.js';
+import Coin from '../models/Coin.js';
 
+export const addCoin = (req, res) => {
+    const newCoin = new Coin({
+        image: req.body.image,
+        title: req.body.title,
+        description: req.body.description,
+        publisher: req.body.publisher
+    });
+    newCoin.save();
+}
 
 export const getCoin = (req, res) => {
-    
-    Coin.find({ }, async (err, doc) => {
+
+    Coin.find({}, async (err, doc) => {
         if (err) throw err;
         if (doc) {
-            
+
             res.status(200).json({ message: "Image found", doc: doc });
         }
         else {
