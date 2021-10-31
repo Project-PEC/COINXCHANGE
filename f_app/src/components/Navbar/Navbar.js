@@ -67,7 +67,7 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
       <nav className='navbar'>
         <div className='navbar-container'>
           <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-            COINXCHANGE
+            COIN<span style={{color:"#ff0000"}}>X</span>CHANGE
 
             <i class="fas fa-dollar-sign" />
           </Link>

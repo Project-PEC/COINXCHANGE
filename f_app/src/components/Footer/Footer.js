@@ -46,8 +46,8 @@ function Footer() {
       <section class='social-media'>
         <div class='social-media-wrap'>
           <div class='footer-logo'>
-            <Link to='/' className='social-logo'>
-              COINXCHANGE
+            <Link to='/' className='social-logo logo'>
+              COIN<span style={{color:"#f00"}}>X</span>CHANGE
               <i class='fas fa-dollar-sign' />
             </Link>
           </div>

@@ -28,10 +28,15 @@
   display: flex;
   align-items: center;
 }
+.navbar-logo:hover{
+  text-decoration: none;
+  color: white;
+}
 
 .fa-dollar-sign {
   margin-left: 0.5rem;
   font-size: 1.8rem;
+  color:#ff0000;
 }
 
 .nav-menu {
@@ -59,6 +64,8 @@
 }
 
 .nav-links:hover {
+  text-decoration: none;
+  color:white;
   border-bottom: 4px solid #fff;
   transition: all 0.2s ease-out;
 }

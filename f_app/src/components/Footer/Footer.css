@@ -51,7 +51,10 @@
     display: flex;
     justify-content: center;
   }
-  
+  .logo:hover{
+    text-decoration: none;
+    color:white;
+  }
   .footer-link-wrapper {
     display: flex;
   }
