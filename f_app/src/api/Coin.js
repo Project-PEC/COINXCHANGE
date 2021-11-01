@@ -1,7 +1,8 @@
 import axios from "axios";
 
-export const addCoin = async(username) => {
-    return await axios.post("http://localhost:8080/addCoin/"+{username})
+export const addCoin = async(username, data) => {
+    const url="http://localhost:8080/addCoin/"+username;
+    return await axios.post(url, data)
         .then((res) => {
             return res.data;
         })

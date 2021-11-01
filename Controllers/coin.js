@@ -1,13 +1,13 @@
 import Coin from '../models/Coin.js';
 
-export const addCoin = (req, res) => {
+export const addCoin = async (req, res) => {
     const newCoin = new Coin({
         image: req.body.image,
         title: req.body.title,
         description: req.body.description,
         publisher: req.body.publisher
     });
-    newCoin.save();
+    await newCoin.save();
 }
 
 export const getCoin = (req, res) => {

@@ -12,6 +12,7 @@ import Messenger from './components/page/Messenger/Messenger';
 import { io } from 'socket.io-client';
 import { getConversations } from './api/Messenger';
 import { getProfile } from './api/Profile';
+import AddCoin from './components/AddCoin/AddCoin';
 import ShowProfile from './components/page/showProfile/showProfile';
 
 
@@ -57,6 +58,7 @@ function App() {
     <>
       <Router>
         <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
+        <button><Link to={"/AddCoin/" + username}>Add Coin</Link></button>
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/services' component={Services} />
@@ -68,6 +70,7 @@ function App() {
           <Route path='/predict' component={ImageAnalyzer} />
           <Route path={'/profile/' + username} exact component={Profile} />
           <Route path='/view/:id' component={ShowProfile}/>
+          <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
           <Redirect to='/' />;
         </Switch>
       </Router>
