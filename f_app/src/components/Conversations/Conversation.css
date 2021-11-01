@@ -18,3 +18,17 @@
 .conversationName{
     font-weight: 500;
 }
+.newMessage{
+    background-color: #fa3e3e;
+    border-radius: 2px;
+    color: #fa3e3e;
+   
+    padding: 1px 3px;
+    font-size: 8px;
+    height:10px;
+    width:10px;
+    position: relative; /* Position the badge within the relatively positioned button */
+    top: -5px;
+    right: -5px;
+    border-radius: 50%;
+  }

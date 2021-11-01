@@ -12,6 +12,7 @@ import Messenger from './components/page/Messenger/Messenger';
 import { io } from 'socket.io-client';
 import { getConversations } from './api/Messenger';
 import { getProfile } from './api/Profile';
+import ShowProfile from './components/page/showProfile/showProfile';
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
           <Route path={'/profile/' + username} exact component={Profile} />
+          <Route path='/view/:id' component={ShowProfile}/>
           <Redirect to='/' />;
         </Switch>
       </Router>

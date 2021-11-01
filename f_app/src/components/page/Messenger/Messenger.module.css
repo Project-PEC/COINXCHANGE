@@ -1,5 +1,5 @@
 .messenger {
-    height: calc(100vh - 70px);
+    height: calc(100vh - 124px);
     display: flex;
   }
   
@@ -43,6 +43,7 @@
     height: 90px;
     padding: 10px;
     border:1px solid gray;
+    
   }
   input::placeholder{
     color:gray;
@@ -68,9 +69,13 @@
     padding: 10px;
     height: 100%;
     display:flex;
+    padding-top: 0;
+    margin-top:45px;
     flex-direction:column
   }
-  
+  .chatBoxWrapper{
+    margin-top: 0;
+  }
   .noConversationText {
     position: absolute;
     top: 10%;
@@ -79,12 +84,31 @@
     cursor: default;
   }
   .Friend{
-    position:fixed;
-    font-size: 1em;
+    font-size: 1.5em;
+    background-color:rgb(0, 49, 68);
+    width:100%;
+    height:10%;
+    text-align: center;
+    vertical-align: middle;
+    padding-top:3px;
+    display: inline;
+    color:white;
+  }
+  a{
+    color:white;
+  }
+  a:hover{
+    color:white;
+    text-decoration: none;
+  }
+  
+  .friendLink:hover{
+    transform: scale(1.5);
+    
   }
   @media screen and (max-width: 768px) {
     .chatMenu {
-      flex: 12;
+      flex: 6.5;
     }
   
     .chatMenuInput {
@@ -92,10 +116,10 @@
     }
   
     .chatBox{
-      flex: 10;
+      flex: 4;
     }
   
     .chatOnline{
-      flex: 1px;
+      visibility: hidden;
     }
   }

@@ -6,6 +6,7 @@ import ChatOnline from '../../ChatOnline/ChatOnline';
 import { getUserInfo } from '../../../api/Auth';
 import { getConversations, getMessages, sendMessage, updateConvo } from '../../../api/Messenger';
 import { getProfile } from '../../../api/Profile';
+import { Link } from 'react-router-dom';
 
 const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
     const [userAndConversations, setUserAndConversations] = useState({ userData: "", conversations: "" });
@@ -19,7 +20,7 @@ const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
 
     useEffect(async () => {
         let activeUser = await getUserInfo();
-        activeUser=await getProfile(activeUser.username);
+        activeUser = await getProfile(activeUser.username);
         const totalConversations = await getConversations(activeUser.username);
         setUserAndConversations({ userData: activeUser, conversations: totalConversations });
         socket.current.on("getMessage", async (data) => {
@@ -143,8 +144,8 @@ const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
             </div>
             <div className={classes.chatBox}>
                 <div className={classes.chatBoxWrapper}>
+                    {currentChat && <span className={classes.Friend}><Link className={classes.friendLink} to={"/view/" + currentChat.members.find(member => member != userAndConversations.userData.username)}>{currentChat.members.find(member => member != userAndConversations.userData.username)}</Link></span>}
                     {currentChat ? <>
-                        <span className={classes.Friend}>{currentChat.members.find(member => member != userAndConversations.userData.username)}</span>
                         <div className={classes.chatBoxTop}>
                             {messages ? messages.map((m) => (
                                 <div ref={scrollRef}>

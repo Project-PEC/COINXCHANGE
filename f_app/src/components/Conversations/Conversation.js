@@ -22,7 +22,7 @@ const Conversation = ({ conversation, currentUser }) => {
     let showNotRead=<span></span>
     if(!hasRead)
     {
-        showNotRead=<span>Not Read</span>
+        showNotRead=<span className="newMessage">*</span>
     }
     if (true) {
         toRender = <div className="conversation">
