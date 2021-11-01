@@ -22,8 +22,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://github.githubassets.com/favicons/favicon.png" style={{ marginTop: "8px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ float: "right" }} src="https://img.icons8.com/fluent/50/000000/linkedin.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height:"30px",width:"30px" }} alt="git-hub icon" /></a>
+                                <a href="https://github.com/Satan0069" ><img style={{height:"30px",width:"30px",float: "right",borderRadius:"5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                 </Col>
@@ -38,8 +38,8 @@ const Products = () => {
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
-                            <a href="https://github.com/Satan0069"><img src="https://github.githubassets.com/favicons/favicon.png" style={{ marginTop: "8px" }} alt="git-hub icon" /></a>
-                            <a href="https://github.com/Satan0069" ><img style={{ float: "right" }} src="https://img.icons8.com/fluent/50/000000/linkedin.png" alt="linked-in icon" /></a>
+                            <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height:"30px",width:"30px" }} alt="git-hub icon" /></a>
+                            <a href="https://github.com/Satan0069" ><img style={{height:"30px",width:"30px",float: "right",borderRadius:"5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                         </Card.Footer>
                     </Card>
                 </Col>
@@ -54,8 +54,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://github.githubassets.com/favicons/favicon.png" style={{ marginTop: "8px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ float: "right" }} src="https://img.icons8.com/fluent/50/000000/linkedin.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height:"30px",width:"30px" }} alt="git-hub icon" /></a>
+                                <a href="https://github.com/Satan0069" ><img style={{height:"30px",width:"30px",float: "right",borderRadius:"5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                 </Col>
@@ -70,8 +70,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://github.githubassets.com/favicons/favicon.png" style={{ marginTop: "8px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ float: "right" }} src="https://img.icons8.com/fluent/50/000000/linkedin.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height:"30px",width:"30px" }} alt="git-hub icon" /></a>
+                                <a href="https://github.com/Satan0069" ><img style={{height:"30px",width:"30px",float: "right",borderRadius:"5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                 </Col>
