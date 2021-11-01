@@ -116,10 +116,10 @@
     }
   
     .chatBox{
-      flex: 4;
+      flex: 10;
     }
   
     .chatOnline{
-      visibility: hidden;
+      display:none; 
     }
   }

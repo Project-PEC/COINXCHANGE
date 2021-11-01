@@ -8,6 +8,7 @@ const ShowProfile = (props) => {
     const [doc, setDoc] = useState({});
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
+        if(!temp) props.history.push('/'); 
         setDoc(temp);
     }, [])
     const email = doc.email;
