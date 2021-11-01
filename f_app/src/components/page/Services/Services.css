@@ -178,17 +178,3 @@
   .new--text {
     text-shadow: 1px 1px 1px #000, 3px 3px 5px rgb(0, 0, 44);
   }
-
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgb(111,111,111,0.5); 
-    z-index: 9; 
-}
-
-.popup-content {
-    z-index: 10; 
-}
