@@ -18,6 +18,13 @@ const Services = () => {
     let Service = <div></div>;
     if (doc.length > 0) {
         Service = 
+        <div>
+            <div className="search--btn">
+                <input id='search-btn' type='checkbox'/>
+                <label for='search-btn'>Show search bar</label>
+                <input id='search-bar' type='text' placeholder='Search...'/>
+            </div>
+        
         <div className='new coin--container'>
             <Row xs={1} md={2} lg={3} >
                 {doc.map((coin) => (
@@ -27,7 +34,7 @@ const Services = () => {
                             <Card.Img className="coin--img" variant="top" src={coin.image} />
                         </div>
                         <Card.Body>
-                            <Card.Title>{coin.title}</Card.Title>
+                            <Card.Title className="new--text">{coin.title}</Card.Title>
                             <Card.Text>
                                 {coin.description}
                             </Card.Text>
@@ -39,7 +46,8 @@ const Services = () => {
                 </Col> 
                 ))}
             </Row>
-        </div>  
+        </div>
+        </div>
     }
     return (
         <div>
@@ -47,4 +55,7 @@ const Services = () => {
         </div>
     )
 }
+
+    
+
 export default Services;
