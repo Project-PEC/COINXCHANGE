@@ -127,7 +127,9 @@ body .visually-hidden{
   opacity:0;
   font-size: 0;
 }
-
+.wee {
+  justify-content: space-around;
+}
 .coin--item {
     margin-bottom: 50px;
 }
