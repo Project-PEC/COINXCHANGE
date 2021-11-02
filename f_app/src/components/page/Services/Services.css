@@ -8,6 +8,14 @@
     display: flex;
     flex-direction: column;
 }
+
+.size{
+  /* height: 350px; */
+  width: 300px;
+  margin-top: 20px;
+  margin-right: 50px;
+}
+
 .coin--item {
     margin-bottom: 50px;
 }
@@ -27,6 +35,8 @@
     padding: 0px 10px;
   }
 .coin--img {
+  height: 200px;
+  width: 200px;
     border-radius: 100px;
 }
   @media only screen and (max-width: 1000px) {

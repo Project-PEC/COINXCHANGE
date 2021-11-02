@@ -3,13 +3,16 @@
 body {
     background-color: rgb(165, 240, 250);    
 }
+
 img {
+    padding: 9px;
     height: auto;
     width: auto;
-    border-radius: 15px;
+    /* border-radius: 15px; */
 }
 
 .pf-container {
+
     display: flex;
     flex-flow: column;
     align-items: center;
