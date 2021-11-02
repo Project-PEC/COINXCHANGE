@@ -86,8 +86,11 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Services
+                Coins
               </Link>
+            </li>
+            <li>
+              {messanger}
             </li>
             <li className='nav-item'>
               <Link
@@ -95,11 +98,8 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
                 className='nav-links'
                 onClick={closeMobileMenu}
               >
-                Products
+                About Us
               </Link>
-            </li>
-            <li>
-              {messanger}
             </li>
             <li>
               {authLink}
