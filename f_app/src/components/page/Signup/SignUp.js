@@ -16,7 +16,7 @@ const LoginComponent = (props) => {
                     <h1>{props.mode === 'login' ? 'Welcome back!' : 'Sign up'}</h1>
                     <div className="form-block__toggle-block">
                         <span>{props.mode === 'login' ? 'Don\'t' : 'Already'} have an account? Click here &#8594;</span>
-                        <input id="form-toggler" type="checkbox" onClick={() => props.toggleMode()} />
+                        <input className="toggle" id="form-toggler" type="checkbox" onClick={() => props.toggleMode()} />
                         <label htmlFor="form-toggler"></label>
                     </div>
                 </header>
