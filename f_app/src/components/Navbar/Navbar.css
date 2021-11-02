@@ -70,6 +70,10 @@
   transition: all 0.2s ease-out;
 }
 
+.weex {
+  color:white;
+}
+
 .fa-bars {
   color: #fff;
 }
