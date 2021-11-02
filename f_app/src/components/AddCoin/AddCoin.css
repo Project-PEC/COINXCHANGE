@@ -10,15 +10,20 @@ body {
     align-items: center;
 }
 
-.size{
+.size2{
     /* height: 350px; */
     width: 300px;
-    margin-bottom: 15px;
+    margin:auto;
+}
+
+.mar{
+    margin-top: 10px;
 }
 
 .img {
     height: 200px;
     width: 300px;
+    margin-bottom: 20px;
 }
 
 .form-container {

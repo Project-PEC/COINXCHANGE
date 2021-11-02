@@ -172,10 +172,10 @@
  .full-width {
 	 width: 100%;
 }
- input[type="checkbox"] {
+.toggle {
 	 display: none;
 }
- input[type="checkbox"] + label:before {
+ .toggle + label:before {
 	 content: '';
 	 display: block;
 	 position: absolute;
@@ -189,7 +189,7 @@
 	 -moz-border-radius: 50px;
 	 border-radius: 50px;
 }
- input[type="checkbox"] + label:after {
+ .toggle + label:after {
 	 content: '';
 	 display: block;
 	 position: absolute;
@@ -209,7 +209,7 @@
 	 -webkit-transition: all 0.3s ease-in-out;
 	 transition: all 0.3s ease-in-out;
 }
- input[type="checkbox"]:checked + label:after {
+ .toggle:checked + label:after {
 	 right: 0;
 }
  ::-webkit-input-placeholder {
