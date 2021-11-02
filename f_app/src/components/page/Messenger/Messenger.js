@@ -166,10 +166,10 @@ const Messenger = ({ socket, setUnread, onlineUsers, setOnlineUsers }) => {
             </div>
             <div className={classes.chatOnline}>
                 <div className={classes.chatOnlineWrapper}>
-                    <ChatOnline
+                    {userAndConversations.userData && <ChatOnline
                         setCurrentChat={onClickHandler}
                         onlineUsers={onlineUsers}
-                        currentId={userAndConversations.userData} />
+                        currentId={userAndConversations.userData} />}
                 </div>
             </div>
         </div>
