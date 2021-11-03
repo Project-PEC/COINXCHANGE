@@ -101,7 +101,7 @@ const Services = () => {
                                     <div className="coin--wrapper">
                                         {dp[i++]}
                                     </div>
-                                    <Link to={"/getCoin/" + coin.publisher}>
+                                    <Link to={{ pathname: "/getCoin/"+coin.publisher , param1: coin.image }}>
                                         <Card.Body>
                                             <Card.Title className="new--text">{coin.title}</Card.Title>
                                         </Card.Body>
