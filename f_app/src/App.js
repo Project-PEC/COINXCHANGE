@@ -14,6 +14,7 @@ import { getConversations } from './api/Messenger';
 import { getProfile } from './api/Profile';
 import AddCoin from './components/AddCoin/AddCoin';
 import ShowProfile from './components/page/showProfile/showProfile';
+import ShowCoin from './components/ShowCoin/ShowCoin';
 
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
           <Route path={'/profile/' + username} exact component={Profile} />
           <Route path='/view/:id' component={ShowProfile}/>
           <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
+          <Route path={'/getCoin/:id'} exact component={ShowCoin} />
           <Redirect to='/' />;
         </Switch>
       </Router>

@@ -12,7 +12,7 @@ const Products = () => {
             <div className="container">
             <Row xs={1} md={2} lg={4} >
                 <Col className="item">
-                        <Card>
+                        <Card style={{minWidth:"0px"}} >
                             <Card.Img className="Image" variant="top" src="#" />
                             <Card.Body>
                                 <Card.Title>Card title</Card.Title>
@@ -28,7 +28,7 @@ const Products = () => {
                         </Card>
                 </Col>
                 <Col className="item">
-                    <Card>
+                    <Card style={{minWidth:"0px"}} > 
                         <Card.Img className="Image" variant="top" src="#" />
                         <Card.Body>
                             <Card.Title>Card title</Card.Title>
@@ -44,7 +44,7 @@ const Products = () => {
                     </Card>
                 </Col>
                 <Col className="item">
-                    <Card>
+                    <Card style={{minWidth:"0px"}}>
                             <Card.Img className="Image" variant="top" src="#" />
                             <Card.Body>
                                 <Card.Title>Card title</Card.Title>
@@ -60,7 +60,7 @@ const Products = () => {
                         </Card>
                 </Col>
                 <Col className="item">
-                    <Card>
+                    <Card style={{minWidth:"0px"}}>
                             <Card.Img className="Image" variant="top" src="#" />
                             <Card.Body>
                                 <Card.Title>Card title</Card.Title>

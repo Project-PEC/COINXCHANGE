@@ -101,7 +101,7 @@ const Services = () => {
                                     <div className="coin--wrapper">
                                         {dp[i++]}
                                     </div>
-                                    <Link to="/">
+                                    <Link to={"/getCoin/" + coin.publisher}>
                                         <Card.Body>
                                             <Card.Title className="new--text">{coin.title}</Card.Title>
                                         </Card.Body>
