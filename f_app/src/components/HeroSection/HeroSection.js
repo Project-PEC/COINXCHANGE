@@ -18,7 +18,7 @@ function HeroSection(props) {
                         SEARCH COINS
                     </ButtonS>
                     <Button className="btns" buttonStyle='btn--primary' buttonSize="btn-large" link={"/AddCoin/" + props.username}>
-                        AddCoin
+                        AddCoin <i class="fas fa-donate"/>
                     </Button>
                 </div>
         </div>

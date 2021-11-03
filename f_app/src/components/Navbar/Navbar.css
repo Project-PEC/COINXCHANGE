@@ -140,7 +140,9 @@
     font-size: 1.8rem;
     cursor: pointer;
   }
-
+  .fa-comment-dots {
+    margin-left: 3px;
+  }
   .fa-times {
     color: #fff;
     font-size: 2rem;
