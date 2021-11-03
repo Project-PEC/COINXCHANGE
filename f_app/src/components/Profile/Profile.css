@@ -88,3 +88,28 @@ strong {
     bottom: 2px;
     font-size: 18px;
 }
+
+/* Cards */
+
+.cards {
+  padding: 4rem;
+  background: #fff;
+}
+
+.cards__container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cards__wrapper {
+  position: relative;
+  margin: 50px 0 45px;
+}
+
+.cards__items {
+  margin-bottom: 24px;
+}

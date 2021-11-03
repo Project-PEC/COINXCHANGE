@@ -35,7 +35,7 @@ const getPublicId = (str) => {
     req = reverseString(req);
     return req;
 }
-export const editProfile = (req, res) => {
+export const editProfileImage = (req, res) => {
     const username = req.params.id;
     let image = req.body.image;
     image = getPublicId(image);
@@ -43,6 +43,13 @@ export const editProfile = (req, res) => {
         console.log(result, error)
     });
     Profile.findOneAndUpdate({ username: username }, req.body.data)
+        .then(() => res.status(200).json({ doc: "Editing done" }))
+        .catch(err => res.status(404).json({ doc: err }))
+}
+
+export const editProfile = (req, res) => {
+    const username = req.params.id;
+    Profile.findOneAndUpdate({ username: username }, req.body)
         .then(() => res.status(200).json({ doc: "Editing done" }))
         .catch(err => res.status(404).json({ doc: err }))
 }

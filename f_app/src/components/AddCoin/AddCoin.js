@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 import { addCoin } from '../../api/Coin';
 import Carousel from 'react-bootstrap/Carousel'
 import './AddCoin.css';
+import {getProfile} from '../../api/Profile';
+import {withRouter} from 'react-router';
 
 function AddCoin(props) {
 
@@ -43,16 +45,15 @@ function AddCoin(props) {
     }
 
     const onSubmitHandler = async () => {
-        console.log(image);
         const data = {};
         data["publisher"] = props.username;
         data["title"] = title;
         data["image"] = image;
         data["description"] = description;
-
-        const t = await addCoin(props.username, data);
-        console.log(t);
-
+        
+        const profile=await getProfile(props.username);
+        const t = await addCoin(props.username, data,profile);
+        props.history.push('/');
     }
 
     const carous = [];
@@ -111,4 +112,4 @@ function AddCoin(props) {
 }
 
 
-export default AddCoin;
+export default withRouter(AddCoin);
