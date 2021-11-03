@@ -51,7 +51,7 @@ function Footer() {
               <i class='fas fa-dollar-sign' />
             </Link>
           </div>
-          <small class='website-rights'>COINXCHANGE © 2021</small>
+          <small class='website-rights'>COIN<span style={{ color:"#f00" }}>X</span>CHANGE © 2021</small>
           <div class='social-icons'>
             <Link
               class='social-icon-link facebook'

@@ -93,7 +93,7 @@ const Services = () => {
                 </div>
 
                 <div className='new coin--container'>
-                    <Row xs={1} md={2} lg={3} >
+                    <Row className="wee" xs={1} md={2} lg={3} >
                         {show.map((coin) => (
                             <Col className='coin--item'>
 
