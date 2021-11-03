@@ -6,6 +6,7 @@ import './showProfile.css';
 import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../../Cards/CardItem';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 const ShowProfile = (props) => {
     const [doc, setDoc] = useState({});
@@ -23,14 +24,16 @@ const ShowProfile = (props) => {
                 <div className='cards__wrapper'>
                     <Row lg={3} md={2} sm={1}>
                         {doc.Coins && doc.Coins.map((ele, id) => (
-
-                            <CardItem
-                                key={id}
-                                src={ele.image[0]}
-                                text={ele.title}
-                                label={ele.publisher}
-                                path='/'
-                            />
+                           
+                                <CardItem
+                                    key={id}
+                                    src={ele.image[0]}
+                                    text={ele.title}
+                                    label={ele.publisher}
+                                    path={"/getCoin/" + ele.publisher + "/" + ele._id}
+                                    param= {ele}
+                                />
+                      
                         ))}
                     </Row>
                 </div>
@@ -55,7 +58,7 @@ const ShowProfile = (props) => {
                         </ListGroup>
                         <Card.Body>
                             {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            <Button style={{zIndex:"20", position:"relative"}} href="#title">View Collection</Button>
+                            <Button style={{ zIndex: "20", position: "relative" }} href="#title">View Collection</Button>
                         </Card.Body>
                     </Card>
                 </div>

@@ -12,7 +12,7 @@ router.get('/user', verifyJWT, getUser);
 router.post('/:id/edit', editProfile);
 router.get('/:id', getProfile);
 router.post('/AddCoin/:id', addCoin);
-router.get('/getCoin/:id', getUserCoin);
+router.get('/getCoin/:username/:id', getUserCoin);
 router.post('/:id/editImage',editProfileImage)
 
 export default router;

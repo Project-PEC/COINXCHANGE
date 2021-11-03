@@ -25,7 +25,7 @@ export const getCoin = (req, res) => {
 }
 
 export const getUserCoin = (req, res) => {
-    Coin.find({username: req.params.id}, async (err, doc) => {
+    Coin.find( {_id : req.params.id}, async (err, doc) => {
         if (err) throw err;
         if (doc) {
             res.status(200).json({ message: "Image found", doc: doc });

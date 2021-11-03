@@ -52,8 +52,8 @@ const Services = () => {
         console.log(filters);
         setShow(doc.filter((d) => {
             for (const fi in filters) {
-                const f=filters[fi].trim();
-                if(f.length==0) continue;
+                const f = filters[fi].trim();
+                if (f.length == 0) continue;
                 if (!((d.title).toLowerCase().includes(f) || (d.publisher).toLowerCase().includes(f))) {
                     return false;
                 }
@@ -76,12 +76,11 @@ const Services = () => {
                     <Row className="wee" xs={1} md={2} lg={3} >
                         {show.map((coin) => (
                             <Col className='coin--item'>
-
                                 <Card>
                                     <div className="coin--wrapper">
                                         {dp[i++]}
                                     </div>
-                                    <Link to={{ pathname: "/getCoin/"+coin.publisher , param1: coin.image }}>
+                                    <Link to={{ pathname: "/getCoin/" + coin.publisher+ "/" + coin._id, param1: coin }}>
                                         <Card.Body>
                                             <Card.Title className="new--text">{coin.title}</Card.Title>
                                         </Card.Body>

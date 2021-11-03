@@ -5,7 +5,7 @@ function CardItem(props) {
   return (
     <>
       <li className='cards__item' style={{background:"white",minWidth:"220px"}}>
-        <Link className='cards__item__link' to={props.path}>
+        <Link className='cards__item__link' to={{ pathname: props.path, param1:props.param }}>
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'

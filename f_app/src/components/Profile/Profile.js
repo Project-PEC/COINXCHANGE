@@ -61,7 +61,8 @@ const Profile = () => {
                                 src={ele.image[0]}
                                 text={ele.title}
                                 label={ele.publisher}
-                                path='/'
+                                path={"/getCoin/" + ele.publisher + "/" + ele._id}
+                                param= {ele}
                             />
                         ))}
                         </Row>

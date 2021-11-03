@@ -26,10 +26,19 @@ img {
     margin-top: 10px;
 }
 
-.img {
-    height: 200px;
-    width: 300px;
-    margin-bottom: 20px;
+.img2{
+    height: 250px;
+    width: 400px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.link1{
+    color:black;
+}
+
+.link1:hover{
+    color:grey;
 }
 
 .pf-container {
@@ -41,13 +50,13 @@ img {
     margin: 0 auto;
   }
   
-.pf-wrapper {
+.pf-wrapper2 {
     display: flex;
     flex-flow: column;
     align-items: center;
     margin: 50px 70px;
-    /* box-shadow: 10px 10px 8px #b3b2b2; */
-    /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5)); */
+    box-shadow: 7px 7px 15px #474747; 
+    /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));  */
 }
 
 .shadow

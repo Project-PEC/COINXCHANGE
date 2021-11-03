@@ -72,7 +72,7 @@ function App() {
           <Route path={'/profile/' + username} exact component={Profile} />
           <Route path='/view/:id' component={ShowProfile} />
           <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
-          <Route path={'/getCoin/:id'} exact component={ShowCoin} />
+          <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
           <Redirect to='/' />;)
         </Switch>
       </Router>

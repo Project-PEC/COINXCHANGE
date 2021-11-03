@@ -22,3 +22,13 @@ export const getCoin = async (Coin) => {
             console.log(err);
         })
 }
+
+export const getUserCoin = async (username, id) => {
+    return await axios.get("http://localhost:8080/getCoin/"+ username + "/" + id )
+        .then((res) => {
+            return res.data.doc;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
