@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../../api/Auth';
-import { editProfile, getProfile } from '../../api/Profile';
+import { editProfile, editProfileImage, getProfile } from '../../api/Profile';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup'
 import axios from 'axios';
 import './Profile.css';
+import CardItem from '../Cards/CardItem';
+import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/esm/Row';
 
 const Profile = () => {
     const [username, setUsername] = useState("");
@@ -22,7 +25,7 @@ const Profile = () => {
 
         axios.post("https://api.cloudinary.com/v1_1/dx0rf8u0t/image/upload", formData).then(async (res) => {
 
-            const t = await editProfile(username,
+            const t = await editProfileImage(username,
                 {
                     data: {
                         ...doc,
@@ -44,13 +47,32 @@ const Profile = () => {
     }
     const email = doc.email;
     const name = doc.username;
-    const coins = doc.Coins;
     const image = doc.image;
+    const coins =
+        <div className='cards'>
+            <h1 id="title">Your Collection!</h1>
+            <div className='cards__container'>
+                <div className='cards__wrapper'>
+                        <Row lg={3} md={2} sm={1}>
+                        {doc.Coins && doc.Coins.map((ele, id) => (
+
+                            <CardItem
+                                key={id}
+                                src={ele.image[0]}
+                                text={ele.title}
+                                label={ele.publisher}
+                                path='/'
+                            />
+                        ))}
+                        </Row>
+                </div>
+            </div>
+        </div>
     return (
         <>
             <div className="pf-container">
                 <div className='pf-wrapper shadow'>
-                    <Card style={{ width: '20rem' }}>
+                    <Card style={{ width: '20rem'}}>
                         <div className="pic--wrap">
                             <Card.Img variant="top" id="profileImage" src={image} />
                             <Card.ImgOverlay>
@@ -71,12 +93,12 @@ const Profile = () => {
                             <ListGroup.Item>Private/public profile</ListGroup.Item>
                         </ListGroup>
                         <Card.Body>
-                            {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            <Card.Title>Collection: {coins}</Card.Title>
+                            <Button style={{zIndex:"20", position:"relative"}} href="#title">View Collection</Button>
                         </Card.Body>
                     </Card>
                 </div>
             </div>
+            {coins}
 
         </>
     )

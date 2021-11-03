@@ -16,7 +16,6 @@ import AddCoin from './components/AddCoin/AddCoin';
 import ShowProfile from './components/page/showProfile/showProfile';
 import ShowCoin from './components/ShowCoin/ShowCoin';
 
-
 function App() {
   const [username, setUsername] = useState("");
   const [unread, setUnread] = useState(false);
@@ -61,6 +60,7 @@ function App() {
       <Router>
         <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
         <Switch>
+          
           <Route path='/' exact component={() => < Home username={username} />} />
           <Route path='/services' component={Services} />
           <Route path='/messenger' component={Messenger}>
@@ -70,10 +70,10 @@ function App() {
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
           <Route path={'/profile/' + username} exact component={Profile} />
-          <Route path='/view/:id' component={ShowProfile}/>
+          <Route path='/view/:id' component={ShowProfile} />
           <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
           <Route path={'/getCoin/:id'} exact component={ShowCoin} />
-          <Redirect to='/' />;
+          <Redirect to='/' />;)
         </Switch>
       </Router>
     </>
