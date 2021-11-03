@@ -5,10 +5,10 @@ import Cards from '../Cards/Cards';
 import Footer from '../Footer/Footer';
 
 
-function Home() {
+function Home(props) {
     return (
         <>
-            <HeroSection />
+            <HeroSection username={props.username}/>
             <Cards />
             <Footer />
         </>

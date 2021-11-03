@@ -59,9 +59,8 @@ function App() {
     <>
       <Router>
         <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
-        <button><Link to={"/AddCoin/" + username}>Add Coin</Link></button>
         <Switch>
-          <Route path='/' exact component={Home} />
+          <Route path='/' exact component={() => < Home username={username} />} />
           <Route path='/services' component={Services} />
           <Route path='/messenger' component={Messenger}>
             {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
