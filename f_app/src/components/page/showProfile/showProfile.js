@@ -46,6 +46,18 @@ const ShowProfile = (props) => {
     const toChatHandler = async () => {
         // const x = await updateConvo({ user: friend, toChange: user, changed: true })
         const user = await getUserInfo();
+        
+        if(!user.auth)
+        {
+            alert("Login to do that");
+            props.history.push('/sign-up')
+            return;
+        }
+        if(user.username===doc.username)
+        {
+            alert("You cannot chat with yourself!! Find some friends dude :)");
+            return;
+        }
         const userProfile = await getProfile(user.username);
         const friend = doc.username;
         const conversations = await getConversations(user.username);

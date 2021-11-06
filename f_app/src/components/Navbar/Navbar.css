@@ -189,7 +189,11 @@
 .dropdownMenu{
   background-color: black;
   color:white;
+  padding-bottom: 0;
 }
 .logoutButton:hover{
   border-color: black;
+}
+.logoutDropdown{
+  padding:0px
 }

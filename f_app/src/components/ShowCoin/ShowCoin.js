@@ -10,7 +10,6 @@ const ShowCoin = (props) => {
 
     useEffect(async () => {
         const temp = await getUserCoin(props.match.params.username, props.match.params.id);
-        console.log(temp);
         if (!temp) props.history.push('/');
     }, [])
 
@@ -18,12 +17,11 @@ const ShowCoin = (props) => {
     const dp = [];
     let comp=<div></div>;
     const coin = props.location.param1;
-    console.log(coin);
     if (typeof coin === 'undefined') props.history.push('/');
     else {
         for (let i = 0; i < coin.image.length; i++) {
             carous.push(
-                <Carousel.Item>
+                <Carousel.Item key={i}>
                     <img
                         className="d-block w-100 img2"
                         src={coin.image[i]}
