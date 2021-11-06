@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../../Cards/CardItem';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { getConversations, newConvo, updateConvo } from '../../../api/Messenger';
+import { getUserInfo } from '../../../api/Auth';
 
 const ShowProfile = (props) => {
     const [doc, setDoc] = useState({});
@@ -24,22 +26,66 @@ const ShowProfile = (props) => {
                 <div className='cards__wrapper'>
                     <Row lg={3} md={2} sm={1}>
                         {doc.Coins && doc.Coins.map((ele, id) => (
-                           
-                                <CardItem
-                                    key={id}
-                                    src={ele.image[0]}
-                                    text={ele.title}
-                                    label={ele.publisher}
-                                    path={"/getCoin/" + ele.publisher + "/" + ele._id}
-                                    param= {ele}
-                                />
-                      
+
+                            <CardItem
+                                key={id}
+                                src={ele.image[0]}
+                                text={ele.title}
+                                label={ele.publisher}
+                                path={"/getCoin/" + ele.publisher + "/" + ele._id}
+                                param={ele}
+                            />
+
                         ))}
                     </Row>
                 </div>
             </div>
         </div>
     const image = doc.image;
+
+    const toChatHandler = async () => {
+        // const x = await updateConvo({ user: friend, toChange: user, changed: true })
+        const user = await getUserInfo();
+        const userProfile = await getProfile(user.username);
+        const friend = doc.username;
+        const conversations = await getConversations(user.username);
+        const res = conversations.find(convo => convo.members[0] === friend || convo.members[1] === friend);
+        const data = {
+            "senderId": user.username,
+            "receiverId": doc.username,
+            "senderImage": userProfile.image,
+            "receiverImage": doc.image
+        }
+        if (!res) {
+            let result = await newConvo(data);
+            const imageObj = {
+
+            }
+            imageObj[user.username] = userProfile.image;
+            imageObj[doc.username] = doc.image;
+            result = {
+                ...result,
+                images: imageObj
+            }
+            props.history.push('/messenger', { state: result });
+        }
+        else {
+            const x = await updateConvo({ user: friend, toChange: user.username, changed: true })
+            let req = x;
+            const imageObj = {
+
+            }
+            imageObj[user.username] = userProfile.image;
+            imageObj[doc.username] = doc.image;
+            req = {
+                ...req,
+                images: imageObj
+            }
+            console.log(req)
+            props.history.push('/messenger', { state: req });
+        }
+
+    }
     return (
         <>
             <div className="pf-container">
@@ -63,6 +109,7 @@ const ShowProfile = (props) => {
                     </Card>
                 </div>
             </div>
+            <button onClick={toChatHandler}>Chat with {doc.username}</button>
             {coins}
 
         </>

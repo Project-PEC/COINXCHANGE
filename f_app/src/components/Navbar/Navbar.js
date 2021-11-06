@@ -113,7 +113,7 @@ const Navbar = ({ username, setUsername, socket, unread, setUnread }) => {
 
             <Dropdown.Menu variant="dark" className="dropdownMenu">
               <Dropdown.Item className="weex" as={Link} to={"/profile/" + username}>Profile</Dropdown.Item>
-              <Dropdown.Item><Button onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button></Dropdown.Item>
+              <Dropdown.Item><Button className="logoutButton" onClick={username ? logOut : faltu} link={username ? '/' : '/sign-up'} buttonStyle='btn--outline'>{username ? "LogOut" : "SIGN UP"}</Button></Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
             :

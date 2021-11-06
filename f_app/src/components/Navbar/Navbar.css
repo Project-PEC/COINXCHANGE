@@ -72,6 +72,7 @@
 
 .weex {
   color:white;
+  font-size: 20px;
 }
 
 .fa-bars {
@@ -188,4 +189,7 @@
 .dropdownMenu{
   background-color: black;
   color:white;
+}
+.logoutButton:hover{
+  border-color: black;
 }
