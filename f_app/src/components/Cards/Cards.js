@@ -30,15 +30,15 @@ function Cards() {
               path='/services'
             />
             <CardItem
-              src='images/img-4.jpg'
-              text='Experience Football on Top of the Himilayan Mountains'
-              label='Adventure'
-              path='/products'
+              src='images/img-9.jpg'
+              text='50 Paise'
+              label='Old Coin'
+              path='/services'
             />
             <CardItem
-              src='images/img-8.jpg'
-              text='Ride through the Sahara Desert on a guided camel tour'
-              label='Adrenaline'
+              src='images/img-3.jpg'
+              text='20 Rupees'
+              label='2019'
               path='/sign-up'
             />
           </ul>
