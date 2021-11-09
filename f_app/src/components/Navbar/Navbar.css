@@ -72,6 +72,7 @@
 
 .weex {
   color:white;
+  font-size: 20px;
 }
 
 .fa-bars {
@@ -140,7 +141,9 @@
     font-size: 1.8rem;
     cursor: pointer;
   }
-
+  .fa-comment-dots {
+    margin-left: 3px;
+  }
   .fa-times {
     color: #fff;
     font-size: 2rem;
@@ -186,4 +189,11 @@
 .dropdownMenu{
   background-color: black;
   color:white;
+  padding-bottom: 0;
+}
+.logoutButton:hover{
+  border-color: black;
+}
+.logoutDropdown{
+  padding:0px
 }

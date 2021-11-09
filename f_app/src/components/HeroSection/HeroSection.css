@@ -5,7 +5,9 @@ video {
     position: fixed;
     z-index: -1;
 }
-
+.fa-donate {
+    margin-left: 3px;
+}
 .hero-container {
     /*background: url('../public/images/img-home.jpg') center center/cover no-repeat;*/
     height: 100%;

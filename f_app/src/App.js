@@ -57,12 +57,29 @@ function App() {
       }
     }
   }, [username])
-  return (
-    <>
-      <Router>
-        <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
+  let routes =
+    <div>
+      <Switch>
+
+        <Route path='/' exact component={() => < Home username={username} />} />
+        <Route path='/services' component={Services} />
+        <Route path='/messenger' component={Messenger}>
+          {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
+        </Route>
+        <Route path='/products' component={Products} />
+        <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
+        <Route path='/predict' component={ImageAnalyzer} />
+        <Route path={'/profile/' + username} exact component={Profile} />
+        <Route path='/view/:id' component={ShowProfile} />
+        <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
+        <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
+        <Redirect to='/' />
+      </Switch>
+    </div>
+  if (!username) {
+    routes =
+      <div>
         <Switch>
-          
           <Route path='/' exact component={() => < Home username={username} />} />
           <Route path='/services' component={() => < Services username={username} />} />
           <Route path='/messenger' component={Messenger}>
@@ -71,14 +88,19 @@ function App() {
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
-          <Route path={'/profile/' + username} exact component={Profile} />
           <Route path='/view/:id' component={ShowProfile} />
-          <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
           <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
           <Route path={'/getReview/:coinId'} exact component={ShowReview} />
           {/* <Route path={'/addReview/:username/:coinId'} exact component={Review} /> */}
           <Redirect to='/' />;)
         </Switch>
+      </div>
+  }
+  return (
+    <>
+      <Router>
+        <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
+          {routes}
       </Router>
     </>
   );

@@ -26,7 +26,7 @@ const ShowCoin = (props) => {
     else {
         for (let i = 0; i < coin.image.length; i++) {
             carous.push(
-                <Carousel.Item>
+                <Carousel.Item key={i}>
                     <img
                         className="d-block w-100 img2"
                         src={coin.image[i]}
@@ -67,7 +67,7 @@ const ShowCoin = (props) => {
         <>
             {comp}
             < Review param={coin} username={props.location.param2}/>
-            < ShowReview />
+            {/* < ShowReview /> */}
         </>
     )
 }
