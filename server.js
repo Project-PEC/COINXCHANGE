@@ -8,6 +8,7 @@ import cors from "cors";
 import userRoutes from "./routes/user.js";
 import conversationRoutes from './routes/conversation.js';
 import messageRoutes from './routes/message.js';
+import reviewRoutes from './routes/review.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -59,5 +60,6 @@ app.use(function (req, res, next) {
 app.use("/", userRoutes);
 app.use("/conversation/",conversationRoutes);
 app.use("/message/",messageRoutes);
+app.use("/", reviewRoutes);
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));

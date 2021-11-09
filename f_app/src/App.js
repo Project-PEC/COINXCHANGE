@@ -15,6 +15,8 @@ import { getProfile } from './api/Profile';
 import AddCoin from './components/AddCoin/AddCoin';
 import ShowProfile from './components/page/showProfile/showProfile';
 import ShowCoin from './components/ShowCoin/ShowCoin';
+import Review from './components/Review/Review';
+import ShowReview from './components/ShowReview/ShowReview';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -62,7 +64,7 @@ function App() {
         <Switch>
           
           <Route path='/' exact component={() => < Home username={username} />} />
-          <Route path='/services' component={Services} />
+          <Route path='/services' component={() => < Services username={username} />} />
           <Route path='/messenger' component={Messenger}>
             {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
           </Route>
@@ -73,6 +75,8 @@ function App() {
           <Route path='/view/:id' component={ShowProfile} />
           <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
           <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
+          <Route path={'/getReview/:coinId'} exact component={ShowReview} />
+          {/* <Route path={'/addReview/:username/:coinId'} exact component={Review} /> */}
           <Redirect to='/' />;)
         </Switch>
       </Router>

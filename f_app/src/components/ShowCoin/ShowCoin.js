@@ -5,20 +5,23 @@ import Carousel from 'react-bootstrap/Carousel'
 import './ShowCoin.css'
 import { getUserCoin } from '../../api/Coin';
 import { Link } from 'react-router-dom';
+import Review from '../Review/Review';
+import ShowReview from '../ShowReview/ShowReview';
 
 const ShowCoin = (props) => {
 
     useEffect(async () => {
         const temp = await getUserCoin(props.match.params.username, props.match.params.id);
-        console.log(temp);
+        // console.log(temp);
         if (!temp) props.history.push('/');
     }, [])
 
     const carous = [];
     const dp = [];
     let comp=<div></div>;
+    // console.log(props.location.param2);
     const coin = props.location.param1;
-    console.log(coin);
+    // console.log(coin);
     if (typeof coin === 'undefined') props.history.push('/');
     else {
         for (let i = 0; i < coin.image.length; i++) {
@@ -63,6 +66,8 @@ const ShowCoin = (props) => {
     return (
         <>
             {comp}
+            < Review param={coin} username={props.location.param2}/>
+            < ShowReview />
         </>
     )
 }
