@@ -6,7 +6,7 @@ import './ShowCoin.css'
 import { getUserCoin } from '../../api/Coin';
 import { Link } from 'react-router-dom';
 import Review from '../Review/Review';
-import ShowReview from '../ShowReview/ShowReview';
+// import ShowReview from '../ShowReview/ShowReview';
 
 const ShowCoin = (props) => {
 

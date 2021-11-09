@@ -8,6 +8,9 @@ import { getConversations, getMessages, sendMessage, updateConvo } from '../../.
 import { getProfile } from '../../../api/Profile';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import Loader from 'react-loader-spinner';
+
+
 
 const Messenger = (props) => {
     const [userAndConversations, setUserAndConversations] = useState({ userData: "", conversations: "" });
@@ -17,6 +20,8 @@ const Messenger = (props) => {
     const [arrivalMessage, setArrivalMessage] = useState("");
     // const [onlineUsers, props.setOnlineUsers] = useState([]);
     const [filter, setFilter] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [loading2, setLoading2] = useState(false);
     const scrollRef = useRef();
 
     useEffect(async () => {
@@ -35,9 +40,11 @@ const Messenger = (props) => {
             props.setUnread(false);
             setCurrentChat(props.location.state.state);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+            setLoading(false)
         }
         else {
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+            setLoading(false)
         }
     }, [])
     // console.log(arrivalMessage);
@@ -47,6 +54,7 @@ const Messenger = (props) => {
             activeUser = await getProfile(activeUser.username);
             const totalConversations = await getConversations(activeUser.username);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+            setLoading(false)
         }
 
         if (arrivalMessage && !currentChat) {
@@ -57,6 +65,8 @@ const Messenger = (props) => {
             activeUser = await getProfile(activeUser.username);
             const totalConversations = await getConversations(activeUser.username);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+            setLoading(false)
+
         }
         else if (arrivalMessage && currentChat && !currentChat.members.find(user => user === arrivalMessage.sender)) {
             // console.log(currentChat.members.find(user => user != arrivalMessage.sender));
@@ -67,6 +77,7 @@ const Messenger = (props) => {
             activeUser = await getProfile(activeUser.username);
             const totalConversations = await getConversations(activeUser.username);
             setUserAndConversations({ userData: activeUser, conversations: totalConversations });
+            setLoading(false)
         }
         else if (arrivalMessage && currentChat) {
             const sender = arrivalMessage.sender;
@@ -126,6 +137,7 @@ const Messenger = (props) => {
         setFilter(e.target.value);
     }
     const onClickHandler = async (c) => {
+        setLoading2(true);
         const user = userAndConversations.userData.username;
         const friend = c.members.find(x => x != user);
         const x = await updateConvo({ user: friend, toChange: user, changed: true })
@@ -133,52 +145,70 @@ const Messenger = (props) => {
         const totalConversations = await getConversations(userAndConversations.userData.username);
         setUserAndConversations({ ...userAndConversations, conversations: totalConversations });
         setCurrentChat(c);
+        setLoading(false)
+        setLoading2(false);
 
     }
+    const toShow = !loading ? <><div className={classes.chatMenu}>
+        <div clas sName={classes.chatMenuWrapper}>
+            <input type="text" placeholder="Search for friends" className={classes.chatMenuInput} onChange={(e) => onInputChangeHandler(e)} />
+            {userAndConversations.conversations ? userAndConversations.conversations.map((c) => {
+                return c.members.find(a => a != userAndConversations.userData.username).includes(filter) ?
+                    <div onClick={() => onClickHandler(c)}>
+                        <Conversation conversation={c} currentUser={userAndConversations.userData} />
+                    </div>
+                    : <div />
+            }) : <div />}
+        </div>
+    </div>
+        <div className={classes.chatBox}>
+            <div className={classes.chatBoxWrapper}>
+
+                {currentChat && !loading2 ?
+                    <span className={classes.Friend}><Link className={classes.friendLink} to={"/view/" + currentChat.members.find(member => member != userAndConversations.userData.username)}>{currentChat.members.find(member => member != userAndConversations.userData.username)}</Link></span>
+                    : loading2 ?
+                        <div className="wrappp"><Loader
+                            type="Oval"
+                            color="rgb(4,21,59)"
+                            height={150}
+                            width={150}
+                        /></div>
+                        : <div />}
+                {currentChat && !loading2 ? <>
+                    <div className={classes.chatBoxTop}>
+                        {messages ? messages.map((m) => (
+                            <div ref={scrollRef}>
+                                <Message currentChat={currentChat} message={m} text={m.text} own={m.sender === userAndConversations.userData.username} />
+                            </div>
+                        )) : <div />}
+                    </div>
+                    <div className={classes.chatBoxBottom}>
+                        <textarea
+                            placeholder="write something..."
+                            className={classes.chatMessageInput}
+                            onChange={(e) => setNewMessage(e.target.value)}
+                            value={newMessage}
+                        ></textarea>
+                        <button onClick={handleSubmit} className={classes.chatSubmitButton}>Send</button>
+                    </div></> : !loading2 ? <span className={classes.noConversationText}>Open a conversation to start a chat.</span> : <div />}
+            </div>
+        </div>
+        <div className={classes.chatOnline}>
+            <div className={classes.chatOnlineWrapper}>
+                {userAndConversations.userData && <ChatOnline
+                    setCurrentChat={onClickHandler}
+                    onlineUsers={props.onlineUsers}
+                    currentId={userAndConversations.userData} />}
+            </div>
+        </div></> : <div className="wrappp"><Loader
+            type="Oval"
+            color="rgb(4,21,59)"
+            height={150}
+            width={150}
+        /></div>
     return (
         <div className={classes.messenger}>
-            <div className={classes.chatMenu}>
-                <div clas sName={classes.chatMenuWrapper}>
-                    <input type="text" placeholder="Search for friends" className={classes.chatMenuInput} onChange={(e) => onInputChangeHandler(e)} />
-                    {userAndConversations.conversations ? userAndConversations.conversations.map((c) => {
-                        return c.members.find(a => a != userAndConversations.userData.username).includes(filter) ?
-                            <div onClick={() => onClickHandler(c)}>
-                                <Conversation conversation={c} currentUser={userAndConversations.userData} />
-                            </div>
-                            : <div />
-                    }) : <div />}
-                </div>
-            </div>
-            <div className={classes.chatBox}>
-                <div className={classes.chatBoxWrapper}>
-                    {currentChat && <span className={classes.Friend}><Link className={classes.friendLink} to={"/view/" + currentChat.members.find(member => member != userAndConversations.userData.username)}>{currentChat.members.find(member => member != userAndConversations.userData.username)}</Link></span>}
-                    {currentChat ? <>
-                        <div className={classes.chatBoxTop}>
-                            {messages ? messages.map((m) => (
-                                <div ref={scrollRef}>
-                                    <Message currentChat={currentChat} message={m} text={m.text} own={m.sender === userAndConversations.userData.username} />
-                                </div>
-                            )) : <div />}
-                        </div>
-                        <div className={classes.chatBoxBottom}>
-                            <textarea
-                                placeholder="write something..."
-                                className={classes.chatMessageInput}
-                                onChange={(e) => setNewMessage(e.target.value)}
-                                value={newMessage}
-                            ></textarea>
-                            <button onClick={handleSubmit} className={classes.chatSubmitButton}>Send</button>
-                        </div></> : <span className={classes.noConversationText}>Open a conversation to start a chat.</span>}
-                </div>
-            </div>
-            <div className={classes.chatOnline}>
-                <div className={classes.chatOnlineWrapper}>
-                    {userAndConversations.userData && <ChatOnline
-                        setCurrentChat={onClickHandler}
-                        onlineUsers={props.onlineUsers}
-                        currentId={userAndConversations.userData} />}
-                </div>
-            </div>
+            {toShow}
         </div>
     )
 }

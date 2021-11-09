@@ -10,11 +10,13 @@ import { Link } from 'react-router-dom';
 import { getConversations, newConvo, updateConvo } from '../../../api/Messenger';
 import { getUserInfo } from '../../../api/Auth';
 import Loader from 'react-loader-spinner';
+import Model from '../../Model/Model';
 
 
 const ShowProfile = (props) => {
     const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
+    const [text, setText] = useState("");
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
         if (!temp) props.history.push('/');
@@ -24,8 +26,8 @@ const ShowProfile = (props) => {
     const email = doc.email;
     const name = doc.username;
     const coins = loading === true ?
-    <div className="wrappp"></div>
-    :
+        <div className="wrappp"></div>
+        :
         <div className='cards'>
             <h1 id="title">Check out these RARE coins by {name}!</h1>
             <div className='cards__container'>
@@ -51,16 +53,15 @@ const ShowProfile = (props) => {
 
     const toChatHandler = async () => {
         // const x = await updateConvo({ user: friend, toChange: user, changed: true })
+        setText("Redirecting to Messenger!!")
         const user = await getUserInfo();
-        
-        if(!user.auth)
-        {
+
+        if (!user.auth) {
             alert("Login to do that");
             props.history.push('/sign-up')
             return;
         }
-        if(user.username===doc.username)
-        {
+        if (user.username === doc.username) {
             alert("You cannot chat with yourself!! Find some friends dude :)");
             return;
         }
@@ -105,14 +106,14 @@ const ShowProfile = (props) => {
 
     }
     const shpf = loading === true ?
-    <div className="wrappp"><Loader
-        type="Oval"
-        color="rgb(4,21,59)"
-        height={150}
-        width={150}
-    /></div>
-    : 
-    <div>
+        <div className="wrappp"><Loader
+            type="Oval"
+            color="rgb(4,21,59)"
+            height={150}
+            width={150}
+        /></div>
+        :
+        <div>
             <div className="pf-container">
                 <div className='pf-wrapper shadow'>
                     <Card style={{ width: '20rem' }}>
@@ -137,11 +138,12 @@ const ShowProfile = (props) => {
             <button onClick={toChatHandler}>Chat with {doc.username}</button>
         </div>
 
-        return (
-            <>
-                {shpf}
-                {coins}
-            </>
-        )
+    return (
+        <>
+            <Model text={text} />
+            {shpf}
+            {coins}
+        </>
+    )
 }
 export default ShowProfile;
