@@ -139,6 +139,11 @@ body .visually-hidden{
 .wee {
   justify-content: space-around;
 }
+.new-c {
+  box-shadow: 0 6px 20px rgba(56, 126, 255, 0.253);
+  -webkit-filter: drop-shadow(0 6px 20px rgba(56, 125, 255, 0.017));
+  filter: drop-shadow(0 6px 20px rgba(56, 126, 255, 0.198));
+}
 .coin--item {
     margin-bottom: 50px;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProfile } from '../../../api/Profile';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
 import './showProfile.css';
 import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../../Cards/CardItem';
@@ -135,7 +135,7 @@ const ShowProfile = (props) => {
                     </Card>
                 </div>
             </div>
-            <button onClick={toChatHandler}>Chat with {doc.username}</button>
+            <Button onClick={toChatHandler}>Chat with {doc.username}</Button>
         </div>
 
     return (

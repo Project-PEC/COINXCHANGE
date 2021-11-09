@@ -10,8 +10,9 @@ body {
     margin: 0 auto;
 }
 .im-img-wrapper {
+    padding: 30px;
     position: relative;
-    margin: 50px 0 45px;
+    margin: 5px 0 45px;
 }
 .im-img:hover {
     transform: scale(1.1);
@@ -20,8 +21,10 @@ body {
     display: flex;
     flex-flow: column;
     max-width: 1120px;
-    width: 40%;
+    width: 75%;
     margin: 0 auto;
+    border-radius: 10px;
+    align-items: center;
 }
 .im-btn-wrapper {
     position: relative;
@@ -57,4 +60,5 @@ body {
     max-width: 1120px;
     width: 50%;
     margin: 0 auto;
+    margin-bottom: 25px;
 }

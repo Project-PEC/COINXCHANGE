@@ -67,7 +67,7 @@ const Services = (props) => {
 
 
     let i = 0;
-        Service = loading === true ?
+        Service = loading == true ?
                 <div className="wrappp"><Loader
                     type="Oval"
                     color="rgb(4,21,59)"
@@ -86,7 +86,7 @@ const Services = (props) => {
                     <Row className="wee" xs={1} md={2} lg={3} >
                         {show.map((coin) => (
                             <Col className='coin--item'>
-                                <Card>
+                                <Card className="new-c">
                                     <div className="coin--wrapper">
                                         {dp[i++]}
                                     </div>
