@@ -84,6 +84,16 @@
   background: #8458ff;
   color: #000;
 }
+
+.wrappp {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  max-width: 1120px;
+  width: 90%;
+  margin: 200px auto;
+}
+
 .new{
     padding: 50px;
     display: flex;

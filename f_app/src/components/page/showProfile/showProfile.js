@@ -9,17 +9,23 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { getConversations, newConvo, updateConvo } from '../../../api/Messenger';
 import { getUserInfo } from '../../../api/Auth';
+import Loader from 'react-loader-spinner';
+
 
 const ShowProfile = (props) => {
+    const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
         if (!temp) props.history.push('/');
         setDoc(temp);
+        setLoading(false);
     }, [])
     const email = doc.email;
     const name = doc.username;
-    const coins =
+    const coins = loading === true ?
+    <div className="wrappp"></div>
+    :
         <div className='cards'>
             <h1 id="title">Check out these RARE coins by {name}!</h1>
             <div className='cards__container'>
@@ -98,8 +104,15 @@ const ShowProfile = (props) => {
         }
 
     }
-    return (
-        <>
+    const shpf = loading === true ?
+    <div className="wrappp"><Loader
+        type="Oval"
+        color="rgb(4,21,59)"
+        height={150}
+        width={150}
+    /></div>
+    : 
+    <div>
             <div className="pf-container">
                 <div className='pf-wrapper shadow'>
                     <Card style={{ width: '20rem' }}>
@@ -122,9 +135,13 @@ const ShowProfile = (props) => {
                 </div>
             </div>
             <button onClick={toChatHandler}>Chat with {doc.username}</button>
-            {coins}
+        </div>
 
-        </>
-    )
+        return (
+            <>
+                {shpf}
+                {coins}
+            </>
+        )
 }
 export default ShowProfile;

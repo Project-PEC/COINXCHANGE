@@ -6,15 +6,19 @@ import Col from "react-bootstrap/Col";
 import Card from 'react-bootstrap/Card';
 import './Services.css';
 import { Link } from 'react-router-dom';
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/Carousel';
+import Loader from 'react-loader-spinner';
+
 
 const Services = (props) => {
+    const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
     const [show, setShow] = useState([]);
     useEffect(async () => {
         const temp = await getCoin();
         setDoc(temp);
         setShow(temp);
+        setLoading(false);
     }, [])
     let Service = <div></div>;
 
@@ -63,8 +67,14 @@ const Services = (props) => {
 
 
     let i = 0;
-    if (doc.length > 0) {
-        Service =
+        Service = loading === true ?
+                <div className="wrappp"><Loader
+                    type="Oval"
+                    color="rgb(4,21,59)"
+                    height={150}
+                    width={150}
+                /></div>
+             : 
             <div>
                 <div className="search--btn">
                     <input id='search-btn' type='checkbox' />
@@ -94,7 +104,7 @@ const Services = (props) => {
                     </Row>
                 </div>
             </div>
-    }
+    
     return (
         <div>
             {Service}
