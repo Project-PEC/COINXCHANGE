@@ -7,11 +7,11 @@ const Model = (props) => {
             <div className="model">
                 <span className="modelText">{props.text}</span>
                 <div class="lds-circle"><div></div></div>
-                {/* <div class="wrapper">
+                <div class="wrapper">
                     <div class="pie spinner"></div>
                     <div class="pie filler"></div>
                     <div class="mask"></div>
-                </div> */}
+                </div>
             </div>
         )
     }

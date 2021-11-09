@@ -19,10 +19,10 @@
 
 
 
-/* .wrapper {
+ .wrapper {
 	position: relative;
 	margin: 40px auto;
-	background: rgba(0, 0, 0, 0.027);
+	background: white;
   }
   
   .wrapper, .wrapper * {
@@ -93,7 +93,7 @@
 	  opacity: 0;
 	}
   }
- */
+ 
 
   .lds-circle {
 	display: inline-block;

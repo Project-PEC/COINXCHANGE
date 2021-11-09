@@ -154,9 +154,9 @@ export const ImageAnalyzer = () => {
                         <ListGroup className="list-group-flush">
                             <ListGroup.Item>
                                 <div className="im-btn-container">
-                                    <ButtonP  onClick={predict}>
+                                    <Button  onClick={predict}>
                                         PREDICT
-                                    </ButtonP>
+                                    </Button>
                                 </div>
                             </ListGroup.Item>
                         </ListGroup>
