@@ -8,6 +8,7 @@ import stringSimilarity from 'string-similarity';
 import { getCoin } from '../../api/Coin';
 import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../Cards/CardItem';
+import Model from '../Model/Model';
 
 export const ImageAnalyzer = () => {
     const [prediction, setPrediction] = useState(null);
@@ -16,7 +17,8 @@ export const ImageAnalyzer = () => {
     const [model, setModel] = useState();
     const [classes, setClasses] = useState([]);
     const [renderedPredictions, setRenderedPredictions] = useState();
-    const [showCoins,setShowCoins]=useState([]);
+    const [showCoins, setShowCoins] = useState([]);
+    const [text,setText]=useState("");
 
     useEffect(() => {
         tf.ready().then(() =>
@@ -47,6 +49,7 @@ export const ImageAnalyzer = () => {
                     // tensor.print()
                     const predictedImage = await model.predict(tensor).data();
                     setPrediction(predictedImage);
+                    setText("");
                 }
 
 
@@ -74,15 +77,15 @@ export const ImageAnalyzer = () => {
             <div key={id}>{i}</div>
         ))
         setRenderedPredictions(predictedCoins);
-        const toCheck=toCheckArr[0];
+        const toCheck = toCheckArr[0];
         let coins = await getCoin();
         coins = coins.sort((a, b) => {
             const t1 = a.title;
             const t2 = b.title;
             const x = stringSimilarity.compareTwoStrings(t1, toCheck);
             const y = stringSimilarity.compareTwoStrings(t2, toCheck);
-            if(x>y) return -1;
-            else if(y>x) return 1;
+            if (x > y) return -1;
+            else if (y > x) return 1;
             return 0;
         })
         coins = coins.slice(0, 3);
@@ -99,13 +102,13 @@ export const ImageAnalyzer = () => {
         }
     }
     const fileSelectedHandler = e => {
+        setText("Analyzing your image...");
         setPreview(URL.createObjectURL(e.target.files[0]));
         setFile(e.target.files[0]);
     }
-    let renderCoins=<div></div>;
-    if(showCoins.length>0)
-    {
-        renderCoins=<div className='cards'>
+    let renderCoins = <div></div>;
+    if (showCoins.length > 0) {
+        renderCoins = <div className='cards'>
             <h1 id="title">Similar results in our database</h1>
             <div className='cards__container'>
                 <div className='cards__wrapper'>
@@ -129,6 +132,7 @@ export const ImageAnalyzer = () => {
     }
     return (
         <div>
+            <Model text={text} />
             <div className="im-container">
                 <div className="im-img-wrapper">
                     <div className="im-img">

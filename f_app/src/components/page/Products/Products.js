@@ -83,35 +83,3 @@ const Products = () => {
 
 
 export default Products;
-
-
-
-/*
-
-                {Array.from({ length: 4 }).map((_, idx) => (
-                    <Col>
-                        <Card>
-                            <Card.Img variant="top" src="#" />
-                            <Card.Body>
-                                <Card.Title>Card title</Card.Title>
-                                <Card.Text>
-                                    This is a longer card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer>
-                                <a href="https://github.com/Satan0069">
-                                    <img style={{height:"30px",width:"30px",borderRadius:"15px"}} src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"/>
-                                </a></Card.Footer>
-                        </Card>
-                    </Col>
-                ))}
-            </Row>
-
-            <div className="spook-">
-
-                                    <div className="left-">
-                                        <i className="fab fa-linkedin-in"></i>
-                                    </div>
-                                </div>
-            */
