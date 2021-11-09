@@ -3,12 +3,6 @@
 body {
     background-color: rgb(165, 240, 250);    
 }
-img {
-    height: auto;
-    width: auto;
-    border-radius: 15px;
-}
-
 
 .align{
     display: flex;
@@ -26,22 +20,14 @@ img {
     margin-top: 10px;
 }
 
-.img2{
-    height: 250px;
+.img {
+    height: 200px;
     width: 300px;
-    margin-bottom: 15px;
-    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
-.link1{
-    color:black;
-}
+.form-container {
 
-.link1:hover{
-    color:grey;
-}
-
-.pf-container {
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -50,13 +36,16 @@ img {
     margin: 0 auto;
   }
   
-.pf-wrapper2 {
+  .form-wrapper2 {
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-flow: column;
-    align-items: center;
-    margin: 50px 70px;
-    box-shadow: 7px 7px 15px #474747; 
-    /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));  */
+    /* align-items: center; */
+    margin: 10px 70px;
+    margin-bottom: 50px;
+    padding: 30px 30px;
+    /* box-shadow: 10px 10px 8px #b3b2b2; */
+    /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5)); */
 }
 
 .shadow
@@ -92,27 +81,6 @@ img {
             transform:skew(8deg) rotate(3deg);
 }
 
-.pic--wrap {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    width: 100%;
-    overflow : "hidden";
-}
-.img__description {
-    border-bottom: 100px;
-    margin: auto;
-    background: rgba(15, 15, 15, 0);
-    color: rgb(0, 0, 0);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity .2s, visibility .2s;
-}
-  
-.pic--wrap:hover .img__description {
-    visibility: visible;
-    opacity: 1;
-  }
 strong {
     font-family: 'Dosis', sans-serif;
     bottom: 2px;

@@ -8,7 +8,7 @@ import './Services.css';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel'
 
-const Services = () => {
+const Services = (props) => {
     const [doc, setDoc] = useState({});
     const [show, setShow] = useState([]);
     useEffect(async () => {
@@ -80,7 +80,7 @@ const Services = () => {
                                     <div className="coin--wrapper">
                                         {dp[i++]}
                                     </div>
-                                    <Link to={{ pathname: "/getCoin/" + coin.publisher + "/" + coin._id, param1: coin }}>
+                                    <Link to={{ pathname: "/getCoin/" + coin.publisher + "/" + coin._id, param1: coin, param2: props.username }}>
                                         <Card.Body>
                                             <Card.Title className="new--text">{coin.title}</Card.Title>
                                         </Card.Body>
