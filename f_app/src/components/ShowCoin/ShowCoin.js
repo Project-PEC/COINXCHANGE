@@ -7,18 +7,38 @@ import { getUserCoin } from '../../api/Coin';
 import { Link } from 'react-router-dom';
 import Review from '../Review/Review';
 import ShowReview from '../ShowReview/ShowReview';
+import { getReview } from '../../api/Review';
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const ShowCoin = (props) => {
+
+    const [review, setReview] = useState([]);
+
+    // console.log(props);
+
+    useEffect(async () => {
+        if (!props.location.param1) {
+            props.history.push('/');
+            return;
+        }
+        const temp = await getReview(props.location.param1._id);
+        console.log(temp);
+        if (!temp) props.history.push('/');
+        setReview(temp);
+    }, [])
+
 
     useEffect(async () => {
         const temp = await getUserCoin(props.match.params.username, props.match.params.id);
         // console.log(temp);
-        if (!temp) props.history.push('/');
+        // if (!temp) props.history.push('/');
     }, [])
 
     const carous = [];
     const dp = [];
-    let comp=<div></div>;
+    let comp = <div></div>;
+    let reviewComp = <div></div>;
     // console.log(props.location.param2);
     const coin = props.location.param1;
     // console.log(coin);
@@ -44,7 +64,7 @@ const ShowCoin = (props) => {
 
         comp = <div className="pf-container">
             <div className='pf-wrapper2 '>
-                <Card style={{ width: '30rem' }}>
+                <Card className="coinWidth">
                     <div className="pic--wrap">
                         {dp}
                     </div>
@@ -61,13 +81,21 @@ const ShowCoin = (props) => {
                 </Card>
             </div>
         </div>
+
+        reviewComp = < ShowReview param={coin._id} review={review} />;
     }
 
     return (
         <>
-            {comp}
-            < Review param={coin} username={props.location.param2}/>
-            {/* < ShowReview /> */}
+            {/* <div className='new coin--container'> */}
+                <Row style={{marginRight:"0px"}} className="wee" xs={1} sm={1} md={1} lg={3} >
+                    <Col className="coin--item">{comp}</Col>
+                    <Col className="coin--item">
+                        < Review param={coin} username={props.location.param2} review={review} setReview={setReview} />
+                        {reviewComp}
+                    </Col>
+                </Row >
+            {/* </div> */}
         </>
     )
 }

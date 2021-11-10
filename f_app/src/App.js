@@ -62,7 +62,7 @@ function App() {
       <Switch>
 
         <Route path='/' exact component={() => < Home username={username} />} />
-        <Route path='/services' component={Services} />
+        <Route path='/services' component={() => < Services username={username} />} />
         <Route path='/messenger' component={Messenger}>
           {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
         </Route>
