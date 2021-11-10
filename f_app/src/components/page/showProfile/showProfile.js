@@ -130,12 +130,12 @@ const ShowProfile = (props) => {
                         </ListGroup>
                         <Card.Body>
                             {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            <Button style={{ zIndex: "20", position: "relative" }} href="#title">View Collection</Button>
+                            <Button style={{ zIndex: "20", position: "relative", marginBottom:"10px"}} href="#title">View Collection</Button>
+                            <Button onClick={toChatHandler}>Chat with {doc.username}</Button>
                         </Card.Body>
                     </Card>
                 </div>
             </div>
-            <Button onClick={toChatHandler}>Chat with {doc.username}</Button>
         </div>
 
     return (

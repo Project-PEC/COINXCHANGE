@@ -74,11 +74,12 @@ export const ImageAnalyzer = () => {
             const label = prediction.indexOf(requiredPredictions[i], 0);
             const data = classes[label];
             toCheckArr.push(data[0]);
-            toIterate.push(data[0] + ", " + data[1] + ", " + data[2] + ", " + "Confidence: " + prediction[label] * 100 + "%");
+            toIterate.push(data[0] + ", " + data[1] + ", " + data[2] + ", " + "Confidence: " + (parseFloat(prediction[label]) * 100).toFixed(2) + "%");
         }
-        predictedCoins = toIterate.map((i, id) => (
-            <div key={id}>{i}</div>
-        ))
+        predictedCoins = <ol>{ toIterate.map((i, id) => (
+            <li key={id}>{i}<hr></hr></li> 
+            
+        ))} </ol>
         setRenderedPredictions(predictedCoins);
         const toCheck = toCheckArr[0];
         let coins = await getCoin();
@@ -136,13 +137,13 @@ export const ImageAnalyzer = () => {
     return (
         <div>
             <Model text={text} />
-            <div className="pf-container">
-                <div className='pf-wrapper shadow'>
-                    <Card>
+            <div className="cd--container">
+                <div className='cd--wrapper shadow'>
+                    <Card >
                         <div className="im-container">
                             <div className="im-img-wrapper">
                                 <div className="im-img">
-                                    <img id="uploadedImage" alt="Insert Image" height="224px" width="224px" src={(preview)} />
+                                    <img id="uploadedImage" alt="Insert Image" style={{maxHeight:"350px", maxWidth:"350px"}} src={(preview)} />
                                 </div>
                             </div>
                         </div>
@@ -160,14 +161,16 @@ export const ImageAnalyzer = () => {
                                 </div>
                             </ListGroup.Item>
                         </ListGroup>
-                    </Card>
+                     </Card>
                 </div>
             </div>
+            
             <div className="res-conatiner">
                 <div className="res-wrapper">
                     {renderedPredictions}
                 </div>
             </div>
+            
             {renderCoins}
         </div>
     )
