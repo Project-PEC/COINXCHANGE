@@ -8,8 +8,11 @@ import './Profile.css';
 import CardItem from '../Cards/CardItem';
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/esm/Row';
+import Loader from 'react-loader-spinner';
+
 
 const Profile = () => {
+    const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState("");
     const [doc, setDoc] = useState({});
     useEffect(async () => {
@@ -17,6 +20,7 @@ const Profile = () => {
         const temp = await getProfile(t.username);
         setUsername(t.username);
         setDoc(temp);
+        setLoading(false);
     }, [])
     const fileUploadHandler = async (file) => {
         const formData = new FormData();
@@ -48,7 +52,9 @@ const Profile = () => {
     const email = doc.email;
     const name = doc.username;
     const image = doc.image;
-    const coins =
+    const coins = loading === true ?
+    <div className="wrappp"></div>
+    :
         <div className='cards'>
             <h1 id="title">Your Collection!</h1>
             <div className='cards__container'>
@@ -69,8 +75,14 @@ const Profile = () => {
                 </div>
             </div>
         </div>
-    return (
-        <>
+    const pff = loading === true ?
+    <div className="wrappp"><Loader
+        type="Oval"
+        color="rgb(4,21,59)"
+        height={150}
+        width={150}
+    /></div>
+    :
             <div className="pf-container">
                 <div className='pf-wrapper shadow'>
                     <Card style={{ width: '20rem'}}>
@@ -99,6 +111,11 @@ const Profile = () => {
                     </Card>
                 </div>
             </div>
+
+
+    return (
+        <>
+            {pff}
             {coins}
 
         </>

@@ -96,9 +96,9 @@ strong {
   }
   
   .coinWidth{
-      width: 36rem;
+      width: 40rem;
   }
-  @media only screen and (max-width: 1300px) {
+  @media only screen and (max-width: 1400px) {
     .coinWidth{
         width: 33rem;
     }        

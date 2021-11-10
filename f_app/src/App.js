@@ -16,7 +16,7 @@ import AddCoin from './components/AddCoin/AddCoin';
 import ShowProfile from './components/page/showProfile/showProfile';
 import ShowCoin from './components/ShowCoin/ShowCoin';
 import Review from './components/Review/Review';
-import ShowReview from './components/ShowReview/ShowReview';
+// import ShowReview from './components/ShowReview/ShowReview';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -90,7 +90,7 @@ function App() {
           <Route path='/predict' component={ImageAnalyzer} />
           <Route path='/view/:id' component={ShowProfile} />
           <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
-          <Route path={'/getReview/:coinId'} exact component={ShowReview} />
+          {/* <Route path={'/getReview/:coinId'} exact component={ShowReview} /> */}
           {/* <Route path={'/addReview/:username/:coinId'} exact component={Review} /> */}
           <Redirect to='/' />;)
         </Switch>

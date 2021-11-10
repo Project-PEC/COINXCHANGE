@@ -10,8 +10,9 @@ body {
     margin: 0 auto;
 }
 .im-img-wrapper {
+    padding: 30px;
     position: relative;
-    margin: 50px 0 45px;
+    margin: 5px 0 45px;
 }
 .im-img:hover {
     transform: scale(1.1);
@@ -20,8 +21,10 @@ body {
     display: flex;
     flex-flow: column;
     max-width: 1120px;
-    width: 40%;
+    width: 75%;
     margin: 0 auto;
+    border-radius: 10px;
+    align-items: center;
 }
 .im-btn-wrapper {
     position: relative;
@@ -51,10 +54,79 @@ body {
     text-align: center;
 }
 .res-conatiner{
+    padding: 10px 20px 0px 20px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    max-width: 1120px;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.cd--container {
     display: flex;
     flex-flow: column;
     align-items: center;
     max-width: 1120px;
     width: 50%;
     margin: 0 auto;
+  }
+  
+.cd--wrapper {
+    
+    position: relative;
+    
+    flex-flow: column;
+    align-items: center;
+    margin: 50px 70px;
+    /* box-shadow: 10px 10px 8px #b3b2b2; */
+    /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5)); */
 }
+
+.shadow
+{
+    position:relative;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.shadow:before, .shadow:after
+{
+  content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+    box-shadow:0 0 20px rgba(0,0,0,0.8);
+    top:10px;
+    bottom:10px;
+    left:0;
+    right:0;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+.shadow:after
+{
+  right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg);
+       -moz-transform:skew(8deg) rotate(3deg);
+        -ms-transform:skew(8deg) rotate(3deg);
+         -o-transform:skew(8deg) rotate(3deg);
+            transform:skew(8deg) rotate(3deg);
+}
+
+@media screen and (max-width: 1000px)  {
+    .res-conatiner{
+        width: 70%;
+    }
+}
+
+
+
+
+

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getProfile } from '../../../api/Profile';
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
 import './showProfile.css';
 import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../../Cards/CardItem';
@@ -9,17 +9,25 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { getConversations, newConvo, updateConvo } from '../../../api/Messenger';
 import { getUserInfo } from '../../../api/Auth';
+import Loader from 'react-loader-spinner';
+import Model from '../../Model/Model';
+
 
 const ShowProfile = (props) => {
+    const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
+    const [text, setText] = useState("");
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
         if (!temp) props.history.push('/');
         setDoc(temp);
+        setLoading(false);
     }, [])
     const email = doc.email;
     const name = doc.username;
-    const coins =
+    const coins = loading === true ?
+        <div className="wrappp"></div>
+        :
         <div className='cards'>
             <h1 id="title">Check out these RARE coins by {name}!</h1>
             <div className='cards__container'>
@@ -45,16 +53,15 @@ const ShowProfile = (props) => {
 
     const toChatHandler = async () => {
         // const x = await updateConvo({ user: friend, toChange: user, changed: true })
+        setText("Redirecting to Messenger!!")
         const user = await getUserInfo();
-        
-        if(!user.auth)
-        {
+
+        if (!user.auth) {
             alert("Login to do that");
             props.history.push('/sign-up')
             return;
         }
-        if(user.username===doc.username)
-        {
+        if (user.username === doc.username) {
             alert("You cannot chat with yourself!! Find some friends dude :)");
             return;
         }
@@ -98,8 +105,15 @@ const ShowProfile = (props) => {
         }
 
     }
-    return (
-        <>
+    const shpf = loading === true ?
+        <div className="wrappp"><Loader
+            type="Oval"
+            color="rgb(4,21,59)"
+            height={150}
+            width={150}
+        /></div>
+        :
+        <div>
             <div className="pf-container">
                 <div className='pf-wrapper shadow'>
                     <Card style={{ width: '20rem' }}>
@@ -116,14 +130,19 @@ const ShowProfile = (props) => {
                         </ListGroup>
                         <Card.Body>
                             {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            <Button style={{ zIndex: "20", position: "relative" }} href="#title">View Collection</Button>
+                            <Button style={{ zIndex: "20", position: "relative", marginBottom:"10px"}} href="#title">View Collection</Button>
+                            <Button onClick={toChatHandler}>Chat with {doc.username}</Button>
                         </Card.Body>
                     </Card>
                 </div>
             </div>
-            <button onClick={toChatHandler}>Chat with {doc.username}</button>
-            {coins}
+        </div>
 
+    return (
+        <>
+            <Model text={text} />
+            {shpf}
+            {coins}
         </>
     )
 }

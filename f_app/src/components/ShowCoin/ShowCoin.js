@@ -87,7 +87,7 @@ const ShowCoin = (props) => {
 
     return (
         <>
-            {/* <div className='new coin--container'> */}
+
                 <Row style={{marginRight:"0px"}} className="wee" xs={1} sm={1} md={1} lg={3} >
                     <Col className="coin--item">{comp}</Col>
                     <Col className="coin--item">
@@ -95,7 +95,6 @@ const ShowCoin = (props) => {
                         {reviewComp}
                     </Col>
                 </Row >
-            {/* </div> */}
         </>
     )
 }

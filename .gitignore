@@ -6,7 +6,7 @@
 /.pnp
 .pnp.js
 /socket
-/node_modules
+node_modules/
 
 # testing
 /coverage
