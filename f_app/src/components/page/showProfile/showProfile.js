@@ -13,7 +13,8 @@ import Loader from 'react-loader-spinner';
 import Model from '../../Model/Model';
 import { getReviewByUsername } from '../../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
-import {getCoinOfUser} from '../../../api/Coin'
+import { getCoinOfUser } from '../../../api/Coin'
+import { MdLocationOn } from 'react-icons/md';
 
 const ShowProfile = (props) => {
     const [loading, setLoading] = useState(true);
@@ -68,9 +69,9 @@ const ShowProfile = (props) => {
 
     const toChatHandler = async () => {
         // const x = await updateConvo({ user: friend, toChange: user, changed: true })
-        setText("Redirecting to Messenger!!")
-        const user = await getUserInfo();
 
+        const user = await getUserInfo();
+        console.log(user);
         if (!user.auth) {
             alert("Login to do that");
             props.history.push('/sign-up')
@@ -78,8 +79,10 @@ const ShowProfile = (props) => {
         }
         if (user.username === doc.username) {
             alert("You cannot chat with yourself!! Find some friends dude :)");
+            props.history.push('/');
             return;
         }
+        setText("Redirecting to Messenger!!")
         const userProfile = await getProfile(user.username);
         const friend = doc.username;
         const conversations = await getConversations(user.username);
@@ -144,7 +147,8 @@ const ShowProfile = (props) => {
                         </Card.Body>
                         <ListGroup className="list-group-flush">
                             <ListGroup.Item>Can add bio about coins</ListGroup.Item>
-                            <ListGroup.Item><img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "25px", height: "25px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                            <ListGroup.Item>
+                                <MdLocationOn />
                                 <span style={{ marginLeft: "10px" }}>Chandigarh</span>
                             </ListGroup.Item>
                         </ListGroup>
