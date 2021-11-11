@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import Loader from 'react-loader-spinner';
 import { getProfile } from '../../../api/Profile';
-
+import { MdLocationOn } from "react-icons/md";
 
 const Services = (props) => {
     const [loading, setLoading] = useState(true);
@@ -99,7 +99,7 @@ const Services = (props) => {
                                 <Card.Footer>
                                     <Link to={"/view/" + coin.publisher}><small className="text-muted"><b>Published by: </b>{coin.publisher}</small></Link>
                                     <span style={{ float: "right" }}>
-                                        <img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "20px", height: "20px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                                        <MdLocationOn />
                                         <span style={{ marginLeft: "10px" }}>{coin.location ? coin.location : "Undefined"}</span>
                                     </span>
                                 </Card.Footer>

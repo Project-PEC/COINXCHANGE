@@ -13,13 +13,14 @@ import { getReviewByUsername } from '../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
 import Model from '../Model/Model';
 import { getCoinOfUser, getUserCoin } from '../../api/Coin';
-
+import { MdLocationOn } from "react-icons/md";
+import { MdOutlineSaveAlt } from "react-icons/md";
 
 const Profile = () => {
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState("");
     const [doc, setDoc] = useState({});
-    const [rating, setRating] = useState(5);
+    const [rating, setRating] = useState(0);
     const [location, setLocation] = useState("");
     const [text, setText] = useState("");
     const [Coins,setCoins]=useState([]);
@@ -38,7 +39,7 @@ const Profile = () => {
             setRating(stars);
         }
         setUsername(t.username);
-        setDoc(temp);
+        setDoc({...temp,Coins:temp3});
         setCoins(temp3);
         setLoading(false);
     }, [])
@@ -133,13 +134,14 @@ const Profile = () => {
                     </Card.Body>
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Can add bio about coins</ListGroup.Item>
-                        <ListGroup.Item><img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "25px", height: "25px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                        <ListGroup.Item>
+                            <MdLocationOn/>
                             <input style={{ marginLeft: "10px", borderWidth: "0 0 2px" }} placeholder={doc.location} onChange={(e) => setLocation(e.target.value)} />
                         </ListGroup.Item>
                     </ListGroup>
                     <Card.Body>
                         <Button style={{ zIndex: "20", position: "relative" }} href="#title">View Collection</Button>
-                        {location.length > 0 ? <Button onClick={saveChangesHandler} style={{ zIndex: "20", position: "relative", marginTop:"10px" }}>Save Changes <img style={{ height: "20px", width: "20px" }} src="https://cdn-icons.flaticon.com/png/512/1634/premium/1634264.png?token=exp=1636608660~hmac=95c6d149b425c4df82de78c8c6943670" alt="Check free icon" title="Check free icon" class="loaded" /></Button> : <div />}
+                        {location.length > 0 ? <Button onClick={saveChangesHandler} style={{ zIndex: "20", position: "relative", marginTop:"10px" }}>Save Changes <MdOutlineSaveAlt/></Button> : <div />}
                     </Card.Body>
                 </Card>
             </div>
@@ -156,3 +158,4 @@ const Profile = () => {
     )
 }
 export default Profile;
+

@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUser, loginUser, registerUser, verifyJWT } from '../Controllers/user.js';
 import { getProfile, editProfile, editProfileImage } from '../Controllers/profile.js';
-import { addCoin, editCoinByPublisher, getCoin, getCoinOfUser, getUserCoin } from '../Controllers/coin.js';
+import { addCoin, editCoinByPublisher, getCoin, getCoinOfUser, getUserCoin, editCoin, deleteCoin } from '../Controllers/coin.js';
 
 const router = express.Router();
 
@@ -15,6 +15,8 @@ router.get('/:id', getProfile);
 router.post('/AddCoin/:id', addCoin);
 router.get('/getCoin/:username/:id', getUserCoin);
 router.get('/getCoin/:username',getCoinOfUser);
-router.post('/:id/editImage',editProfileImage)
+router.post('/:id/editImage',editProfileImage);
+router.post('/:id/editCoin', editCoin);
+router.post('/:id/deleteCoin', deleteCoin);
 
 export default router;
