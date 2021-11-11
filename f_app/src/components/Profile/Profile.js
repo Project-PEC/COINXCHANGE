@@ -12,6 +12,7 @@ import Loader from 'react-loader-spinner';
 import { getReviewByUsername } from '../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
 import Model from '../Model/Model';
+import { getCoinOfUser, getUserCoin } from '../../api/Coin';
 
 
 const Profile = () => {
@@ -21,9 +22,12 @@ const Profile = () => {
     const [rating, setRating] = useState(5);
     const [location, setLocation] = useState("");
     const [text, setText] = useState("");
+    const [Coins,setCoins]=useState([]);
+
     useEffect(async () => {
         const t = await getUserInfo();
         const temp = await getProfile(t.username);
+        const temp3=await getCoinOfUser(t.username);
         const temp2 = await getReviewByUsername(t.username);
         let stars = 0;
         for (let i in temp2) {
@@ -35,6 +39,7 @@ const Profile = () => {
         }
         setUsername(t.username);
         setDoc(temp);
+        setCoins(temp3);
         setLoading(false);
     }, [])
     const fileUploadHandler = async (file) => {
@@ -82,7 +87,7 @@ const Profile = () => {
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                     <Row lg={3} md={2} sm={1}>
-                        {doc.Coins && doc.Coins.map((ele, id) => (
+                        {Coins.map((ele, id) => (
                             <CardItem
                                 key={id}
                                 src={ele.image[0]}

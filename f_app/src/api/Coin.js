@@ -5,7 +5,6 @@ export const addCoin = async (username, data, profile) => {
     const url = "http://localhost:8080/addCoin/" + username;
     return await axios.post(url, data)
         .then(async (res) => {
-            const x = await editProfile(username, { ...profile, Coins: [...profile.Coins,res.data] });
             return res.data;
         })
         .catch(err => {
@@ -22,9 +21,17 @@ export const getCoin = async (Coin) => {
             console.log(err);
         })
 }
-
+export const getCoinOfUser=async(username)=>{
+    return await axios.get("http://localhost:8080/getCoin/"+ username )
+        .then((res) => {
+            return res.data.doc;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}
 export const getUserCoin = async (username, id) => {
-    return await axios.get("http://localhost:8080/getCoin/"+ username + "/" + id )
+    return await axios.get("http://localhost:8080/getCoin/"+ username )
         .then((res) => {
             return res.data.doc;
         })

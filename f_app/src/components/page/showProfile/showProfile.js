@@ -13,16 +13,19 @@ import Loader from 'react-loader-spinner';
 import Model from '../../Model/Model';
 import { getReviewByUsername } from '../../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
+import {getCoinOfUser} from '../../../api/Coin'
 
 const ShowProfile = (props) => {
     const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
     const [text, setText] = useState("");
     const [rating, setRating] = useState(5.0);
+    const [Coins, setCoins] = useState([]);
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
         if (!temp) props.history.push('/');
         const temp2 = await getReviewByUsername(props.match.params.id);
+        const temp3 = await getCoinOfUser(props.match.params.id);
         let stars = 0;
         for (let i in temp2) {
             stars += temp2[i].rating;
@@ -32,6 +35,7 @@ const ShowProfile = (props) => {
             setRating(stars);
         }
         setDoc(temp);
+        setCoins(temp3);
         setLoading(false);
     }, [])
     const email = doc.email;
@@ -44,7 +48,7 @@ const ShowProfile = (props) => {
             <div className='cards__container'>
                 <div className='cards__wrapper'>
                     <Row lg={3} md={2} sm={1}>
-                        {doc.Coins && doc.Coins.map((ele, id) => (
+                        {Coins.map((ele, id) => (
 
                             <CardItem
                                 key={id}
@@ -52,7 +56,7 @@ const ShowProfile = (props) => {
                                 text={ele.title}
                                 label={ele.publisher}
                                 path={"/getCoin/" + ele.publisher + "/" + ele._id}
-                                param={{...ele,location:doc.location}}
+                                param={{ ...ele, location: doc.location }}
                             />
 
                         ))}
