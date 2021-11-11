@@ -22,3 +22,14 @@ export const getReview = async (req, res) => {
         }
     })
 }
+export const getReviewByUsername = async (req, res) => {
+    Review.find( {publisher:req.params.username}, async (err, doc) => {
+        if (err) throw err;
+        if (doc) {
+            res.status(200).json({ message: "review found", doc: doc });
+        }
+        else {
+            res.send({ message: "review not available", doc: doc })
+        }
+    })
+}

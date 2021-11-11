@@ -10,11 +10,12 @@ import ShowReview from '../ShowReview/ShowReview';
 import { getReview } from '../../api/Review';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { RatingView } from 'react-simple-star-rating';
 
 const ShowCoin = (props) => {
 
     const [review, setReview] = useState([]);
-
+    const [rating, setRating] = useState(5);
     // console.log(props);
 
     useEffect(async () => {
@@ -23,7 +24,13 @@ const ShowCoin = (props) => {
             return;
         }
         const temp = await getReview(props.location.param1._id);
-        console.log(temp);
+        let stars = 0.0;
+        for (let i in temp) {
+            stars += temp[i].rating;
+        }
+        stars /= temp.length;
+        if (temp.length !== 0)
+            setRating(stars);
         if (!temp) props.history.push('/');
         setReview(temp);
     }, [])
@@ -67,6 +74,7 @@ const ShowCoin = (props) => {
                 <Card className="coinWidth">
                     <div className="pic--wrap">
                         {dp}
+                        <RatingView ratingValue={rating} size={20} />
                     </div>
                     <Card.Body>
                         <Card.Title>{coin.title}</Card.Title>
@@ -76,7 +84,12 @@ const ShowCoin = (props) => {
 
                     </ListGroup>
                     <Card.Body>
-                        <Card.Text>Published By: <Link to={"/view/" + coin.publisher} className="link1" > {coin.publisher}</Link></Card.Text>
+                        <Card.Text>Published By: <Link to={"/view/" + coin.publisher} className="link1" > {coin.publisher}</Link>
+                            <span style={{ float: "right" }}>
+                                <img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "20px", height: "20px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                                <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                            </span>
+                        </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
@@ -88,13 +101,13 @@ const ShowCoin = (props) => {
     return (
         <>
 
-                <Row style={{marginRight:"0px"}} className="wee" xs={1} sm={1} md={1} lg={3} >
-                    <Col className="coin--item">{comp}</Col>
-                    <Col className="coin--item">
-                        < Review param={coin} username={props.location.param2} review={review} setReview={setReview} />
-                        {reviewComp}
-                    </Col>
-                </Row >
+            <Row style={{ marginRight: "0px" }} className="wee" xs={1} sm={1} md={1} lg={3} >
+                <Col className="coin--item">{comp}</Col>
+                <Col className="coin--item">
+                    < Review param={coin} username={props.location.param2} review={review} setReview={setReview} />
+                    {reviewComp}
+                </Col>
+            </Row >
         </>
     )
 }

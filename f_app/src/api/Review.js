@@ -20,3 +20,12 @@ export const getReview = async (coinId) => {
             console.log(err);
         })
 }
+export const getReviewByUsername=async(username)=>{
+    return await axios.get("http://localhost:8080/getReviewByUsername/"+username )
+        .then((res) => {
+            return res.data.doc;
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}

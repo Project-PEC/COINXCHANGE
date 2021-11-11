@@ -5,7 +5,8 @@ const profile=new mongoose.Schema({
     image:String,
     Coins:{
         type:Array
-    }
+    },
+    location:String
 })
 const profileModel=mongoose.model('profileModel',profile);
 export default profileModel;

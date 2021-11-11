@@ -244,3 +244,6 @@
 	 top: -10px;
 	 right: 0;
 }
+.form-group__input::placeholder{
+	color:rgb(221, 219, 219);
+}

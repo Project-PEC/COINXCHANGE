@@ -11,15 +11,26 @@ import { getConversations, newConvo, updateConvo } from '../../../api/Messenger'
 import { getUserInfo } from '../../../api/Auth';
 import Loader from 'react-loader-spinner';
 import Model from '../../Model/Model';
-
+import { getReviewByUsername } from '../../../api/Review';
+import { RatingView } from 'react-simple-star-rating';
 
 const ShowProfile = (props) => {
     const [loading, setLoading] = useState(true);
     const [doc, setDoc] = useState({});
     const [text, setText] = useState("");
+    const [rating, setRating] = useState(5.0);
     useEffect(async () => {
         const temp = await getProfile(props.match.params.id);
         if (!temp) props.history.push('/');
+        const temp2 = await getReviewByUsername(props.match.params.id);
+        let stars = 0;
+        for (let i in temp2) {
+            stars += temp2[i].rating;
+        }
+        stars /= temp2.length;
+        if (temp2.length !== 0) {
+            setRating(stars);
+        }
         setDoc(temp);
         setLoading(false);
     }, [])
@@ -120,17 +131,22 @@ const ShowProfile = (props) => {
                         <div className="pic--wrap">
                             <Card.Img variant="top" id="profileImage" src={image} />
                         </div>
+                        <div style={{ margin: "auto" }}>
+                            <RatingView ratingValue={rating} size={30} />
+                        </div>
                         <Card.Body>
                             <Card.Title>Name: {name}</Card.Title>
                             <Card.Title>Email: {email}</Card.Title>
                         </Card.Body>
                         <ListGroup className="list-group-flush">
                             <ListGroup.Item>Can add bio about coins</ListGroup.Item>
-                            <ListGroup.Item>Private/public profile</ListGroup.Item>
+                            <ListGroup.Item><img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "25px", height: "25px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                                <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                            </ListGroup.Item>
                         </ListGroup>
                         <Card.Body>
                             {/* <Card.Link href="#">Card Link</Card.Link> */}
-                            <Button style={{ zIndex: "20", position: "relative", marginBottom:"10px"}} href="#title">View Collection</Button>
+                            <Button style={{ zIndex: "20", position: "relative", marginBottom: "10px" }} href="#title">View Collection</Button>
                             <Button onClick={toChatHandler}>Chat with {doc.username}</Button>
                         </Card.Body>
                     </Card>

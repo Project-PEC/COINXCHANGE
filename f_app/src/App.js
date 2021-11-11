@@ -70,7 +70,6 @@ function App() {
           {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
         </Route>
         <Route path='/products' component={Products} />
-        <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
         <Route path='/predict' component={ImageAnalyzer} />
         <Route path={'/profile/' + username} exact component={Profile} />
         <Route path='/view/:id' component={ShowProfile} />

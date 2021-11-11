@@ -67,44 +67,48 @@ const Services = (props) => {
 
 
     let i = 0;
-        Service = loading == true ?
-                <div className="wrappp"><Loader
-                    type="Oval"
-                    color="rgb(4,21,59)"
-                    height={150}
-                    width={150}
-                /></div>
-             : 
-            <div>
-                <div className="search--btn">
-                    <input id='search-btn' type='checkbox' />
-                    <label for='search-btn'>Show search bar</label>
-                    <input id='search-bar' onChange={(e) => onChangeHandler(e)} type='text' placeholder='Search...' />
-                </div>
-
-                <div className='new coin--container'>
-                    <Row className="wee" xs={1} md={2} lg={3} >
-                        {show.map((coin) => (
-                            <Col className='coin--item'>
-                                <Card className="new-c">
-                                    <div className="coin--wrapper">
-                                        {dp[i++]}
-                                    </div>
-                                    <Link to={{ pathname: "/getCoin/" + coin.publisher + "/" + coin._id, param1: coin, param2: props.username }}>
-                                        <Card.Body>
-                                            <Card.Title className="new--text">{coin.title}</Card.Title>
-                                        </Card.Body>
-                                    </Link>
-                                    <Card.Footer>
-                                        <Link to={"/view/" + coin.publisher}><small className="text-muted"><b>Published by: </b>{coin.publisher}</small></Link>
-                                    </Card.Footer>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-                </div>
+    Service = loading == true ?
+        <div className="wrappp"><Loader
+            type="Oval"
+            color="rgb(4,21,59)"
+            height={150}
+            width={150}
+        /></div>
+        :
+        <div>
+            <div className="search--btn">
+                <input id='search-btn' type='checkbox' />
+                <label for='search-btn'>Show search bar</label>
+                <input id='search-bar' onChange={(e) => onChangeHandler(e)} type='text' placeholder='Search...' />
             </div>
-    
+
+            <div className='new coin--container'>
+                <Row className="wee" xs={1} md={2} lg={3} >
+                    {show.map((coin) => (
+                        <Col className='coin--item'>
+                            <Card className="new-c">
+                                <div className="coin--wrapper">
+                                    {dp[i++]}
+                                </div>
+                                <Link to={{ pathname: "/getCoin/" + coin.publisher + "/" + coin._id, param1: coin, param2: props.username }}>
+                                    <Card.Body>
+                                        <Card.Title className="new--text">{coin.title}</Card.Title>
+                                    </Card.Body>
+                                </Link>
+                                <Card.Footer>
+                                    <Link to={"/view/" + coin.publisher}><small className="text-muted"><b>Published by: </b>{coin.publisher}</small></Link>
+                                    <span style={{ float: "right" }}>
+                                        <img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "20px", height: "20px" }} alt="Your location  premium icon" title="Your location premium icon" />:
+                                        <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                                    </span>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
+            </div>
+        </div>
+
     return (
         <div>
             {Service}
