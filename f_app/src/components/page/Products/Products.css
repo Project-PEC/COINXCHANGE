@@ -53,3 +53,18 @@
   .item img {
     max-width: 100%;
   }
+@media screen and (max-width: 1000px)  {
+  .item:focus ~ .item,
+  .item:hover ~ .item {
+    transform: none;
+  }
+  .container:focus-within .item,
+  .container:hover .item {
+    transform: none;
+  }
+  .container .item:focus,
+  .container .item:hover {
+    transform: scale(1.25);
+    z-index: 1;
+  }
+}

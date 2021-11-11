@@ -12,7 +12,7 @@ export const addReview = async (req, res) => {
 }
 
 export const getReview = async (req, res) => {
-    Review.findById( req.params.coinId, async (err, doc) => {
+    Review.find( {coinId:req.params.coinId}, async (err, doc) => {
         if (err) throw err;
         if (doc) {
             res.status(200).json({ message: "review found", doc: doc });

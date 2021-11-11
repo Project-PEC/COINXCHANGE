@@ -5,13 +5,8 @@ const Model = (props) => {
     if (props.text.length>0) {
         return (
             <div className="model">
-                <span className="modelText">{props.text}</span>
-                <div class="lds-circle"><div></div></div>
-                <div class="wrapper">
-                    <div class="pie spinner"></div>
-                    <div class="pie filler"></div>
-                    <div class="mask"></div>
-                </div>
+                <span className="modelText">{props.text}<div class="lds-circle"><div></div></div></span>
+                
             </div>
         )
     }

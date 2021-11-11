@@ -19,7 +19,7 @@ function AddReview(props) {
 
     const onSubmitHandler = async () => {
         const data = {};
-        // console.log(props.match.params.id);
+        console.log(props);
         data["coinId"] = props.match.params.id;
         data["user"] = props.username;  
         data["text"] = text;
@@ -27,7 +27,8 @@ function AddReview(props) {
         data["publisher"] = props.param.publisher;
 
         const t = await addReview(props.username, props.match.params.id, data); 
-        props.history.push('/getCoin/'+props.param.publisher+'/'+props.match.params.id); // Not working
+        props.setReview([...props.review,t])
+        // props.history.push('/getCoin/'+props.param.publisher+'/'+props.match.params.id); // Not working
     }
 
     const handleRating = (rate) => {

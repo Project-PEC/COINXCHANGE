@@ -50,12 +50,13 @@ img {
     margin: 0 auto;
   }
   
-.pf-wrapper2 {
+.pf-wrapper3 {
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin: 50px 80px;
-    box-shadow: 7px 7px 15px #474747; 
+    margin: -20px 70px;
+    margin-bottom: 50px;
+    /* box-shadow: 7px 7px 15px #474747;  */
     /* filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));  */
 }
 
@@ -86,49 +87,47 @@ strong {
     font-size: 18px;
 }
 
-
-.wee {
-    justify-content: space-around;
-  }
-  
-  .coin--item {
-      margin-bottom: 50px;
-  }
-  
-  .coinWidth{
-      width: 40rem;
-  }
-  @media only screen and (max-width: 1400px) {
-    .coinWidth{
-        width: 33rem;
-    }        
+.revCard{
+    width: 35rem;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-  
-  @media only screen and (max-width: 1200px) {
-        .coinWidth{
-            width: 27rem;
-        }        
-    }
 
-    @media only screen and (max-width: 990px) {
-        .coinWidth{
-            width: 40rem;
-        }        
+@media only screen and (max-width: 1200px) {
+    .revCard{
+        width: 30rem;
+        margin-bottom: 20px;
+    
     }
-
-    @media only screen and (max-width: 767px) {
-        .coinWidth{
-            width: 35rem;
-        }      
+      
+  }
+  @media only screen and (max-width: 992px) {
+    .revCard{
+        width: 40rem;
+        margin-bottom: 20px;
+    
     }
-
-    @media only screen and (max-width: 650px) {
-      .coinWidth{
-            width: 31rem;
-      }
+      
+  }
+  @media only screen and (max-width: 767px) {
+    .revCard{
+        width: 35rem;
+        margin-bottom: 20px;
+    
     }
-    @media only screen and (max-width: 600px) {
-        .coinWidth{
-              width: 27rem;
-        }
-      }
+      
+  }
+  @media only screen and (max-width: 640px) {
+    .revCard{
+        width: 30rem;
+        margin-bottom: 20px;
+    
+    }
+  }
+  @media only screen and (max-width: 540px) {
+    .revCard{
+        width: 25rem;
+        margin-bottom: 20px;
+    
+    }
+  }
