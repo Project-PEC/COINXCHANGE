@@ -18,10 +18,13 @@ import ShowCoin from './components/ShowCoin/ShowCoin';
 import Review from './components/Review/Review';
 // import ShowReview from './components/ShowReview/ShowReview';
 
+
 function App() {
   const [username, setUsername] = useState("");
   const [unread, setUnread] = useState(false);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const [show, setShow] = useState(true);
+
   const socket = useRef();
 
 
@@ -82,9 +85,6 @@ function App() {
         <Switch>
           <Route path='/' exact component={() => < Home username={username} />} />
           <Route path='/services' component={() => < Services username={username} />} />
-          <Route path='/messenger' component={Messenger}>
-            {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
-          </Route>
           <Route path='/products' component={Products} />
           <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
           <Route path='/predict' component={ImageAnalyzer} />
@@ -92,7 +92,7 @@ function App() {
           <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
           {/* <Route path={'/getReview/:coinId'} exact component={ShowReview} /> */}
           {/* <Route path={'/addReview/:username/:coinId'} exact component={Review} /> */}
-          <Redirect to='/' />;)
+          <Redirect to='/sign-up' />;)
         </Switch>
       </div>
   }
@@ -100,7 +100,8 @@ function App() {
     <>
       <Router>
         <Navbar unread={unread} setUnread={setUnread} socket={socket} username={username} setUsername={setUser} />
-          {routes}
+
+        {routes}
       </Router>
     </>
   );

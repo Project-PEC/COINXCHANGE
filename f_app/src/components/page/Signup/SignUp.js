@@ -4,7 +4,6 @@ import { loginUser, registerUser } from '../../../api/Auth';
 import '../../../App.css';
 import './SignUp.css';
 
-
 // const mode = 'login';
 
 const LoginComponent = (props) => {
@@ -59,9 +58,12 @@ const SignUP = (props) => {
     const [mode, setMode] = useState('login');
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [email,setEmail]=useState("");
-    const register = () => registerUser(username, password,email, props.setUsername,props);
-    const login = () => loginUser(username, password, props.setUsername,props);
+    const [email, setEmail] = useState("");
+    const register = () => registerUser(username, password, email, props.setUsername, props);
+    const login = async () => {
+        const x = await loginUser(username, password, props.setUsername, props);
+        console.log(x);
+    }
 
     const reqFunc = mode === 'login' ? login : register;
     const toggleMode = () => {

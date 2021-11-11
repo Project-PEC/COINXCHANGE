@@ -20,21 +20,22 @@ export const registerUser = (registerUsername, registerPassword, registerEmail, 
             console.log(err);
         })
 };
-export const loginUser = (loginUsername, loginPassword, setUsername, props) => {
+export const loginUser = async(loginUsername, loginPassword, setUsername, props) => {
     const data = {
         username: loginUsername,
         password: loginPassword
     }
-    axios.post("http://localhost:8080/login", data).then((res) => {
+    return await axios.post("http://localhost:8080/login", data).then((res) => {
         if (!res.data.auth) localStorage.setItem("user", loginUsername);
         else {
             localStorage.removeItem("user");
             localStorage.setItem("token", res.data.token);
             setUsername(loginUsername);
         }
-        console.log(res.data.message);
-
         props.history.push('/');
+        return res.data.message;
+
+
         // window.location.href = '/';
 
     })
@@ -42,7 +43,7 @@ export const loginUser = (loginUsername, loginPassword, setUsername, props) => {
             console.log(err);
         })
 };
-export const getUserInfo = async(setUsername) => {
+export const getUserInfo = async (setUsername) => {
     return await axios.get("http://localhost:8080/user", {
 
         headers: {
@@ -52,8 +53,8 @@ export const getUserInfo = async(setUsername) => {
         .then((res) => {
             if (!res.data.auth) localStorage.setItem("user", res.data.username);
             else localStorage.removeItem("user");
-            if(setUsername)
-            setUsername(res.data.username);
+            if (setUsername)
+                setUsername(res.data.username);
             return res.data;
         })
         .catch(err => {
