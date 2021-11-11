@@ -36,6 +36,17 @@ export const getUserCoin = (req, res) => {
         }
     })
 }
+export const getCoinOfUser=(req,res)=>{
+    Coin.find({ publisher: req.params.username }, async (err, doc) => {
+        if (err) throw err;
+        if (doc) {
+            res.status(200).json({ message: "Image found", doc: doc });
+        }
+        else {
+            res.send({ message: "Coin not available", doc: doc })
+        }
+    })
+}
 export const editCoinByPublisher = async(req, res) => {
     try {
         const x = await Coin.findByIdAndUpdate(req.body._id,req.body);
