@@ -71,7 +71,6 @@ const ShowProfile = (props) => {
         // const x = await updateConvo({ user: friend, toChange: user, changed: true })
 
         const user = await getUserInfo();
-        console.log(user);
         if (!user.auth) {
             alert("Login to do that");
             props.history.push('/sign-up')
