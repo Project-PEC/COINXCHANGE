@@ -8,6 +8,7 @@ import './Services.css';
 import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import Loader from 'react-loader-spinner';
+import { getProfile } from '../../../api/Profile';
 
 
 const Services = (props) => {
@@ -15,7 +16,7 @@ const Services = (props) => {
     const [doc, setDoc] = useState({});
     const [show, setShow] = useState([]);
     useEffect(async () => {
-        const temp = await getCoin();
+        let temp = await getCoin();
         setDoc(temp);
         setShow(temp);
         setLoading(false);
@@ -36,7 +37,7 @@ const Services = (props) => {
             for (const fi in filters) {
                 const f = filters[fi].trim();
                 if (f.length == 0) continue;
-                if (!((d.title).toLowerCase().includes(f) || (d.publisher).toLowerCase().includes(f))) {
+                if (!((d.title).toLowerCase().includes(f) || (d.publisher).toLowerCase().includes(f) || (d.location && (d.location).toLowerCase().includes(f)))) {
                     return false;
                 }
             }
@@ -83,10 +84,10 @@ const Services = (props) => {
             </div>
 
             <div className='new coin--container'>
-                <Row className="wee" xs={1} md={2} lg={3} >
+                <Row className="wee" xs={1} lg={2} xl={3} >
                     {show.map((coin) => (
                         <Col className='coin--item'>
-                            <Card className="new-c">
+                            <Card style={{minWidth:"300px"}} className="new-c">
                                 <div className="coin--wrapper">
                                     {dp[i++]}
                                 </div>
@@ -99,7 +100,7 @@ const Services = (props) => {
                                     <Link to={"/view/" + coin.publisher}><small className="text-muted"><b>Published by: </b>{coin.publisher}</small></Link>
                                     <span style={{ float: "right" }}>
                                         <img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "20px", height: "20px" }} alt="Your location  premium icon" title="Your location premium icon" />:
-                                        <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                                        <span style={{ marginLeft: "10px" }}>{coin.location ? coin.location : "Undefined"}</span>
                                     </span>
                                 </Card.Footer>
                             </Card>

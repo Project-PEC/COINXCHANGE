@@ -11,6 +11,7 @@ import Row from 'react-bootstrap/esm/Row';
 import Loader from 'react-loader-spinner';
 import { getReviewByUsername } from '../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
+import Model from '../Model/Model';
 
 
 const Profile = () => {
@@ -18,6 +19,8 @@ const Profile = () => {
     const [username, setUsername] = useState("");
     const [doc, setDoc] = useState({});
     const [rating, setRating] = useState(5);
+    const [location, setLocation] = useState("");
+    const [text, setText] = useState("");
     useEffect(async () => {
         const t = await getUserInfo();
         const temp = await getProfile(t.username);
@@ -61,6 +64,13 @@ const Profile = () => {
         fileUploadHandler(file);
 
     }
+    const saveChangesHandler = async () => {
+        setText("Saving Changes..")
+        const x = await editProfile(username, { ...doc, location: location });
+        setText("");
+        setDoc({...doc,location:location});
+        setLocation("");
+    }
     const email = doc.email;
     const name = doc.username;
     const image = doc.image;
@@ -73,14 +83,14 @@ const Profile = () => {
                 <div className='cards__wrapper'>
                     <Row lg={3} md={2} sm={1}>
                         {doc.Coins && doc.Coins.map((ele, id) => (
-
                             <CardItem
                                 key={id}
                                 src={ele.image[0]}
                                 text={ele.title}
                                 label={ele.publisher}
+                                location={doc.location}
                                 path={"/getCoin/" + ele.publisher + "/" + ele._id}
-                                param={ele}
+                                param={{...ele,location:doc.location}}
                             />
                         ))}
                     </Row>
@@ -109,8 +119,8 @@ const Profile = () => {
                             </Card.Text>
                         </Card.ImgOverlay>
                     </div>
-                    <div style={{margin:"auto"}}>
-                    <RatingView ratingValue={rating} size={30} />
+                    <div style={{ margin: "auto" }}>
+                        <RatingView ratingValue={rating} size={30} />
                     </div>
                     <Card.Body>
                         <Card.Title>Name: {name}</Card.Title>
@@ -119,11 +129,12 @@ const Profile = () => {
                     <ListGroup className="list-group-flush">
                         <ListGroup.Item>Can add bio about coins</ListGroup.Item>
                         <ListGroup.Item><img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "25px", height: "25px" }} alt="Your location  premium icon" title="Your location premium icon" />:
-                            <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                            <input style={{ marginLeft: "10px", borderWidth: "0 0 2px" }} placeholder={doc.location} onChange={(e) => setLocation(e.target.value)} />
                         </ListGroup.Item>
                     </ListGroup>
                     <Card.Body>
                         <Button style={{ zIndex: "20", position: "relative" }} href="#title">View Collection</Button>
+                        {location.length > 0 ? <Button onClick={saveChangesHandler} style={{ zIndex: "20", position: "relative", marginTop:"10px" }}>Save Changes <img style={{ height: "20px", width: "20px" }} src="https://cdn-icons.flaticon.com/png/512/1634/premium/1634264.png?token=exp=1636608660~hmac=95c6d149b425c4df82de78c8c6943670" alt="Check free icon" title="Check free icon" class="loaded" /></Button> : <div />}
                     </Card.Body>
                 </Card>
             </div>
@@ -132,6 +143,7 @@ const Profile = () => {
 
     return (
         <>
+            <Model text={text} />
             {pff}
             {coins}
 

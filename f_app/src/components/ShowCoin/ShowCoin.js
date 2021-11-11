@@ -48,6 +48,7 @@ const ShowCoin = (props) => {
     let reviewComp = <div></div>;
     // console.log(props.location.param2);
     const coin = props.location.param1;
+    console.log(coin);
     // console.log(coin);
     if (typeof coin === 'undefined') props.history.push('/');
     else {
@@ -87,7 +88,7 @@ const ShowCoin = (props) => {
                         <Card.Text>Published By: <Link to={"/view/" + coin.publisher} className="link1" > {coin.publisher}</Link>
                             <span style={{ float: "right" }}>
                                 <img src="https://cdn-icons.flaticon.com/png/512/1946/premium/1946770.png?token=exp=1636600691~hmac=49d4bde417142801a65a1585d8a03f64" style={{ width: "20px", height: "20px" }} alt="Your location  premium icon" title="Your location premium icon" />:
-                                <span style={{ marginLeft: "10px" }}>Chandigarh</span>
+                                <span style={{ marginLeft: "10px" }}>{coin.location?coin.location:"undefined"}</span>
                             </span>
                         </Card.Text>
                     </Card.Body>

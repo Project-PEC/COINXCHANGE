@@ -52,7 +52,7 @@ const ShowProfile = (props) => {
                                 text={ele.title}
                                 label={ele.publisher}
                                 path={"/getCoin/" + ele.publisher + "/" + ele._id}
-                                param={ele}
+                                param={{...ele,location:doc.location}}
                             />
 
                         ))}

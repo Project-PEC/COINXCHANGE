@@ -50,8 +50,8 @@ function AddCoin(props) {
         data["title"] = title;
         data["image"] = image;
         data["description"] = description;
-        
         const profile=await getProfile(props.username);
+        data["location"]=profile.location;
         const t = await addCoin(props.username, data,profile);
         props.history.push('/');
     }

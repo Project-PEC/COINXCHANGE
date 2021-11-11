@@ -32,3 +32,11 @@ export const getUserCoin = async (username, id) => {
             console.log(err);
         })
 }
+export const editCoinByPublisher=async(data)=>{
+    return await axios.post("http://localhost:8080/editCoinByPublisher",data)
+    .then(res=>{
+        return res.data.doc;
+    })
+    .catch(err=>
+        console.log(err));
+}

@@ -3,7 +3,8 @@ const Coin=new mongoose.Schema({
     image:[String],
     title:String,
     description:String,
-    publisher:String
+    publisher:String,
+    location:String
 })
 const coinModel=mongoose.model('coinModel',Coin);
 export default coinModel;
