@@ -126,7 +126,7 @@ const Profile = () => {
                 <Card style={{ width: '20rem' }}>
                     <div className="pic--wrap">
                         <Card.Img variant="top" id="profileImage" src={image} />
-                        <Card.ImgOverlay>
+                        <Card.ImgOverlay className="new-overlay">
                             <Card.Text>
                                 <p className="img__description neonText">
                                     <label for="profile image">Update image:  </label>

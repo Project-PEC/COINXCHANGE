@@ -62,6 +62,10 @@ img {
             transform:skew(8deg) rotate(3deg);
 }
 
+.new-overlay{
+  bottom: 400;
+}
+
 .pic--wrap {
     display: flex;
     flex-flow: column;
