@@ -106,7 +106,7 @@ function EditCoin(props) {
                             e.preventDefault();
                             onSubmitHandler();
                         }}>
-                            Submit
+                            UPDATE
                         </Button>
                     </div>
                 </Form>
