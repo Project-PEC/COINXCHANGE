@@ -62,6 +62,10 @@ img {
             transform:skew(8deg) rotate(3deg);
 }
 
+.new-overlay{
+  bottom: 400;
+}
+
 .pic--wrap {
     display: flex;
     flex-flow: column;
@@ -113,4 +117,17 @@ strong {
 
 .cards__items {
   margin-bottom: 24px;
+}
+
+.neonText {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px rgb(0, 26, 255),
+    0 0 82px rgb(0, 26, 255),
+    0 0 92px rgb(0, 26, 255),
+    0 0 102px rgb(0, 26, 255),
+    0 0 151px rgb(0, 26, 255);
 }

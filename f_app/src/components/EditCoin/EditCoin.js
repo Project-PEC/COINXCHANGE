@@ -6,6 +6,13 @@ import { editCoin } from '../../api/Coin';
 import Carousel from 'react-bootstrap/Carousel'
 import { getProfile } from '../../api/Profile';
 import { withRouter } from 'react-router';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
 
 function EditCoin(props) {
 
@@ -53,7 +60,7 @@ function EditCoin(props) {
         data["image"] = image;
         data["description"] = description;
         data["location"] = coin.location;
-
+        toast("Coin Updated")
         const t = await editCoin(coin._id, data);
         console.log(t);
         props.history.push('/');
@@ -106,7 +113,7 @@ function EditCoin(props) {
                             e.preventDefault();
                             onSubmitHandler();
                         }}>
-                            Submit
+                            UPDATE
                         </Button>
                     </div>
                 </Form>

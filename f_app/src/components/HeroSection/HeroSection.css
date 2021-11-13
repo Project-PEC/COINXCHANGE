@@ -9,7 +9,6 @@ video {
     margin-left: 3px;
 }
 .hero-container {
-    /*background: url('../public/images/img-home.jpg') center center/cover no-repeat;*/
     height: 100%;
     width: 100%;
     display: flex;

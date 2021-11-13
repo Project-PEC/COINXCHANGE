@@ -15,6 +15,14 @@ import { getReviewByUsername } from '../../../api/Review';
 import { RatingView } from 'react-simple-star-rating';
 import { getCoinOfUser } from '../../../api/Coin'
 import { MdLocationOn } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
+
 
 const ShowProfile = (props) => {
     const [loading, setLoading] = useState(true);
@@ -72,13 +80,13 @@ const ShowProfile = (props) => {
 
         const user = await getUserInfo();
         if (!user.auth) {
-            alert("Login to do that");
+            toast("Login to do that");
             props.history.push('/sign-up')
             return;
         }
         if (user.username === doc.username) {
-            alert("You cannot chat with yourself!! Find some friends dude :)");
-            props.history.push('/');
+            toast("You cannot chat with yourself!!");
+            props.history.push('/')
             return;
         }
         setText("Redirecting to Messenger!!")

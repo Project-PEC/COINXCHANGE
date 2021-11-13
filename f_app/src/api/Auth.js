@@ -1,4 +1,10 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
 
 export const registerUser = (registerUsername, registerPassword, registerEmail, setUsername, props) => {
     const data = {
@@ -14,6 +20,7 @@ export const registerUser = (registerUsername, registerPassword, registerEmail, 
             setUsername(registerUsername)
         }
         console.log(res.data.message);
+        toast("Registered Successfully!");
         props.history.push('/');
     })
         .catch(err => {
@@ -32,6 +39,7 @@ export const loginUser = async(loginUsername, loginPassword, setUsername, props)
             localStorage.setItem("token", res.data.token);
             setUsername(loginUsername);
         }
+        toast("Logged-in Successfully!");
         props.history.push('/');
         return res.data.message;
 
@@ -64,6 +72,7 @@ export const getUserInfo = async (setUsername) => {
 
 
 export const logOutUser = (setUsername) => {
+    toast("Logged Out successfully");
     setUsername("");
     localStorage.removeItem('token');
     console.log("Logged out successfully");
