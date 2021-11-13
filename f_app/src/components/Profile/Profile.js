@@ -97,6 +97,7 @@ const Profile = () => {
                                 location={doc.location}
                                 path={"/getCoin/" + ele.publisher + "/" + ele._id}
                                 param={{...ele,location:doc.location}}
+                                param2={name}
                             />
                         ))}
                     </Row>

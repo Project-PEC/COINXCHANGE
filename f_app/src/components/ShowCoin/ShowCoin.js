@@ -53,7 +53,7 @@ const ShowCoin = (props) => {
 
     const deleteHandler = async () => {
         const x = await deleteCoin(coin._id);
-        // props.history.push('/services'); //not working!!
+        props.history.push('/services'); //not working!!
     }
 
     if (typeof coin === 'undefined') props.history.push('/');
