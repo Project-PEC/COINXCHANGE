@@ -33,13 +33,16 @@ export const loginUser = async(loginUsername, loginPassword, setUsername, props)
         password: loginPassword
     }
     return await axios.post("http://localhost:8080/login", data).then((res) => {
-        if (!res.data.auth) localStorage.setItem("user", loginUsername);
+        if (!res.data.auth){
+            localStorage.setItem("user", loginUsername);
+            
+        } 
         else {
             localStorage.removeItem("user");
             localStorage.setItem("token", res.data.token);
             setUsername(loginUsername);
+            toast("Logged-in Successfully!");
         }
-        toast("Logged-in Successfully!");
         props.history.push('/');
         return res.data.message;
 
