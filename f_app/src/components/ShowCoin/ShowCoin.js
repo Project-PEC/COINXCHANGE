@@ -95,9 +95,9 @@ const ShowCoin = (props) => {
                     </ButtonN>
                 </Link>
                 <div style={{margin:"20px 0px"}}>
-                    <Button onClick={deleteHandler}>
+                    <ButtonN onClick={deleteHandler}>
                         Delete Coin
-                    </Button>
+                    </ButtonN>
                 </div>
             </div>
 
