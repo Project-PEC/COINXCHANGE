@@ -61,8 +61,8 @@ const ShowCoin = (props) => {
 
     const deleteHandler = async () => {
         const x = await deleteCoin(coin._id);
+        toast.success("Coin Deleted Successfully!");
         props.history.push('/services'); //not working!!
-        toast("Coin Deleted Successfully!");
         // props.history.push('/services'); //not working!!
     }
 
@@ -95,9 +95,11 @@ const ShowCoin = (props) => {
                         Edit Coin
                     </ButtonN>
                 </Link>
-                <Button onClick={deleteHandler}>
-                    Delete Coin
-                </Button>
+                <div style={{margin:"20px 0px"}}>
+                    <Button onClick={deleteHandler}>
+                        Delete Coin
+                    </Button>
+                </div>
             </div>
 
         comp = <div className="pf-container">
