@@ -76,7 +76,7 @@ const Profile = () => {
     const fileSelectedHandler = (e) => {
         const file = e.target.files[0];
         fileUploadHandler(file);
-        toast("Picture Updated Successfully!");
+        toast.success("Picture Updated Successfully!");
 
     }
     const saveChangesHandler = async () => {
@@ -85,7 +85,7 @@ const Profile = () => {
         setText("");
         setDoc({...doc,location:location});
         setLocation("");
-        toast("Location Updated Successfully");
+        toast.info("Location Updated Successfully");
     }
     const email = doc.email;
     const name = doc.username;

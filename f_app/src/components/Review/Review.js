@@ -32,7 +32,7 @@ function AddReview(props) {
         data["text"] = text;
         data["rating"] = rating;
         data["publisher"] = props.param.publisher;
-        toast("Review Added Successfully!");
+        toast.info("Review Added Successfully!");
         const t = await addReview(props.username, props.match.params.id, data); 
         props.setReview([...props.review,t])
         // props.history.push('/getCoin/'+props.param.publisher+'/'+props.match.params.id); // Not working

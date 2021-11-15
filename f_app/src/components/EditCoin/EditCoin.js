@@ -60,7 +60,7 @@ function EditCoin(props) {
         data["image"] = image;
         data["description"] = description;
         data["location"] = coin.location;
-        toast("Coin Updated")
+        toast.info("Coin Updated");
         const t = await editCoin(coin._id, data);
         console.log(t);
         props.history.push('/');

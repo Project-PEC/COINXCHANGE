@@ -62,7 +62,7 @@ function AddCoin(props) {
         const profile=await getProfile(props.username);
         data["location"]=profile.location;
         const t = await addCoin(props.username, data,profile);
-        toast("Coin Added Successfully!");
+        toast.success("Coin Added Successfully!");
         props.history.push('/');
     }
 
