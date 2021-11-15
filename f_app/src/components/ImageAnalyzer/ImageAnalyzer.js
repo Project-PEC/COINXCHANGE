@@ -12,6 +12,11 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Row from 'react-bootstrap/esm/Row';
 import CardItem from '../Cards/CardItem';
 import Model from '../Model/Model';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
 
 export const ImageAnalyzer = () => {
     const [newtext, setPdts] = useState(true);
@@ -77,6 +82,7 @@ export const ImageAnalyzer = () => {
             toCheckArr.push(data[0]);
             toIterate.push(data[0] + ", " + data[1] + ", " + data[2] + ", " + "Confidence: " + (parseFloat(prediction[label]) * 100).toFixed(2) + "%");
         }
+        toast.info("Predictions made!")
         setPdts(false);
         predictedCoins = <ol>{toIterate.map((i, id) => (
             <li key={id}>{i}<hr></hr></li>
