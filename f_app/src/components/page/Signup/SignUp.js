@@ -60,7 +60,7 @@ const LoginForm = (props) => {
 
 
 const Input = (props) => (
-    <input className="form-group__input" onChange={(e) => props.OnChange(e.target.value)} type={props.type} id={props.id} placeholder={props.label} disabled={props.disabled} />
+    <input required className="form-group__input" onChange={(e) => props.OnChange(e.target.value)} type={props.type} id={props.id} placeholder={props.label} disabled={props.disabled} />
 );
 
 const SignUP = (props) => {

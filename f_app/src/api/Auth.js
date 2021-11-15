@@ -38,9 +38,9 @@ export const registerUser = (registerUsername, registerPassword, registerEmail, 
                 draggable: true,
                 progress: undefined,
             });
+            props.history.push('/');
         }
         console.log(res.data.message);
-        props.history.push('/');
     })
         .catch(err => {
             console.log(err);
@@ -77,8 +77,8 @@ export const loginUser = async(loginUsername, loginPassword, setUsername, props)
                 draggable: true,
                 progress: undefined,
             });
+            props.history.push('/');
         }
-        props.history.push('/');
         return res.data.message;
 
 
