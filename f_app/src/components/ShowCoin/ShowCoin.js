@@ -12,6 +12,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { RatingView } from 'react-simple-star-rating';
 import { MdLocationOn } from "react-icons/md";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Button , ButtonN } from "../Button/Button";
+
+
+toast.configure();
 
 const ShowCoin = (props) => {
 
@@ -53,6 +59,8 @@ const ShowCoin = (props) => {
 
     const deleteHandler = async () => {
         const x = await deleteCoin(coin._id);
+        toast.success("Coin Deleted Successfully!");
+        props.history.push('/services'); //not working!!
         // props.history.push('/services'); //not working!!
     }
 
@@ -81,13 +89,15 @@ const ShowCoin = (props) => {
         if (props.location.param2==coin.publisher)
             edit = <div>
                 <Link to={{ pathname: "/" + coin._id + "/editCoin", param: coin }}>
-                    <button>
+                    <ButtonN>
                         Edit Coin
-                    </button>
+                    </ButtonN>
                 </Link>
-                <button onClick={deleteHandler}>
-                    delete Coin
-                </button>
+                <div style={{margin:"20px 0px"}}>
+                    <Button onClick={deleteHandler}>
+                        Delete Coin
+                    </Button>
+                </div>
             </div>
 
         comp = <div className="pf-container">

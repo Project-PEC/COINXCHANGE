@@ -3,6 +3,15 @@ import { withRouter } from 'react-router';
 import { loginUser, registerUser } from '../../../api/Auth';
 import '../../../App.css';
 import './SignUp.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
+
+
 
 // const mode = 'login';
 

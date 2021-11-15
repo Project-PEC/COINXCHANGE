@@ -7,6 +7,15 @@ import Carousel from 'react-bootstrap/Carousel'
 import './AddCoin.css';
 import {getProfile} from '../../api/Profile';
 import {withRouter} from 'react-router';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
+
+
 
 function AddCoin(props) {
 
@@ -53,6 +62,7 @@ function AddCoin(props) {
         const profile=await getProfile(props.username);
         data["location"]=profile.location;
         const t = await addCoin(props.username, data,profile);
+        toast.success("Coin Added Successfully!");
         props.history.push('/');
     }
 

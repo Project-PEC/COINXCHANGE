@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Cards.css';
 
 function CardItem(props) {
   return (
     <>
-      <li className='cards__item' style={{background:"white",minWidth:"220px"}}>
-        <Link className='cards__item__link' to={{ pathname: props.path, param1:props.param }}>
+      <li className='cards__item' style={{ background: "white", minWidth: "220px", margin:"10px" }}>
+        <Link className='cards__item__link' to={{ pathname: props.path, param1: props.param, param2: props.param2 }}>
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'

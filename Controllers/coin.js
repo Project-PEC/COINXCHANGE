@@ -72,7 +72,7 @@ export const deleteCoin = async(req, res) => {
     try {
         await Coin.deleteOne({_id:req.params.id});
         await Review.deleteMany({coinId:req.params.id});
-        res.status(200).json({doc:x});
+        res.status(200).json({doc:"Coin deleted successfully!"});
     }
     catch(err) {
         console.log(err);

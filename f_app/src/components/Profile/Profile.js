@@ -15,6 +15,14 @@ import Model from '../Model/Model';
 import { getCoinOfUser, getUserCoin } from '../../api/Coin';
 import { MdLocationOn } from "react-icons/md";
 import { MdOutlineSaveAlt } from "react-icons/md";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+toast.configure();
+
+
+
 
 const Profile = () => {
     const [loading, setLoading] = useState(true);
@@ -68,6 +76,7 @@ const Profile = () => {
     const fileSelectedHandler = (e) => {
         const file = e.target.files[0];
         fileUploadHandler(file);
+        toast.success("Picture Updated Successfully!");
 
     }
     const saveChangesHandler = async () => {
@@ -76,6 +85,7 @@ const Profile = () => {
         setText("");
         setDoc({...doc,location:location});
         setLocation("");
+        toast.info("Location Updated Successfully");
     }
     const email = doc.email;
     const name = doc.username;
@@ -97,6 +107,7 @@ const Profile = () => {
                                 location={doc.location}
                                 path={"/getCoin/" + ele.publisher + "/" + ele._id}
                                 param={{...ele,location:doc.location}}
+                                param2={name}
                             />
                         ))}
                     </Row>
@@ -116,9 +127,9 @@ const Profile = () => {
                 <Card style={{ width: '20rem' }}>
                     <div className="pic--wrap">
                         <Card.Img variant="top" id="profileImage" src={image} />
-                        <Card.ImgOverlay>
+                        <Card.ImgOverlay className="new-overlay">
                             <Card.Text>
-                                <p className="img__description">
+                                <p className="img__description neonText">
                                     <label for="profile image">Update image:  </label>
                                     <input id="profile image" type="file" onChange={fileSelectedHandler} />
                                 </p>
