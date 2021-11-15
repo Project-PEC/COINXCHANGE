@@ -14,7 +14,8 @@ import { RatingView } from 'react-simple-star-rating';
 import { MdLocationOn } from "react-icons/md";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Button , ButtonN } from "../Button/Button";
+import {  ButtonN } from "../Button/Button";
+import Button from 'react-bootstrap/Button';
 
 
 toast.configure();
@@ -25,6 +26,7 @@ const ShowCoin = (props) => {
     const [rating, setRating] = useState(0);
     // console.log(props);
 
+    console.log("Chala");
     useEffect(async () => {
         if (!props.location.param1) {
             props.history.push('/');
