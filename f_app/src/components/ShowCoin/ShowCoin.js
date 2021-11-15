@@ -107,7 +107,7 @@ const ShowCoin = (props) => {
                     <Card.Body>
                         <Card.Text>Published By: <Link to={"/view/" + coin.publisher} className="link1" > {coin.publisher}</Link>
                             <span style={{ float: "right" }}>
-                                <MdLocationOn />
+                                < MdLocationOn />
                                 <span style={{ marginLeft: "10px" }}>{coin.location ? coin.location : "undefined"}</span>
                             </span>
                         </Card.Text>
