@@ -21,8 +21,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/Arsh-Kashyap"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
+                                <a href="https://www.linkedin.com/in/arsh-kashyap/" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -36,8 +36,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/akshit2382"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
+                                <a href="https://www.linkedin.com/in/akshit-jain-0aa2721ba/" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -52,7 +52,7 @@ const Products = () => {
                             </Card.Body>
                             <Card.Footer>
                                 <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
+                                <a href="https://www.linkedin.com/in/shubham-arya-558954190/" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                     </Col>
@@ -66,8 +66,8 @@ const Products = () => {
                                 </Card.Text>
                             </Card.Body>
                             <Card.Footer>
-                                <a href="https://github.com/Satan0069"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
-                                <a href="https://github.com/Satan0069" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
+                                <a href="https://github.com/PrateekSingh-glitched"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" style={{ height: "30px", width: "30px" }} alt="git-hub icon" /></a>
+                                <a href="/" ><img style={{ height: "30px", width: "30px", float: "right", borderRadius: "5px" }} src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linked-in icon" /></a>
                             </Card.Footer>
                         </Card>
                     </Col>
