@@ -65,18 +65,18 @@ function App() {
     <div>
       <Switch>
 
-        <Route path='/' exact component={() => < Home username={username} />} />
-        <Route path='/services' component={() => < Services username={username} />} />
-        <Route path='/messenger' component={Messenger}>
+        <Route exact path='/' exact component={() => < Home username={username} />} />
+        <Route exact path='/services' component={() => < Services username={username} />} />
+        <Route exact path='/messenger' component={Messenger}>
           {!username ? <Redirect to="/" /> : <Messenger onlineUsers={onlineUsers} setOnlineUsers={setOnlineUsers} setUnread={setUnread} socket={socket} />}
         </Route>
-        <Route path='/products' component={Products} />
-        <Route path='/predict' component={ImageAnalyzer} />
-        <Route path={'/profile/' + username} exact component={Profile} />
-        <Route path='/view/:id' component={ShowProfile} />
-        <Route path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
-        <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
-        <Route path={'/:id/editCoin'} exact component={EditCoin} />
+        <Route exact path='/products' component={Products} />
+        <Route exact path='/predict' component={ImageAnalyzer} />
+        <Route exact path={'/profile/' + username} exact component={Profile} />
+        <Route exact path='/view/:id' component={ShowProfile} />
+        <Route exact path={'/AddCoin/' + username} exact component={() => < AddCoin username={username} />} />
+        <Route exact path={'/getCoin/:username/:id'} exact component={ShowCoin} />
+        <Route exact path={'/:id/editCoin'} exact component={EditCoin} />
         <Redirect to='/' />
       </Switch>
     </div>
@@ -84,13 +84,13 @@ function App() {
     routes =
       <div>
         <Switch>
-          <Route path='/' exact component={() => < Home username={username} />} />
-          <Route path='/services' component={() => < Services username={username} />} />
-          <Route path='/products' component={Products} />
-          <Route path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
-          <Route path='/predict' component={ImageAnalyzer} />
-          <Route path='/view/:id' component={ShowProfile} />
-          <Route path={'/getCoin/:username/:id'} exact component={ShowCoin} />
+          <Route exact path='/' exact component={() => < Home username={username} />} />
+          <Route exact path='/services' component={() => < Services username={username} />} />
+          <Route exact path='/products' component={Products} />
+          <Route exact path='/sign-up' component={() => <SignUp setUsername={() => setUser()} />} />
+          <Route exact path='/predict' component={ImageAnalyzer} />
+          <Route exact path='/view/:id' component={ShowProfile} />
+          <Route exact path={'/getCoin/:username/:id'} exact component={ShowCoin} />
           {/* <Route path={'/getReview/:coinId'} exact component={ShowReview} /> */}
           {/* <Route path={'/addReview/:username/:coinId'} exact component={Review} /> */}
           <Redirect to='/sign-up' />;)
