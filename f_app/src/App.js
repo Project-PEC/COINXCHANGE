@@ -42,7 +42,8 @@ function App() {
   }, [])
   useEffect(async () => {
     const t = await getUserInfo(setUsername);
-    if (t.auth) {
+    console.log(t);
+    if (t && t.auth) {
       const x = await getConversations(t.username);
 
       const profile = await getProfile(t.username);

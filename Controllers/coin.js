@@ -21,7 +21,7 @@ export const getCoin = (req, res) => {
             res.status(200).json({ message: "Image found", doc: doc });
         }
         else {
-            res.send({ message: "Coin not available", doc: doc })
+            res.status(200).json({ message: "Coin not available", doc: doc })
         }
     })
 }
@@ -33,7 +33,7 @@ export const getUserCoin = (req, res) => {
             res.status(200).json({ message: "Image found", doc: doc });
         }
         else {
-            res.send({ message: "Coin not available", doc: doc })
+            res.status(200).json({ message: "Coin not available", doc: doc })
         }
     })
 }
@@ -44,7 +44,7 @@ export const getCoinOfUser=(req,res)=>{
             res.status(200).json({ message: "Image found", doc: doc });
         }
         else {
-            res.send({ message: "Coin not available", doc: doc })
+            res.status(200).json({ message: "Coin not available", doc: doc })
         }
     })
 }

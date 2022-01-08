@@ -15,7 +15,7 @@ export const getProfile = (req, res) => {
             res.status(200).json({ message: "Profile found", doc: doc });
         }
         else {
-            res.send({ message: "Profile not found", doc: doc })
+            res.status(200).json({ message: "Profile not found", doc: doc })
         }
     })
 }

@@ -18,7 +18,7 @@ export const getReview = async (req, res) => {
             res.status(200).json({ message: "review found", doc: doc });
         }
         else {
-            res.send({ message: "review not available", doc: doc })
+            res.status(200).json({ message: "review not available", doc: doc })
         }
     })
 }
@@ -29,7 +29,7 @@ export const getReviewByUsername = async (req, res) => {
             res.status(200).json({ message: "review found", doc: doc });
         }
         else {
-            res.send({ message: "review not available", doc: doc })
+            res.status(200).json({ message: "review not available", doc: doc })
         }
     })
 }

@@ -68,9 +68,9 @@ export const registerUser = (req, res) => {
 export const getUser = (req, res) => {
     User.findById({ _id: req.userId }, (err, doc) => {
         if (err) throw err;
-        if (!doc) res.send({ auth: false, message: "User deleted from database" });
+        if (!doc) res.status(200).json({ auth: false, message: "User deleted from database" });
         else {
-            res.send({ auth: true, message: "Verification successful", username: doc.username, id: doc._id })
+            res.status(200).json({ auth: true, message: "Verification successful", username: doc.username, id: doc._id })
         }
     })
 }
@@ -81,7 +81,7 @@ export const verifyJWT = (req, res, next) => {
     else {
         jwt.verify(token, "secretCode", (err, decoded) => {
             if (err) {
-                res.send({ auth: false, message: "Authentication failed" });
+                res.status(200).json({ auth: false, message: "Authentication failed" });
             }
             else {
                 req.userId = decoded.id;
