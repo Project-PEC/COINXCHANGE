@@ -34,7 +34,7 @@ function App() {
     setUsername("Updating State");
   }
   useEffect(() => {
-    socket.current = io(("ws://socket-for-coinxchange.herokuapp.com/"))
+    socket.current = io(("https://socket-for-coinxchange.herokuapp.com/"))
     // socket.current = io("ws://localhost:8900/")
     socket.current.on("getMessage", async (data) => {
       setUnread(true);
