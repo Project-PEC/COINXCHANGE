@@ -60,11 +60,7 @@ app.use("/backend/", reviewRoutes);
 
 if(process.env.NODE_ENV==='production')
 {
-  const publicPath = path.join(__dirname, 'f_app', 'build');
-	app.use(express.static(publicPath));
-	app.get('*', (req, res) => {
-	res.sendFile(path.join(publicPath,'index.html'));
-	});
+  app.use(express.static("f_app/build"))
 }
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
