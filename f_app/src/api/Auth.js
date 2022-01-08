@@ -5,14 +5,15 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-
+let url="http://localhost:8080";
+// url="";
 export const registerUser = (registerUsername, registerPassword, registerEmail, setUsername, props) => {
     const data = {
         username: registerUsername,
         password: registerPassword,
         email: registerEmail
     }
-    axios.post("http://localhost:8080/register", data).then((res) => {
+    axios.post(url+"/register", data).then((res) => {
         if (!res.data.auth){
             localStorage.setItem("user", registerUsername);
             toast.error(res.data.message, {
@@ -51,7 +52,7 @@ export const loginUser = async(loginUsername, loginPassword, setUsername, props)
         username: loginUsername,
         password: loginPassword
     }
-    return await axios.post("http://localhost:8080/login", data).then((res) => {
+    return await axios.post(url+"/login", data).then((res) => {
         if (!res.data.auth){
             localStorage.setItem("user", loginUsername);
             toast.error(res.data.message, {
@@ -90,7 +91,7 @@ export const loginUser = async(loginUsername, loginPassword, setUsername, props)
         })
 };
 export const getUserInfo = async (setUsername) => {
-    return await axios.get("http://localhost:8080/user", {
+    return await axios.get(url+"/user", {
 
         headers: {
             "x-access-token": localStorage.getItem("token") ? localStorage.getItem("token") : ""

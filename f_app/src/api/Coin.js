@@ -1,8 +1,10 @@
 import axios from "axios";
 import { editProfile } from "./Profile";
 
+let url="http://localhost:8080";
+// url="";
 export const addCoin = async (username, data, profile) => {
-    const url = "http://localhost:8080/addCoin/" + username;
+    const url = url+"/addCoin/" + username;
     return await axios.post(url, data)
         .then(async (res) => {
             return res.data;
@@ -13,7 +15,7 @@ export const addCoin = async (username, data, profile) => {
 }
 
 export const getCoin = async (Coin) => {
-    return await axios.get("http://localhost:8080/coin")
+    return await axios.get(url+"/coin")
         .then((res) => {
             return res.data.doc;
         })
@@ -22,7 +24,7 @@ export const getCoin = async (Coin) => {
         })
 }
 export const getCoinOfUser=async(username)=>{
-    return await axios.get("http://localhost:8080/getCoin/"+ username )
+    return await axios.get(url+"/getCoin/"+ username )
         .then((res) => {
             return res.data.doc;
         })
@@ -31,7 +33,7 @@ export const getCoinOfUser=async(username)=>{
         })
 }
 export const getUserCoin = async (username, id) => {
-    return await axios.get("http://localhost:8080/getCoin/"+ username )
+    return await axios.get(url+"/getCoin/"+ username )
         .then((res) => {
             return res.data.doc;
         })
@@ -40,7 +42,7 @@ export const getUserCoin = async (username, id) => {
         })
 }
 export const editCoinByPublisher=async(data)=>{
-    return await axios.post("http://localhost:8080/editCoinByPublisher",data)
+    return await axios.post(url+"/editCoinByPublisher",data)
     .then(res=>{
         return res.data.doc;
     })
@@ -49,7 +51,7 @@ export const editCoinByPublisher=async(data)=>{
 }
 
 export const editCoin = async (id,data) => {
-    return await axios.post("http://localhost:8080/"+id+"/editCoin",data)
+    return await axios.post(url+"/"+id+"/editCoin",data)
         .then((res) => {
             return res.data.doc;
         })
@@ -59,7 +61,7 @@ export const editCoin = async (id,data) => {
 }
 
 export const deleteCoin = async (id) => {
-    return await axios.post("http://localhost:8080/"+id+"/deleteCoin")
+    return await axios.post(url+"/"+id+"/deleteCoin")
         .then((res) => {
             return res.data.doc;
         })

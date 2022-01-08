@@ -1,7 +1,8 @@
 import axios from "axios";
-
+let url="http://localhost:8080";
+// url="";
 export const addReview = async (username, coinId, data) => {
-    const url = "http://localhost:8080/addReview/" + username + "/" + coinId;
+    const url = url+"/addReview/" + username + "/" + coinId;
     return await axios.post(url, data)
         .then(async (res) => {
             return res.data;
@@ -12,7 +13,7 @@ export const addReview = async (username, coinId, data) => {
 }
 
 export const getReview = async (coinId) => {
-    return await axios.get("http://localhost:8080/getReview/"+ coinId )
+    return await axios.get(url+"/getReview/"+ coinId )
         .then((res) => {
             return res.data.doc;
         })
@@ -21,7 +22,7 @@ export const getReview = async (coinId) => {
         })
 }
 export const getReviewByUsername=async(username)=>{
-    return await axios.get("http://localhost:8080/getReviewByUsername/"+username )
+    return await axios.get(url+"/getReviewByUsername/"+username )
         .then((res) => {
             return res.data.doc;
         })

@@ -62,4 +62,9 @@ app.use("/conversation/",conversationRoutes);
 app.use("/message/",messageRoutes);
 app.use("/", reviewRoutes);
 
+if(process.env.NODE_ENV==='production')
+{
+  app.use(express.static("f_app/build"))
+}
+
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));

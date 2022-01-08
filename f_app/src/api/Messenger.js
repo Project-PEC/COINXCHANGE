@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { getProfile } from './Profile';
-
+let url="http://localhost:8080";
+// url="";
 export const getConversations = async (id) => {
     try {
-        const res = await axios.get("http://localhost:8080/conversation/" + id);
+        const res = await axios.get(url+"/conversation/" + id);
         let conversations = res.data;
         for (const i in conversations) {
             const image1 = await getProfile(conversations[i].members[0]);
@@ -21,7 +22,7 @@ export const getConversations = async (id) => {
 }
 export const getMessages = async (id) => {
     try {
-        const res = await axios.get("http://localhost:8080/message/" + id);
+        const res = await axios.get(url+"/message/" + id);
         return (res).data;
     }
     catch (err) {
@@ -31,7 +32,7 @@ export const getMessages = async (id) => {
 
 export const sendMessage = async (message) => {
     try {
-        const res = await axios.post("http://localhost:8080/message/", message);
+        const res = await axios.post(url+"/message/", message);
         return (res).data;
     }
     catch (err) {
@@ -40,7 +41,7 @@ export const sendMessage = async (message) => {
 }
 export const newConvo = async (data) => {
     try {
-        const res = await axios.post("http://localhost:8080/conversation/", data);
+        const res = await axios.post(url+"/conversation/", data);
         return res.data;
     }
     catch (err) {
@@ -50,7 +51,7 @@ export const newConvo = async (data) => {
 
 export const updateConvo=async(data)=>{
     try{
-        const res=await axios.post("http://localhost:8080/conversation/update",data);
+        const res=await axios.post(url+"/conversation/update",data);
         return res.data;
     }
     catch(err)

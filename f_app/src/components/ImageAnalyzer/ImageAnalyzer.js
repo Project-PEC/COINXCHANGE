@@ -55,7 +55,6 @@ export const ImageAnalyzer = () => {
                     tensor = tensor.div(std)
                     tensor = tensor.expandDims(0);
                     // console.log("final");
-                    // tensor.print()
                     const predictedImage = await model.predict(tensor).data();
                     setPrediction(predictedImage);
                     setText("");
