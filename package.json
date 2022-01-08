@@ -14,10 +14,7 @@
     "socket": "cd socket && npm start",
     "dev": "concurrently -n 'server,client' -c 'red,blue' \"nodemon server.js\" \"npm run client\""
   },
-  "engines": {
-    "npm": ">=8.3.0",
-    "node": ">=16.13.1"
-  },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
