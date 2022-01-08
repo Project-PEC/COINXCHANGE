@@ -57,10 +57,6 @@ const __dirname = path.resolve();
 if (process.env.NODE_ENV === 'production') {
   const publicPath = path.join(__dirname, 'f_app', 'build');
   app.use(express.static(publicPath));
-  app.use("/", userRoutes);
-  app.use("/conversation/", conversationRoutes);
-  app.use("/message/", messageRoutes);
-  app.use("/", reviewRoutes);
   app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
   });
