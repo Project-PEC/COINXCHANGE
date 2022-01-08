@@ -32,7 +32,7 @@ export const ImageAnalyzer = () => {
     useEffect(() => {
         tf.ready().then(() =>
             loadModel());
-        csv('data.csv').then(data => {
+        csv('https://raw.githubusercontent.com/Project-PEC/CoinPredictionModel/main/data.csv').then(data => {
             setClasses(data);
         })
         const predictIt = async () => {
