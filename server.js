@@ -53,14 +53,15 @@ app.use(function (req, res, next) {
 });
 
 // Routes
+if(process.env.NODE_ENV==='production')
+{
+  app.use(express.static("f_app/build"))
+}
+
 app.use("/backend/", userRoutes);
 app.use("/backend/conversation/",conversationRoutes);
 app.use("/backend/message/",messageRoutes);
 app.use("/backend/", reviewRoutes);
 
-if(process.env.NODE_ENV==='production')
-{
-  app.use(express.static("f_app/build"))
-}
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
