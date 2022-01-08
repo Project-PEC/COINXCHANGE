@@ -1,6 +1,6 @@
 import { getProfile } from "./profile.js";
-import Conversation from "../models/conversation.js";
-import Message from "../models/message.js";
+import Conversation from "../models/Conversation.js";
+import Message from "../models/Message.js";
 
 export const newConv = async (req, res) => {
     const readObj = {}

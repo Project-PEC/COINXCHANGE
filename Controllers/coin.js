@@ -1,5 +1,5 @@
 import Coin from '../models/coin.js';
-import Review from '../models/review.js';
+import Review from '../models/Review.js';
 
 export const addCoin = async (req, res) => {
     const newCoin = new Coin({
