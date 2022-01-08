@@ -63,10 +63,10 @@ if(process.env.NODE_ENV==='production')
 	});
 }
 
-app.use("/backend/", userRoutes);
-app.use("/backend/conversation/",conversationRoutes);
-app.use("/backend/message/",messageRoutes);
-app.use("/backend/", reviewRoutes);
+app.use("/", userRoutes);
+app.use("/conversation/",conversationRoutes);
+app.use("/message/",messageRoutes);
+app.use("/", reviewRoutes);
 
 
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
