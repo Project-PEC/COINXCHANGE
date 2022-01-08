@@ -34,10 +34,7 @@ app.use(express.json());
 app.use(morgan('tiny'));
 app.use(cookieParser("secretCode"));
 
-app.use(cors({
-  origin: "https://coinxchange.herokuapp.com",
-  credentinals: true
-}))
+app.use(cors())
 app.use(session({
   secret: "secretCode",
   resave: true,
