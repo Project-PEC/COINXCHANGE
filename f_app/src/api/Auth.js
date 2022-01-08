@@ -5,8 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-let url="http://localhost:8080";
-url="https://coinxchange.herokuapp.com";
+let url="http://localhost:8080/backend/";
+url="https://coinxchange.herokuapp.com/backend/";
 export const registerUser = (registerUsername, registerPassword, registerEmail, setUsername, props) => {
     const data = {
         username: registerUsername,

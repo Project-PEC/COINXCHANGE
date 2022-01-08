@@ -1,7 +1,7 @@
 import axios from "axios"
 import { editCoinByPublisher } from "./Coin";
-let url2="http://localhost:8080";
-url2="https://coinxchange.herokuapp.com";
+let url2="http://localhost:8080/backend/";
+url2="https://coinxchange.herokuapp.com/backend/";
 export const getProfile=async(username)=>{
     const url=url2+"/"+username;
     return await axios.get(url).then(res=>res.data.doc);

@@ -53,10 +53,10 @@ app.use(function (req, res, next) {
 });
 
 // Routes
-app.use("/", userRoutes);
-app.use("/conversation/",conversationRoutes);
-app.use("/message/",messageRoutes);
-app.use("/", reviewRoutes);
+app.use("/backend/", userRoutes);
+app.use("/backend/conversation/",conversationRoutes);
+app.use("/backend/message/",messageRoutes);
+app.use("/backend/", reviewRoutes);
 
 if(process.env.NODE_ENV==='production')
 {
