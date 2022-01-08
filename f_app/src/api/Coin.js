@@ -1,8 +1,8 @@
 import axios from "axios";
 import { editProfile } from "./Profile";
 
-let url="http://localhost:8080/";
-url="https://coinxchange.herokuapp.com/";
+let url="http://localhost:8080";
+url="https://coinxchange.herokuapp.com";
 export const addCoin = async (username, data, profile) => {
     const url = url+"/addCoin/" + username;
     return await axios.post(url, data)

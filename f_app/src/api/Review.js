@@ -1,6 +1,6 @@
 import axios from "axios";
-let url="http://localhost:8080/";
-url="https://coinxchange.herokuapp.com/";
+let url="http://localhost:8080";
+url="https://coinxchange.herokuapp.com";
 export const addReview = async (username, coinId, data) => {
     const url = url+"/addReview/" + username + "/" + coinId;
     return await axios.post(url, data)
