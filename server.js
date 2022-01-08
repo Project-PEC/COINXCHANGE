@@ -9,6 +9,7 @@ import userRoutes from "./routes/user.js";
 import conversationRoutes from './routes/conversation.js';
 import messageRoutes from './routes/message.js';
 import reviewRoutes from './routes/review.js';
+import path from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -51,11 +52,15 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-
+const __dirname = path.resolve();
 // Routes
 if(process.env.NODE_ENV==='production')
 {
-  app.use(express.static("f_app/build"))
+  const publicPath = path.join(__dirname, 'f_app', 'build');
+	app.use(express.static(publicPath));
+	app.get('*', (req, res) => {
+	res.sendFile(path.join(publicPath,'index.html'));
+	});
 }
 
 app.use("/backend/", userRoutes);
