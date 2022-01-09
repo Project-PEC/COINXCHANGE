@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getProfile } from './Profile';
-let url="http://localhost:8080";
-url="https://coinxchange.herokuapp.com";
+let url="http://localhost:8080/backend";
+url="https://coinxchange.herokuapp.com/backend";
 export const getConversations = async (id) => {
     try {
         const res = await axios.get(url+"/conversation/" + id);
